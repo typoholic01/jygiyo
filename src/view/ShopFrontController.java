@@ -1,6 +1,8 @@
 package view;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bbs.BbsDto;
+import foodStore.FoodStoreDto;
 import singleton.Delegate;
 
 @WebServlet("/shop/*")
@@ -42,33 +45,53 @@ public class ShopFrontController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");						//utf-8 설정
 		resp.setContentType("text/html; charset=UTF-8");
 		
-		String email,pw,name,phone,auth;		//param
+		String boss_id,name,category,title,content,address,img_url;		//param
 		
 		switch (command) {
 		case "/shop/bhc":
-			BbsDto bbs = new BbsDto();
+			List<BbsDto> bbsList = new ArrayList<>();
+			
+			//임시로 집어넣을 데이터
+			int seq_store = 1;
+			int cur_page = 1;
 			
 			//DB로부터 bbs데이터를 가져온다
-			bbs = d.BbsCtrl.getBbsList(int seq_store, int cur_page);
-			
-			dispatch("/member/login.jsp", req, resp);				
+			bbsList = d.bbsCtrl.getBbsList(seq_store, cur_page);
+
+			//데이터를 집어넣는다
+			req.setAttribute("bbsList", bbsList);			
+						
+			dispatch("/bbs/bbs_notice_list.jsp", req, resp);				
 			break;
 			
-		case "/account/loginAf":
+		case "/shop/insert":
+			//변수 받아오기
+			boss_id = req.getParameter("boss_id");
+			name = req.getParameter("name");
+			category = req.getParameter("category");
+			title = req.getParameter("title");
+			content = req.getParameter("content");
+			address = req.getParameter("address");
+			img_url = req.getParameter("img_url");
 			
-			MemberDto mem = new MemberDto();
+			//객체 준비
+			FoodStoreDto shop = new FoodStoreDto();
 			
-			mem = d.memCtrl.login(email, pw);
+			shop.setBoss_id(boss_id);
+			shop.setName(name);
+			shop.setCategory(category);
+			shop.setTitle(title);
+			shop.setContent(content);
+			shop.setAddress(address);
+			shop.setImg_url(img_url);
 			
-			HttpSession session = req.getSession(true);
+			//삽입
+			d.foodStoreCtrl.insertFoodStore(shop);
 			
-			session.setAttribute("login", mem);
-			
-			req.setAttribute("login", mem);			
-									
-			dispatch("/main.jsp", req, resp);		
+			//보내기
+			/*dispatch("/test.jsp", req, resp);		*/
 			break;
-			
+		/*	
 		case "/account/register":
 			dispatch("/member/register.jsp", req, resp);		
 			break;
@@ -81,7 +104,7 @@ public class ShopFrontController extends HttpServlet {
 			d.memCtrl.addMember(email, pw, null, null, auth);
 			
 			dispatch("/member/login.jsp", req, resp);		
-			break;
+			break;*/
 			
 		default:
 			break;

@@ -109,9 +109,9 @@ public class BbsDao implements IBbsDao {
 				+ "img_url,create_at,update_at,status,"
 				+ "store_rating";
 		String sql = " SELECT "+columnSql+" FROM JUGIYO_BBS "
-					+ " WHERE category = 'notice' "
-					+ " ORDER BY ancestor desc,reply asc "
-					+ " limit " + startNum + "," + endNum;
+					+ " ORDER BY comments_group_no desc,comments_reply asc ";
+		
+		System.out.println(sql);
 		
 		List<BbsDto> list = new ArrayList<>();
 		
