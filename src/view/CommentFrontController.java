@@ -15,14 +15,14 @@ import bbs.BbsDto;
 import foodStore.FoodStoreDto;
 import singleton.Delegate;
 
-@WebServlet("/shop/*")
+@WebServlet("/comment/*")
 /*
  * mapping url pattern
  *  "/*" : 모든 요청
  * "*.do" : 확장자가 do인 요청
  * "/board/*" : /board/로 시작하는 요청
  */
-public class ShopFrontController extends HttpServlet {
+public class CommentFrontController extends HttpServlet {
 	private static final long serialVersionUID = 3286113481968426199L;
 	private Delegate d = Delegate.getInstance();
 
@@ -44,70 +44,44 @@ public class ShopFrontController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");						//utf-8 설정
 		resp.setContentType("text/html; charset=UTF-8");
 		
-		String boss_id,name,category,title,content,address,img_url;		//param
-		List<BbsDto> bbsList;
-		int seq_store, cur_page;
+		String seq_store,comment_id,id_category,comments,COMMENTS_GROUP_NO,COMMENTS_REPLY,STATUS;		//param
 		
-		switch (command) {
-		case "/shop/bhc":
-			bbsList = new ArrayList<>();
-			
-			//임시로 집어넣을 데이터
-			seq_store = 2;
-			cur_page = 1;
-			
-			//DB로부터 bbs데이터를 가져온다
-			bbsList = d.bbsCtrl.getBbsList(seq_store, cur_page);
-
-			//데이터를 집어넣는다
-			req.setAttribute("bbsList", bbsList);			
-						
-			dispatch("/bbs/bbs_list.jsp", req, resp);				
-			break;
-			
-		case "/shop/insert":
+		switch (command) {		
+		case "/comment/insert":
 			//변수 받아오기
-			boss_id = req.getParameter("boss_id");
-			name = req.getParameter("name");
-			category = req.getParameter("category");
-			title = req.getParameter("title");
-			content = req.getParameter("content");
-			address = req.getParameter("address");
-			img_url = req.getParameter("img_url");
+			seq_store = req.getParameter("seq_store");
+			comment_id = req.getParameter("comment_id");
+			comments = req.getParameter("comments");
 			
 			//객체 준비
-			FoodStoreDto shop = new FoodStoreDto();
-			
-			shop.setBoss_id(boss_id);
-			shop.setName(name);
-			shop.setCategory(category);
-			shop.setTitle(title);
-			shop.setContent(content);
-			shop.setAddress(address);
-			shop.setImg_url(img_url);
+			BbsDto bbs = new BbsDto();
+			bbs.setSeq_store(Integer.parseInt(seq_store));
+			bbs.setComment_id(comment_id);
+			bbs.setId_category("고객");
+			bbs.setComments(comments);
+			bbs.setComments_reply("0");
+			bbs.setStatus("0");			
 			
 			//삽입
-			d.foodStoreCtrl.insertFoodStore(shop);
+			d.bbsCtrl.insertBbs(bbs);
 			
 			//보내기
 			/*dispatch("/test.jsp", req, resp);		*/
 			break;
-			
-		case "/shop/bbq":
-			bbsList = new ArrayList<>();
-			
-			//임시로 집어넣을 데이터
-			seq_store = 2;
-			cur_page = 1;
-			
-			//DB로부터 bbs데이터를 가져온다
-			bbsList = d.bbsCtrl.getBbsList(seq_store, cur_page);
-
-			//데이터를 집어넣는다
-			req.setAttribute("bbsList", bbsList);			
-						
-			dispatch("/bbs/bbs_view.jsp", req, resp);				
+		/*	
+		case "/account/register":
+			dispatch("/member/register.jsp", req, resp);		
 			break;
+			
+		case "/account/registerAf":
+			email = req.getParameter("email");
+			pw = req.getParameter("pw");
+			auth = "general";
+			
+			d.memCtrl.addMember(email, pw, null, null, auth);
+			
+			dispatch("/member/login.jsp", req, resp);		
+			break;*/
 			
 		default:
 			break;

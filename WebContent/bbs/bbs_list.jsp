@@ -15,7 +15,46 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>bbslist.jsp</title>
 <p id="demo"></p>
-
+<script type="text/javascript">
+/* 아작스를 이용해 코멘트를 뿌려준다 */
+$(document).ready(function() {	
+	getBbsList();
+});		
+function getBbsList() {
+	$.ajax({ 
+		type : "GET",
+		url:"../shop/bbq",
+        dataType : "text",
+        error : function() {
+          alert('통신실패!!');
+        },
+        success : function(data) {
+          $('#view').html(data);
+        }
+	});
+}
+function insertComment() {
+	var seq_store = $("#seq_store").val();
+	var comment_id = $("#comment_id").val();
+	var comments = $("#comments").val();
+	
+	$.ajax({ 
+		type : "GET",
+		url:"../comment/insert",
+		data:"seq_store="+seq_store
+		+"&comment_id="+comment_id
+		+"&comments="+comments,
+        error : function() {
+          alert('통신실패!!');
+        },
+        success : function(data) {
+          alert("댓글성공!");
+        }
+	});
+	
+	getBbsList();
+}
+</script>
 <style type="text/css">
 .write{
   text-align:left;  
@@ -56,26 +95,15 @@
 
 <div align="center">
 <h1>게시판</h1>
+<div id="view">
 
-<table>
-	<tr>
-		<th>SEQ_BBS</th>
-		<th>COMMENT_ID</th>
-		<th>COMMENTS</th>
-	</tr>
-	<c:forEach items="${bbsList}" var="bbs">
-		<tr>
-			<td>${bbs.seq_bbs }</td>
-			<td>${bbs.comment_id }</td>
-			<td>${bbs.comments }</td>
-		</tr>
-	</c:forEach>
-</table>
+</div>
 <form>
-	<input type="text" name="comment_id" />
-	<input type="text" name="comments" />
+	<input type="hidden" id="seq_store" name="seq_store" value="2" />
+	<input type="text" id="comment_id" name="comment_id" />
+	<input type="text" id="comments" name="comments" />
 </form>
-	<button>댓글</button>
+<button onclick="insertComment()">댓글</button>
 </div>
 </body>
 </html>

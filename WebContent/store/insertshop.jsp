@@ -19,7 +19,7 @@
 		<th>가게이미지</th>
 	</tr>
 	<tr>
-		<td><input type="text" name="boss_id" /></td>
+		<td><input type="text" name="boss_id" value="123" /></td>
 		<td><input type="text" name="name" /></td>
 		<td><input type="text" name="category" /></td>
 		<td><input type="text" name="title" /></td>

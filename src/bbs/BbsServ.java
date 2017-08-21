@@ -10,4 +10,9 @@ public class BbsServ implements IBbsServ {
 		return dao.getBbsList(dto, cur_page);
 	}
 
+	@Override
+	public boolean insertBbs(BbsDto dto) {
+		return dao.insertBbs(dto);
+	}
+
 }

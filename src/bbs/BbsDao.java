@@ -28,11 +28,13 @@ public class BbsDao implements IBbsDao {
 		String columnSql = "SEQ_BBS, SEQ_STORE, COMMENT_ID, ID_CATEGORY, "
 						+ "COMMENTS, COMMENTS_GROUP_NO, COMMENTS_REPLY, IMG_URL, "
 						+ "CREATE_AT, UPDATE_AT, STATUS, STORE_RATING";
-		String sql = "INSERT INTO BBS("+columnSql+") "
-					+ " VALUES(SEQ_JUGIYO_BBS.NEXTVAL, ?, ?, ?, "
-					+ " ?, SEQ_JUGIYO_BBS.CURVAL, ?, ?, "
+		String sql = "INSERT INTO JUGIYO_BBS("+columnSql+") "
+					+ " VALUES("
+					+ " SEQ_JUGIYO_BBS.NEXTVAL, ?, ?, ?, "
+					+ " ?, SEQ_JUGIYO_BBS.CURRVAL, ?, ?, "
 					+ " SYSDATE, SYSDATE, ?, ?) ";
 
+		System.out.println(sql);
 		System.out.println("BBSDao: "+dto.toString());
 		
 		List<Object> queryList = new ArrayList<>();
@@ -40,10 +42,11 @@ public class BbsDao implements IBbsDao {
 		queryList.add(dto.getSeq_store());
 		queryList.add(dto.getComment_id());
 		queryList.add(dto.getId_category());
+		
 		queryList.add(dto.getComments());
-		queryList.add(dto.getComments_group_no());
-		queryList.add(dto.getComments_reply());
-		queryList.add(dto.getImg_url());
+		queryList.add(dto.getComments_reply());		
+		queryList.add("0");
+		
 		queryList.add(dto.getStatus());
 		queryList.add(dto.getStore_rating());
 		

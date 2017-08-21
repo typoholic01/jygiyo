@@ -11,6 +11,10 @@ public class BbsCtrl {
 		dto.setSeq_store(seq_store);
 		
 		return bbsServ.getBbsList(dto, cur_page);
+	}	
+
+	public boolean insertBbs(BbsDto dto) {
+		return bbsServ.insertBbs(dto);
 	}
 		
 
