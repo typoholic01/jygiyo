@@ -91,7 +91,7 @@ public class CustomerDao implements ICustomerDao {
 		
 		String sql = " SELECT CUSTOMER_ID, USER_NAME, PHONE_NUMBER, ADDRESS, STATUS "
 				+ " FROM JUGIYO_CUSTOMER "
-				+ " WHERE=? AND PASSWORD=? ";
+				+ " WHERE CUSTOMER_ID=? AND PASSWORD=? ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;

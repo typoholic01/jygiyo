@@ -33,6 +33,16 @@ public class CustomerDto implements Serializable {
 		this.address = address;
 		this.status = status;
 	}
+	
+	
+
+	public CustomerDto(String user_name, String password, String phone_number, String address, String status) {
+		this.user_name = user_name;
+		this.password = password;
+		this.phone_number = phone_number;
+		this.address = address;
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {

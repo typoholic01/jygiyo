@@ -1,5 +1,5 @@
-<%@page import="customer.CustomerDao"%>
 <%@page import="customer.CustomerDto"%>
+<%@page import="customer.CustomerDao"%>
 <%@page import="customer.ICustomerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -12,12 +12,15 @@
 <body>
 
 <%
-String id = request.getParameter("id");
-String pwd = request.getParameter("pwd");
+String customer_id = request.getParameter("id");
+String password = request.getParameter("pwd");
 
 
 ICustomerDao dao = CustomerDao.getInstance();
-CustomerDto cus = dao.checkLogin(new CustomerDto(id, pwd, null, null, null, null));
+CustomerDto cus = dao.checkLogin(new CustomerDto(customer_id, null, password, null, null, null));
+
+System.out.println("customer_id = " + customer_id);
+System.out.println("password = " + password);
 
 if(cus != null && !cus.getCustomer_id().equals("")){
 	session.setAttribute("login", cus);
