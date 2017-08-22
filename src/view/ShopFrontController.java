@@ -90,7 +90,7 @@ public class ShopFrontController extends HttpServlet {
 			d.foodStoreCtrl.insertFoodStore(shop);
 			
 			//보내기
-			/*dispatch("/test.jsp", req, resp);		*/
+			dispatch("/boss/bossmain.jsp", req, resp);		
 			break;
 			
 		case "/shop/bbq":

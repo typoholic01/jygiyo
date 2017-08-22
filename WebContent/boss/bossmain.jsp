@@ -7,8 +7,8 @@
 <title>bossmain.jsp</title>
 </head>
 <body>
-
-
 <h3>여기는 bossmain.jsp 입니다</h3>
+<a href="./insertshop.jsp">가게 등록</a>
+
 </body>
 </html>
