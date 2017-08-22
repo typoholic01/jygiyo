@@ -7,7 +7,6 @@ public class FoodStoreDto implements Serializable {
 	
 	private int seq_store;
 	private String boss_id;
-	private String name;
 	private String category;
 	private String title;
 	private String content;
@@ -17,24 +16,16 @@ public class FoodStoreDto implements Serializable {
 	public FoodStoreDto() {
 	}
 
-	public FoodStoreDto(int seq_store, String boss_id, String name, String category, String title, String content,
-			String address, String img_url) {
+	public FoodStoreDto(int seq_store, String boss_id, String category, String title, String content, String address,
+			String img_url) {
 		super();
 		this.seq_store = seq_store;
 		this.boss_id = boss_id;
-		this.name = name;
 		this.category = category;
 		this.title = title;
 		this.content = content;
 		this.address = address;
 		this.img_url = img_url;
-	}
-
-	@Override
-	public String toString() {
-		return "FoodStoreDto [seq_store=" + seq_store + ", boss_id=" + boss_id + ", name=" + name + ", category="
-				+ category + ", title=" + title + ", content=" + content + ", address=" + address + ", img_url="
-				+ img_url + "]";
 	}
 
 	public int getSeq_store() {
@@ -51,14 +42,6 @@ public class FoodStoreDto implements Serializable {
 
 	public void setBoss_id(String boss_id) {
 		this.boss_id = boss_id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getCategory() {
@@ -100,7 +83,5 @@ public class FoodStoreDto implements Serializable {
 	public void setImg_url(String img_url) {
 		this.img_url = img_url;
 	}
-
-	
 
 }

@@ -14,7 +14,6 @@
 <table>
 	<tr>
 		<th>사장아이디</th>
-		<th>사장이름</th>
 		<th>가게분류</th>
 		<th>가게이름</th>
 		<th>가게설명</th>
@@ -23,7 +22,6 @@
 	</tr>
 	<tr>
 		<td><input type="text" name="boss_id" value="${login.boss_id }" readonly="readonly" /></td>
-		<td><input type="text" name="name" value="${login.user_name }" readonly="readonly" /></td>
 		<td><input type="text" name="category" /></td>
 		<td><input type="text" name="title" /></td>
 		<td><input type="text" name="content" /></td>

@@ -9,9 +9,6 @@ public class BossDto implements Serializable {
 	private String phone_number;
 	private String status;
 	
-	
-
-
 	public BossDto(String boss_id, String user_name, String password, String phone_number, String status) {
 		super();
 		this.boss_id = boss_id;

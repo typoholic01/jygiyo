@@ -10,8 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bbs.BbsDto;
+import boss.BossDto;
 import foodStore.FoodStoreDto;
 import singleton.Delegate;
 
@@ -22,7 +24,7 @@ import singleton.Delegate;
  * "*.do" : 확장자가 do인 요청
  * "/board/*" : /board/로 시작하는 요청
  */
-public class ShopFrontController extends HttpServlet {
+public class BossFrontController extends HttpServlet {
 	private static final long serialVersionUID = 3286113481968426199L;
 	private Delegate d = Delegate.getInstance();
 
@@ -79,7 +81,6 @@ public class ShopFrontController extends HttpServlet {
 			FoodStoreDto shop = new FoodStoreDto();
 			
 			shop.setBoss_id(boss_id);
-			shop.setName(name);
 			shop.setCategory(category);
 			shop.setTitle(title);
 			shop.setContent(content);
@@ -106,7 +107,24 @@ public class ShopFrontController extends HttpServlet {
 			//데이터를 집어넣는다
 			req.setAttribute("bbsList", bbsList);			
 						
-			dispatch("/bbs/bbs_view.jsp", req, resp);				
+			/*dispatch("/boss/shoplist.jsp", req, resp);	*/			
+			break;
+			
+		case "/shop/list":
+			//변수 준비
+			List<FoodStoreDto> shopList = new ArrayList<>();
+			
+			//세션 받아오기
+			HttpSession session = req.getSession(true);			
+			BossDto boss = (BossDto) session.getAttribute("login");			
+			
+			//DB로부터  가게 데이터를 받아온다
+			shopList = d.foodStoreCtrl.getBossFoodStoreList(boss.getBoss_id());
+
+			//데이터를 집어넣는다
+			req.setAttribute("shopList", shopList);	
+			
+			dispatch("/boss/shoplist.jsp", req, resp);				
 			break;
 			
 		default:
