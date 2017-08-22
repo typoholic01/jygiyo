@@ -12,6 +12,6 @@ CREATE TABLE JUGIYO_FOOD (
 )
 
 
--- ���̺� �����Ҷ� ����
+-- 테이블 삭제용
 DROP TABLE JUGIYO_FOOD
 CASCADE CONSTRAINTS;

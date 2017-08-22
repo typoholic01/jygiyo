@@ -3,16 +3,22 @@ package foodStore;
 import java.io.Serializable;
 
 public class FoodStoreDto implements Serializable {
+	private static final long serialVersionUID = 1009970148851557910L;
+	
 	private int seq_store;
 	private String boss_id;
 	private String name;
 	private String category;
 	private String title;
 	private String content;
+	private String address;
 	private String img_url;
-	
+		
+	public FoodStoreDto() {
+	}
+
 	public FoodStoreDto(int seq_store, String boss_id, String name, String category, String title, String content,
-			String img_url) {
+			String address, String img_url) {
 		super();
 		this.seq_store = seq_store;
 		this.boss_id = boss_id;
@@ -20,13 +26,15 @@ public class FoodStoreDto implements Serializable {
 		this.category = category;
 		this.title = title;
 		this.content = content;
+		this.address = address;
 		this.img_url = img_url;
 	}
 
 	@Override
 	public String toString() {
 		return "FoodStoreDto [seq_store=" + seq_store + ", boss_id=" + boss_id + ", name=" + name + ", category="
-				+ category + ", title=" + title + ", content=" + content + ", img_url=" + img_url + "]";
+				+ category + ", title=" + title + ", content=" + content + ", address=" + address + ", img_url="
+				+ img_url + "]";
 	}
 
 	public int getSeq_store() {
@@ -77,6 +85,14 @@ public class FoodStoreDto implements Serializable {
 		this.content = content;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public String getImg_url() {
 		return img_url;
 	}
@@ -84,8 +100,7 @@ public class FoodStoreDto implements Serializable {
 	public void setImg_url(String img_url) {
 		this.img_url = img_url;
 	}
-	
-	
+
 	
 
 }
