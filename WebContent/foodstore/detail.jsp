@@ -70,7 +70,8 @@ function insertReply(target) {
         success : function(data) {
         }
 	});
-	getBbsList();
+	var currentLocation = window.location;
+	$("#view").load(currentLocation + '#view');
 }
 </script>
 <style type="text/css">
