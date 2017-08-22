@@ -4,15 +4,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
     <% request.setCharacterEncoding("utf-8"); %>
 <h1>BBS_Viewer</h1>
-<table>
+<table border="1">
 	<tr>
 		<th>SEQ_BBS</th>
+		<th>seq_store</th>
 		<th>COMMENT_ID</th>
 		<th>COMMENTS</th>
 	</tr>
 	<c:forEach items="${bbsList}" var="bbs">
 		<tr>
 			<td>${bbs.seq_bbs }</td>
+			<td>${bbs.seq_store }</td>
 			<td>${bbs.comment_id }</td>
 			<td>${bbs.comments }</td>
 		</tr>

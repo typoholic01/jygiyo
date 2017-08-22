@@ -13,7 +13,7 @@
 	<c:forEach items="${shopList}" var="shop">
 		<tr>
 			<td>${shop.seq_store }</td>
-			<td>${shop.title }</td>
+			<td><a href="${pageContext.request.contextPath}/foodstore/detail.jsp?seq=${shop.seq_store }">${shop.title }</a></td>
 			<td>${shop.content }</td>
 		</tr>
 	</c:forEach>

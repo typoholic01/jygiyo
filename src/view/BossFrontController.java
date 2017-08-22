@@ -51,20 +51,20 @@ public class BossFrontController extends HttpServlet {
 		int seq_store, cur_page;
 		
 		switch (command) {
-		case "/shop/bhc":
+		case "/shop/detail":
 			bbsList = new ArrayList<>();
 			
 			//임시로 집어넣을 데이터
-			seq_store = 2;
+			seq_store = Integer.parseInt(req.getParameter("seq"));
 			cur_page = 1;
 			
 			//DB로부터 bbs데이터를 가져온다
 			bbsList = d.bbsCtrl.getBbsList(seq_store, cur_page);
 
 			//데이터를 집어넣는다
-			req.setAttribute("bbsList", bbsList);			
+			req.setAttribute("bbsList", bbsList);	
 						
-			dispatch("/bbs/bbs_list.jsp", req, resp);				
+			dispatch("/bbs/bbs_view.jsp", req, resp);				
 			break;
 			
 		case "/shop/insert":
@@ -98,7 +98,7 @@ public class BossFrontController extends HttpServlet {
 			bbsList = new ArrayList<>();
 			
 			//임시로 집어넣을 데이터
-			seq_store = 2;
+			seq_store = Integer.parseInt(req.getParameter("seq"));
 			cur_page = 1;
 			
 			//DB로부터 bbs데이터를 가져온다

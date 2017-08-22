@@ -21,10 +21,12 @@ $(document).ready(function() {
 	getBbsList();
 });		
 function getBbsList() {
+	var seq_store = $("#seq_store").val();
+	
 	$.ajax({ 
 		type : "GET",
-		url:"../shop/bbq",
-        dataType : "text",
+		url:"../comment/list",
+		data:"seq="+seq_store,
         error : function() {
           alert('통신실패!!');
         },
@@ -48,7 +50,6 @@ function insertComment() {
           alert('통신실패!!');
         },
         success : function(data) {
-          alert("댓글성공!");
         }
 	});
 	
@@ -99,7 +100,7 @@ function insertComment() {
 
 </div>
 <form>
-	<input type="hidden" id="seq_store" name="seq_store" value="2" />
+	<input type="hidden" id="seq_store" name="seq_store" value="${param.seq }" />
 	<input type="text" id="comment_id" name="comment_id" />
 	<input type="text" id="comments" name="comments" />
 </form>

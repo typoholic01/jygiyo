@@ -45,7 +45,8 @@ public class CommentFrontController extends HttpServlet {
 		resp.setContentType("text/html; charset=UTF-8");
 		
 		String seq_store,comment_id,id_category,comments,COMMENTS_GROUP_NO,COMMENTS_REPLY,STATUS;		//param
-		
+
+		List<BbsDto> bbsList;
 		switch (command) {		
 		case "/comment/insert":
 			//변수 받아오기
@@ -66,22 +67,22 @@ public class CommentFrontController extends HttpServlet {
 			d.bbsCtrl.insertBbs(bbs);
 			
 			//보내기
-			/*dispatch("/test.jsp", req, resp);		*/
 			break;
-		/*	
-		case "/account/register":
-			dispatch("/member/register.jsp", req, resp);		
+		case "/comment/list":
+			bbsList = new ArrayList<>();
+			
+			//임시로 집어넣을 데이터
+			int seq = Integer.parseInt(req.getParameter("seq"));
+			int cur_page = 1;
+			
+			//DB로부터 bbs데이터를 가져온다
+			bbsList = d.bbsCtrl.getBbsList(seq, cur_page);
+
+			//데이터를 집어넣는다
+			req.setAttribute("bbsList", bbsList);	
+						
+			dispatch("/foodstore/bbs_view.jsp", req, resp);				
 			break;
-			
-		case "/account/registerAf":
-			email = req.getParameter("email");
-			pw = req.getParameter("pw");
-			auth = "general";
-			
-			d.memCtrl.addMember(email, pw, null, null, auth);
-			
-			dispatch("/member/login.jsp", req, resp);		
-			break;*/
 			
 		default:
 			break;

@@ -112,6 +112,7 @@ public class BbsDao implements IBbsDao {
 				+ "img_url,create_at,update_at,status,"
 				+ "store_rating";
 		String sql = " SELECT "+columnSql+" FROM JUGIYO_BBS "
+					+ "	WHERE seq_store = ?"
 					+ " ORDER BY comments_group_no desc,comments_reply asc ";
 		
 		System.out.println(sql);
@@ -128,6 +129,8 @@ public class BbsDao implements IBbsDao {
 			
 			psmt = conn.prepareStatement(sql);
 			System.out.println("3/6 getBbsList Success");
+			
+			psmt.setInt(1, dto.getSeq_store());
 			
 			rs = psmt.executeQuery();
 			System.out.println("4/6 getBbsList Success");
