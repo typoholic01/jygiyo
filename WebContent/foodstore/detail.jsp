@@ -14,7 +14,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>bbslist.jsp</title>
-<p id="demo"></p>
 <script type="text/javascript">
 /* 아작스를 이용해 코멘트를 뿌려준다 */
 $(document).ready(function() {	
@@ -53,6 +52,24 @@ function insertComment() {
         }
 	});
 	
+	getBbsList();
+}
+function insertReply(target) {
+	var params = $("#"+target).serialize();
+	console.log(params);
+	
+	$.ajax({ 
+		type : "GET",
+		url:"../shop/bbs/reply",
+		data:params,
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+        dataType: 'html',
+        error : function() {
+          alert('통신실패!!');
+        },
+        success : function(data) {
+        }
+	});
 	getBbsList();
 }
 </script>
@@ -101,7 +118,7 @@ function insertComment() {
 </div>
 <form>
 	<input type="hidden" id="seq_store" name="seq_store" value="${param.seq }" />
-	<input type="text" id="comment_id" name="comment_id" />
+	<input type="text" id="comment_id" name="comment_id" value="${login.boss_id }" readonly="readonly" />
 	<input type="text" id="comments" name="comments" />
 </form>
 <button onclick="insertComment()">댓글</button>

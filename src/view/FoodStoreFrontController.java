@@ -47,7 +47,7 @@ public class FoodStoreFrontController extends HttpServlet {
 		resp.setContentType("text/html; charset=UTF-8");
 		
 		String boss_id,name,category,title,content,address,img_url;		//param
-		String comment_id,comments;
+		String comment_id,comments,comments_reply;
 		int seq_bbs,comments_group_no;
 		List<BbsDto> bbsList;
 		FoodStoreDto shop;
@@ -103,6 +103,7 @@ public class FoodStoreFrontController extends HttpServlet {
 			seq_store = Integer.parseInt(req.getParameter("seq_store"));
 			comment_id = req.getParameter("comment_id");
 			comments = req.getParameter("comments");
+			comments_reply = req.getParameter("comments_reply");
 			comments_group_no = Integer.parseInt(req.getParameter("comments_group_no"));
 			
 			//객체 준비
@@ -113,6 +114,7 @@ public class FoodStoreFrontController extends HttpServlet {
 			bbs.setId_category("고객");
 			bbs.setComment_id(comment_id);
 			bbs.setComments(comments);
+			bbs.setComments_reply(comments_reply);
 			bbs.setComments_group_no(comments_group_no);
 			bbs.setStatus("published");
 			
@@ -120,7 +122,7 @@ public class FoodStoreFrontController extends HttpServlet {
 			d.bbsCtrl.insertReply(bbs);
 			
 			//보내기
-			dispatch("/foodstore/detail.jsp", req, resp);		
+			dispatch("/foodstore/bbs_view.jsp", req, resp);	
 			break;
 			
 		case "/shop/list":

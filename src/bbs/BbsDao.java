@@ -44,7 +44,7 @@ public class BbsDao implements IBbsDao {
 		queryList.add(dto.getId_category());
 		
 		queryList.add(dto.getComments());
-		queryList.add(dto.getComments_reply());		
+		queryList.add(dto.getComments_reply());
 		queryList.add("0");
 		
 		queryList.add(dto.getStatus());
@@ -68,11 +68,12 @@ public class BbsDao implements IBbsDao {
 		 * */
 		
 		String replyBase = bbs.getComments_reply();
+		System.out.println("replyBase : "+replyBase);
 		
-		if (replyBase == null || replyBase.equals("0")) {
+		if (replyBase == null || replyBase.equals("-1")) {
 			replyBase = "";
 		}
-		System.out.println("replyBase : "+replyBase);
+		System.out.println("변경된 replyBase : "+replyBase);
 		System.out.println("replyBase 길이: "+replyBase.length());
 		char replyStep = 'A';
 		String reply = "";
@@ -85,7 +86,7 @@ public class BbsDao implements IBbsDao {
 		for (String string : replyList) {
 			System.out.println("루프: "+string);
 			
-			if (string != null&&!string.equals("0")&&(replyBase.length()+1)==string.length()) {
+			if (string != null&&!string.equals("-1")&&(replyBase.length()+1)==string.length()) {
 				System.out.println("길이: "+string.length());
 				isDepthReply = true;
 				replyStep += 1;

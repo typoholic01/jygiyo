@@ -58,10 +58,10 @@ public class CommentFrontController extends HttpServlet {
 			BbsDto bbs = new BbsDto();
 			bbs.setSeq_store(Integer.parseInt(seq_store));
 			bbs.setComment_id(comment_id);
-			bbs.setId_category("고객");
+			bbs.setId_category("customer");
 			bbs.setComments(comments);
-			bbs.setComments_reply("0");
-			bbs.setStatus("0");			
+			bbs.setComments_reply("-1");
+			bbs.setStatus("published");			
 			
 			//삽입
 			d.bbsCtrl.insertBbs(bbs);

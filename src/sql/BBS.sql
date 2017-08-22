@@ -17,6 +17,8 @@ CREATE TABLE JUGIYO_BBS (
 
 drop table JUGIYO_BBS
 
+delete from JUGIYO_BBS
+
 CREATE SEQUENCE SEQ_JUGIYO_BBS START WITH 1 INCREMENT BY 1;
 
 -- 테스트 데이터
@@ -26,7 +28,9 @@ VALUES(SEQ_JUGIYO_BBS.NEXTVAL,2,'123','BOSS','정말 맛있닭!',SEQ_JUGIYO_BBS.
 INSERT INTO JUGIYO_BBS(SEQ_BBS, SEQ_STORE, COMMENT_ID, ID_CATEGORY, COMMENTS, COMMENTS_GROUP_NO, COMMENTS_REPLY, IMG_URL, CREATE_AT, UPDATE_AT, STATUS, STORE_RATING)  
 VALUES(SEQ_JUGIYO_BBS.NEXTVAL, 2, '123', 'BOSS',  '끝내준닭!', SEQ_JUGIYO_BBS.CURRVAL, ' ', null,  SYSDATE, SYSDATE, '0', '0')
 
- SELECT seq_bbs,seq_store,comment_id,id_category,comments,comments_group_no,comments_reply,img_url,create_at,update_at,status,store_rating FROM JUGIYO_BBS  ORDER BY comments_group_no desc,comments_reply asc 
+ SELECT seq_bbs,seq_store,comment_id,id_category,comments,comments_group_no,comments_reply,img_url,create_at,update_at,status,store_rating 
+ FROM JUGIYO_BBS  
+ ORDER BY comments_group_no desc,comments_reply asc 
 
 SELECT comments_reply 
 FROM JUGIYO_BBS 
