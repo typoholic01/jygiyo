@@ -16,12 +16,12 @@
 <table>
 <tr>
 	<td>
-		<a href="myinfo.jsp">
+		<a href="./myinfo.jsp">
 			<img src="./image/myinfo.png" alt="내정보">
 		</a>
 	</td>
 	<td>
-		<a href="myreview.jsp">
+		<a href="./myreview.jsp">
 			<img src="./image/re.png" alt="리뷰관리">
 		</a>	
 	</td>

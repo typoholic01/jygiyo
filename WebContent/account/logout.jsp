@@ -14,7 +14,7 @@ session.invalidate();
 
 <script type="text/javascript">
 alert("안녕히 가십시오");
-location.href = 'index.jsp';
+location.href = '../index.jsp';
 
 </script>
 

@@ -7,40 +7,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>login.jsp</title>
+<title>regiAf.jsp</title>
 </head>
 <body>
-
 <%
 String customer_id = request.getParameter("id");
+String user_name = request.getParameter("name");
 String password = request.getParameter("pwd");
-
+String phone_number = request.getParameter("phone");
+String address = request.getParameter("address");
+String status = request.getParameter("status");
 
 ICustomerDao dao = CustomerDao.getInstance();
-CustomerDto cus = dao.checkLogin(new CustomerDto(customer_id, null, password, null, null, null));
 
-System.out.println("customer_id = " + customer_id);
-System.out.println("password = " + password); 
-System.out.println(cus); 
-if(cus != null && !cus.getCustomer_id().equals("")){
-	session.setAttribute("login", cus);
-	session.setMaxInactiveInterval(30 * 60);
+boolean isS = dao.sign(new CustomerDto(customer_id, user_name, password, phone_number, address, status));
+if(isS){
 	%>
 	<script type="text/javascript">
-	alert("안녕하세요 <%= cus.getCustomer_id()%>님");
-	location.href = "bbslist.jsp";
+	alert("성공적으로 가입하셨습니다");
+	location.href = '../index.jsp';
 	</script>	
 	<%
-}else{
+}else{	
 	%>
 	<script type="text/javascript">
-	alert("아이디나 패스워드를 확인하세요");
-	location.href = "index.jsp";
+	alert("다시 가입하십시오");
+	location.href = './regi.jsp';
 	</script>
 	<%
 }	
 %>
-	
+
 
 </body>
 </html>

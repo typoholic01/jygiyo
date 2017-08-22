@@ -29,14 +29,14 @@ if(boss != null && !boss.getBoss_id().equals("")){
 	%>
 	<script type="text/javascript">
 	alert("안녕하세요 <%= boss.getBoss_id()%>사장님");
-	location.href = "bossmain.jsp";
+	location.href = "../boss/bossmain.jsp";
 	</script>	
 	<%
 }else{
 	%>
 	<script type="text/javascript">
 	alert("아이디나 패스워드를 확인하세요");
-	location.href = "bosslogin.jsp";
+	location.href = "./bosslogin.jsp";
 	</script>
 	<%
 }	

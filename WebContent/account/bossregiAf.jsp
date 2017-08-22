@@ -1,6 +1,6 @@
-<%@page import="customer.CustomerDto"%>
-<%@page import="customer.CustomerDao"%>
-<%@page import="customer.ICustomerDao"%>
+<%@page import="boss.BossDto"%>
+<%@page import="boss.BossDao"%>
+<%@page import="boss.IBossDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -11,28 +11,27 @@
 </head>
 <body>
 <%
-String customer_id = request.getParameter("id");
+String boss_id = request.getParameter("id");
 String user_name = request.getParameter("name");
 String password = request.getParameter("pwd");
 String phone_number = request.getParameter("phone");
-String address = request.getParameter("address");
 String status = request.getParameter("status");
 
-ICustomerDao dao = CustomerDao.getInstance();
+IBossDao dao = BossDao.getInstance();
 
-boolean isS = dao.sign(new CustomerDto(customer_id, user_name, password, phone_number, address, status));
+boolean isS = dao.sign(new BossDto(boss_id, user_name, password, phone_number, status));
 if(isS){
 	%>
 	<script type="text/javascript">
 	alert("성공적으로 가입하셨습니다");
-	location.href = 'index.jsp';
+	location.href = '../main.jsp';
 	</script>	
 	<%
 }else{	
 	%>
 	<script type="text/javascript">
 	alert("다시 가입하십시오");
-	location.href = 'regi.jsp';
+	location.href = './bossregi.jsp';
 	</script>
 	<%
 }	

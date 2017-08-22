@@ -20,28 +20,29 @@
 </head>
 <body>
 
-<h1>Login</h1>
-<p>가맹주분들 환영합니다</p>
+<h3 align="center">Login</h3>
+   <h1 class="logo" align="center"><img src="../image/jugiyo.png" alt="저기요"></h1>
+
 
 <!-- <div class="center"> -->
 
 <div align="center">
 
-<form action="bossloginAf.jsp" method="post">
+<form action="./loginAf.jsp" method="post">
 
-<table border="1">
+<table>
 
 <tr>
 	<td>아이디</td>
 	<td>
-		<input type="text" name="boss_id" size="20">
+		<input type="text" name="id" size="20">
 	</td>	
 </tr>
 
 <tr>
 	<td>패스워드</td>
 	<td>
-		<input type="password" name="boss_pwd" size="20">
+		<input type="password" name="pwd" size="20">
 	</td>	
 </tr>
 
@@ -53,7 +54,8 @@
 </table>
 </form>
 
-<a href="bossregi.jsp">가맹주  회원가입</a>
+<a href="./regi.jsp">일반 회원가입</a>
+
 
 </div>
 

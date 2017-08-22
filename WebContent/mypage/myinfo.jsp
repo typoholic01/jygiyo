@@ -19,7 +19,7 @@ String id = request.getParameter("id");
 %>
 
 <div>
-<form action="myinfoAf.jsp" method="post">
+<form action="./myinfoAf.jsp" method="post">
 <input type="hidden" name="id" value="">
 <table border="1">
 

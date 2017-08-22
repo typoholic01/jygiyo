@@ -21,7 +21,7 @@
 
 <div class="center">
 
-<form action="regiAf.jsp" method="post">
+<form action="./regiAf.jsp" method="post">
 
 <table border="1">
 
@@ -80,7 +80,7 @@
 
 </div>
 
-<a href="index.jsp">Home</a>
+<a href="../index.jsp">Home</a>
 
 </body>
 </html>

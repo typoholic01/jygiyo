@@ -4,62 +4,68 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Login</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="style.css">
-
-<!-- <style type="text/css">
-.center{
-	margin: auto;
-	width: 60%;
-	border: 3px solid #8AC007;
-	padding: 10px;
-}
-</style> -->
-
+<title>main.jsp</title>
 </head>
 <body>
-
-<h1>Login</h1>
-<p>환영합니다</p>
-
-<!-- <div class="center"> -->
-
 <div align="center">
 
-<form action="login.jsp" method="post">
+<form action="">
 
-<table border="1">
-
-<tr>
-	<td>아이디</td>
-	<td>
-		<input type="text" name="id" size="20">
-	</td>	
-</tr>
-
-<tr>
-	<td>패스워드</td>
-	<td>
-		<input type="password" name="pwd" size="20">
-	</td>	
-</tr>
-
-<tr>
-	<td colspan="2">
-		<input type="submit" value="로그인">
-	</td>
-</tr>
-</table>
-</form>
-
-<a href="regi.jsp">회원가입</a>
-
+<div align="right">
+<a href="./account/bosslogin.jsp">가맹점 로그인</a> | <a href="./account/login.jsp">로그인</a> | <a href="./account/regi.jsp">일반 회원가입</a> | <a href="./account/bossregi.jsp">가맹점 회원가입</a>
 </div>
 
+<h3 align="center"><img src="./image/jugiyo.png" alt="저기요"></h3>
 
+<input type="hidden" ><select name="city" id="city">
+	<option id="seoul" value="seoul">서울</option>
+	<option>인천</option>
+	<option>수원</option>
+	<option>광명</option>
+</select>
+<select>
+	<option>강남구</option>
+	<option>영등포구</option>
+	<option>노원구</option>
+	<option>구로구</option>
+</select>
+
+<input type="text" name="serch" size="20">
+<input type="submit" value="검색">
+</form>
+</div>
+<br><br><br><br>
+
+<table rules="none" align="center">
+	<tr>
+		<td>
+			<a href="chickenList.jsp">
+			<img src="image/chicken.jpg" width="200" height="150" id="chicken" name="chicken">
+			</a>
+		</td>		
+		
+		<td>
+			<a href="fastfoodList.jsp">
+			<img src="image/fastfood.png" width="200" height="150">
+			</a>
+		</td>
+		<td><img src="image/pig.jpg" width="200" height="150"></td>
+		<td><img src="image/Sushi.jpg" width="200" height="150"></td>
+	</tr>
+	<tr>		
+		<td><img src="image/dosirack.png" width="200" height="150"></td>
+		<td><img src="image/jj.jpg" width="200" height="150"></td>
+		<td><img src="image/jjajang.jpg" width="200" height="150"></td>
+		<td><img src="image/hansic.jpg" width="200" height="150"></td>
+	</tr>
+	
+	<tr>
+		
+		<td><img src="image/porkC.jpg" width="200" height="150"></td>
+	</tr>
+</table>
 
 </body>
 </html>
-
-
