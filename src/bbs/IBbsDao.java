@@ -11,6 +11,8 @@ public interface IBbsDao {
 
 	public boolean modifyBbs(BbsDto dto);
 	public boolean deleteBbs(int seq_bbs);
+
+	public boolean insertReply(BbsDto bbs);
 	
 	
 

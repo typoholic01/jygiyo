@@ -24,7 +24,7 @@ import singleton.Delegate;
  * "*.do" : 확장자가 do인 요청
  * "/board/*" : /board/로 시작하는 요청
  */
-public class BossFrontController extends HttpServlet {
+public class FoodStoreFrontController extends HttpServlet {
 	private static final long serialVersionUID = 3286113481968426199L;
 	private Delegate d = Delegate.getInstance();
 
@@ -47,7 +47,10 @@ public class BossFrontController extends HttpServlet {
 		resp.setContentType("text/html; charset=UTF-8");
 		
 		String boss_id,name,category,title,content,address,img_url;		//param
+		String comment_id,comments;
+		int seq_bbs,comments_group_no;
 		List<BbsDto> bbsList;
+		FoodStoreDto shop;
 		int seq_store, cur_page;
 		
 		switch (command) {
@@ -78,7 +81,7 @@ public class BossFrontController extends HttpServlet {
 			img_url = req.getParameter("img_url");
 			
 			//객체 준비
-			FoodStoreDto shop = new FoodStoreDto();
+			shop = new FoodStoreDto();
 			
 			shop.setBoss_id(boss_id);
 			shop.setCategory(category);
@@ -94,20 +97,30 @@ public class BossFrontController extends HttpServlet {
 			dispatch("/boss/bossmain.jsp", req, resp);		
 			break;
 			
-		case "/shop/bbq":
-			bbsList = new ArrayList<>();
+		case "/shop/bbs/reply":
+			//변수 받아오기
+			seq_bbs = Integer.parseInt(req.getParameter("seq_bbs"));
+			seq_store = Integer.parseInt(req.getParameter("seq_store"));
+			comment_id = req.getParameter("comment_id");
+			comments = req.getParameter("comments");
+			comments_group_no = Integer.parseInt(req.getParameter("comments_group_no"));
 			
-			//임시로 집어넣을 데이터
-			seq_store = Integer.parseInt(req.getParameter("seq"));
-			cur_page = 1;
+			//객체 준비
+			BbsDto bbs = new BbsDto();
 			
-			//DB로부터 bbs데이터를 가져온다
-			bbsList = d.bbsCtrl.getBbsList(seq_store, cur_page);
-
-			//데이터를 집어넣는다
-			req.setAttribute("bbsList", bbsList);			
-						
-			/*dispatch("/boss/shoplist.jsp", req, resp);	*/			
+			bbs.setSeq_bbs(seq_bbs);
+			bbs.setSeq_store(seq_store);
+			bbs.setId_category("고객");
+			bbs.setComment_id(comment_id);
+			bbs.setComments(comments);
+			bbs.setComments_group_no(comments_group_no);
+			bbs.setStatus("published");
+			
+			//삽입
+			d.bbsCtrl.insertReply(bbs);
+			
+			//보내기
+			dispatch("/foodstore/detail.jsp", req, resp);		
 			break;
 			
 		case "/shop/list":

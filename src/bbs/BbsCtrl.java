@@ -16,6 +16,11 @@ public class BbsCtrl {
 	public boolean insertBbs(BbsDto dto) {
 		return bbsServ.insertBbs(dto);
 	}
+
+	public boolean insertReply(BbsDto bbs) {
+		return bbsServ.insertReply(bbs);
+		
+	}
 		
 
 }

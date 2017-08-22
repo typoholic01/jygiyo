@@ -54,6 +54,78 @@ public class BbsDao implements IBbsDao {
 	}
 
 	@Override
+	public boolean insertReply(BbsDto bbs) {
+		//답글 순서를 구한다
+		List<String> replyList = countReply(bbs);		
+		
+		/**
+		 * 1. 원글 reply를 받아온다
+		 * 2. 원글 ancestor replylist를 받아온다
+		 * 3. replylist 단계를 비교한다
+		 * 4. 단계를 추가한다
+		 * 5. return일 경우 : 단계를 변경한다(A->B->C->)
+		 * 
+		 * */
+		
+		String replyBase = bbs.getComments_reply();
+		
+		if (replyBase == null || replyBase.equals("0")) {
+			replyBase = "";
+		}
+		System.out.println("replyBase : "+replyBase);
+		System.out.println("replyBase 길이: "+replyBase.length());
+		char replyStep = 'A';
+		String reply = "";
+		
+		System.out.println(replyBase);
+		
+		//스위칭 불리언
+		boolean isDepthReply = false;
+		
+		for (String string : replyList) {
+			System.out.println("루프: "+string);
+			
+			if (string != null&&!string.equals("0")&&(replyBase.length()+1)==string.length()) {
+				System.out.println("길이: "+string.length());
+				isDepthReply = true;
+				replyStep += 1;
+				System.out.println("변경된 step: "+replyStep);
+			}
+		}
+		reply = replyBase + replyStep;
+		
+		System.out.println(reply);
+		
+		String columnSql = "SEQ_BBS, SEQ_STORE, COMMENT_ID, ID_CATEGORY, "
+				+ "COMMENTS, COMMENTS_GROUP_NO, COMMENTS_REPLY, IMG_URL, "
+				+ "CREATE_AT, UPDATE_AT, STATUS, STORE_RATING";
+		String sql = "INSERT INTO JUGIYO_BBS("+columnSql+") "
+					+ " VALUES("
+					+ " SEQ_JUGIYO_BBS.NEXTVAL, ?, ?, ?, "
+					+ " ?, ?, ?, ?, "
+					+ " SYSDATE, SYSDATE, ?, ?) ";
+		
+		System.out.println(sql);
+		System.out.println("BBSDao: "+bbs.toString());
+		
+		List<Object> queryList = new ArrayList<>();
+		
+		queryList.add(bbs.getSeq_store());
+		queryList.add(bbs.getComment_id());
+		queryList.add(bbs.getId_category());
+		
+		queryList.add(bbs.getComments());
+		queryList.add(bbs.getComments_group_no());
+		queryList.add(reply);		
+		queryList.add("0");
+		
+		queryList.add(bbs.getStatus());
+		queryList.add(bbs.getStore_rating());
+		
+		return DBConnection.executeUpdates(sql, queryList);
+	}	
+
+	@Override
 	public BbsDto getBbs(int seq_bbs) {
 		BbsDto bbs = null;
 		
@@ -201,7 +273,43 @@ public class BbsDao implements IBbsDao {
 		queryList.add(seq_bbs);
 		
 		return DBConnection.executeUpdates(sql, queryList);
-	}
+	}	
 	
+	//답글 순서 구하기용 Reply 함수
+	private List<String> countReply(BbsDto dto) {
+		String sql = " SELECT comments_reply "
+				+ " FROM JUGIYO_BBS "
+				+ " WHERE comments_group_no = ("
+				+ "	SELECT comments_group_no FROM JUGIYO_BBS WHERE seq_bbs = ?"
+				+ " ) "
+				+ " ORDER BY comments_reply asc";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<String> replylist = new ArrayList<>();
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, dto.getSeq_bbs());
+			rs = psmt.executeQuery();			
+			
+			while (rs.next()) {
+				String reply = rs.getString(1);
+				replylist.add(reply);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(conn, psmt, rs);
+		}
+		
+		System.out.println(replylist.toString());
+		
+		return replylist;
+	} 
 
 }

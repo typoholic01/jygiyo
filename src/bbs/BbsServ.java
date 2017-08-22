@@ -14,5 +14,9 @@ public class BbsServ implements IBbsServ {
 	public boolean insertBbs(BbsDto dto) {
 		return dao.insertBbs(dto);
 	}
+	
+	public boolean insertReply(BbsDto bbs) {
+		return dao.insertReply(bbs);
+	};
 
 }

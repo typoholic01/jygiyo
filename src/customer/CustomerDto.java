@@ -14,6 +14,8 @@ CREATE TABLE JUGIYO_CUSTOMER (
 */
 
 public class CustomerDto implements Serializable {
+	private static final long serialVersionUID = -6429979586572737618L;
+	
 	private String customer_id;
 	private String user_name;
 	private String password;

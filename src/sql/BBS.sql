@@ -27,3 +27,10 @@ INSERT INTO JUGIYO_BBS(SEQ_BBS, SEQ_STORE, COMMENT_ID, ID_CATEGORY, COMMENTS, CO
 VALUES(SEQ_JUGIYO_BBS.NEXTVAL, 2, '123', 'BOSS',  '끝내준닭!', SEQ_JUGIYO_BBS.CURRVAL, ' ', null,  SYSDATE, SYSDATE, '0', '0')
 
  SELECT seq_bbs,seq_store,comment_id,id_category,comments,comments_group_no,comments_reply,img_url,create_at,update_at,status,store_rating FROM JUGIYO_BBS  ORDER BY comments_group_no desc,comments_reply asc 
+
+SELECT comments_reply 
+FROM JUGIYO_BBS 
+WHERE comments_group_no = (
+	SELECT comments_group_no FROM JUGIYO_BBS WHERE seq_bbs = 30
+) 
+ORDER BY comments_reply asc
