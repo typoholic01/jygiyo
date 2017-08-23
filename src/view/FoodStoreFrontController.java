@@ -55,6 +55,22 @@ public class FoodStoreFrontController extends HttpServlet {
 		int seq_store, cur_page;
 		
 		switch (command) {
+		case "/shop/list":
+			//변수 준비
+			List<FoodStoreDto> shopList = new ArrayList<>();
+			
+			//세션 받아오기
+			HttpSession session = req.getSession(true);			
+			BossDto boss = (BossDto) session.getAttribute("blogin");			
+			
+			//DB로부터  가게 데이터를 받아온다
+			shopList = d.foodStoreCtrl.getBossFoodStoreList(boss.getBoss_id());
+
+			//데이터를 집어넣는다
+			req.setAttribute("shopList", shopList);	
+			
+			dispatch("/boss/shoplist.jsp", req, resp);				
+			break;
 		case "/shop/detail":
 			bbsList = new ArrayList<>();
 			
@@ -96,23 +112,6 @@ public class FoodStoreFrontController extends HttpServlet {
 			
 			//보내기
 			dispatch("/boss/bossmain.jsp", req, resp);		
-			break;
-			
-		case "/shop/list":
-			//변수 준비
-			List<FoodStoreDto> shopList = new ArrayList<>();
-			
-			//세션 받아오기
-			HttpSession session = req.getSession(true);			
-			BossDto boss = (BossDto) session.getAttribute("login");			
-			
-			//DB로부터  가게 데이터를 받아온다
-			shopList = d.foodStoreCtrl.getBossFoodStoreList(boss.getBoss_id());
-
-			//데이터를 집어넣는다
-			req.setAttribute("shopList", shopList);	
-			
-			dispatch("/boss/shoplist.jsp", req, resp);				
 			break;
 			
 		default:

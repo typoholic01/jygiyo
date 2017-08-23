@@ -4,22 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>logout.jsp</title>
+<title>fastfoodList.jsp</title>
 </head>
 <body>
-
-<%
-session.invalidate();
-%>
-
-<script type="text/javascript">
-alert("안녕히 가십시오");
-location.href = '../main.jsp';
-
-</script>
-
-
-
-
+<h1>fastfoodList.jsp</h1>
 </body>
 </html>

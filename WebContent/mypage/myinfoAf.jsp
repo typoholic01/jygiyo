@@ -1,50 +1,46 @@
-<%@page import="customer.CustomerDto"%>
 <%@page import="customer.CustomerDao"%>
 <%@page import="customer.ICustomerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("utf-8");
+%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>regiAf.jsp</title>
+<title>myinfoAf.jsp</title>
 </head>
-<body>
+<body> 
+
 <%
 String customer_id = request.getParameter("id");
-String user_name = request.getParameter("name");
-String password = request.getParameter("pwd");
 String phone_number = request.getParameter("phone");
 String address = request.getParameter("address");
-String status = request.getParameter("status");
+String password = request.getParameter("password");
 
+System.out.println(phone_number);
+System.out.println(address);
+System.out.println(password);
 ICustomerDao dao = CustomerDao.getInstance();
-
-boolean isS = dao.sign(new CustomerDto(customer_id, user_name, password, phone_number, address, status));
-if(isS){
+boolean isS = dao.modifyInfomation(customer_id, password, phone_number, address);
+if(isS == true){
 	%>
 	<script type="text/javascript">
-	alert("성공적으로 가입하셨습니다");
-	location.href = '../main.jsp';
-	</script>	
-	<%
-}else{	
-	%>
-	<script type="text/javascript">
-	alert("다시 가입하십시오");
-	location.href = 'regi.jsp';
+	alert("수정완료");
+	location.href="mypage.jsp";	
 	</script>
 	<%
-}	
+}else{
+	%>
+	<script type="text/javascript">
+	alert("수정실패");
+	location.href="myinfo.jsp";
+	</script>
+	<%
+}
 %>
 
 
 </body>
 </html>
-
-
-
-
-
-
-

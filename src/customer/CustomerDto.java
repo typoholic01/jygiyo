@@ -14,8 +14,6 @@ CREATE TABLE JUGIYO_CUSTOMER (
 */
 
 public class CustomerDto implements Serializable {
-	private static final long serialVersionUID = -6429979586572737618L;
-	
 	private String customer_id;
 	private String user_name;
 	private String password;
@@ -36,8 +34,6 @@ public class CustomerDto implements Serializable {
 		this.status = status;
 	}
 	
-	
-
 	public CustomerDto(String user_name, String password, String phone_number, String address, String status) {
 		this.user_name = user_name;
 		this.password = password;
@@ -45,7 +41,7 @@ public class CustomerDto implements Serializable {
 		this.address = address;
 		this.status = status;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "CustomerDto [customer_id=" + customer_id + ", user_name=" + user_name + ", password=" + password

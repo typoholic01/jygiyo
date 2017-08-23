@@ -12,7 +12,17 @@ import db.DBConnection;
 import jdbc.DBConn;
 
 public class FoodStoreDao implements IFoodStoreDao {
-
+private static FoodStoreDao foodStoreDao = null;
+	
+	public FoodStoreDao() {}
+	
+	public static FoodStoreDao getInstance() {
+		if(foodStoreDao == null){
+			foodStoreDao = new FoodStoreDao();
+		}
+		return foodStoreDao;
+	}
+	
 	@Override
 	public boolean insertFoodStore(FoodStoreDto dto) {
 		//쿼리문 준비
@@ -36,12 +46,6 @@ public class FoodStoreDao implements IFoodStoreDao {
 		
 		//쿼리 실행&리턴
 		return DBConnection.executeUpdates(sql, queryList);		
-	}
-
-	@Override
-	public FoodStoreDto getFoodStore(int seq_store) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	@Override
@@ -226,6 +230,32 @@ public class FoodStoreDao implements IFoodStoreDao {
 	public List<FoodStoreDto> getCategoryFoodStoreList(String category) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public FoodStoreDto getFoodStore(int seq_store) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public List<FoodStoreDto> getCategoryFoodStoreList(String address, String category, int serchpage) {
+		List<FoodStoreDto> foodStoreaddresslist = getAddressFoodStoreList(address, serchpage, category);
+		List<FoodStoreDto> list = new ArrayList<>();
+		for (int i = 0; i < foodStoreaddresslist.size(); i++) {
+			if (foodStoreaddresslist.get(i).getCategory().equals(category)) {
+				FoodStoreDto dto = new FoodStoreDto(
+						foodStoreaddresslist.get(i).getSeq_store(), 
+						foodStoreaddresslist.get(i).getBoss_id(), 
+						foodStoreaddresslist.get(i).getCategory(),
+						foodStoreaddresslist.get(i).getTitle(), 
+						foodStoreaddresslist.get(i).getContent(), 
+						foodStoreaddresslist.get(i).getImg_url(),
+						address);
+				list.add(dto);
+			}
+			
+		}
+		return list;
 	}
 
 	@Override

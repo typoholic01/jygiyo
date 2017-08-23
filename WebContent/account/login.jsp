@@ -20,17 +20,16 @@
 </head>
 <body>
 
-<h3 align="center">Login</h3>
-   <h1 class="logo" align="center"><img src="../image/jugiyo.png" alt="저기요"></h1>
-
+<h1>Login</h1>
+<p>환영합니다</p>
 
 <!-- <div class="center"> -->
 
 <div align="center">
 
-<form action="./loginAf.jsp" method="post">
+<form action="loginAf.jsp" method="post">
 
-<table>
+<table border="1">
 
 <tr>
 	<td>아이디</td>
@@ -54,8 +53,7 @@
 </table>
 </form>
 
-<a href="./regi.jsp">일반 회원가입</a>
-
+<a href="regi.jsp">회원가입</a>
 
 </div>
 
