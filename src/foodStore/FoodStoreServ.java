@@ -13,4 +13,14 @@ public class FoodStoreServ implements IFoodStoreServ {
 	public List<FoodStoreDto> getBossFoodStoreList(String boss_id) {
 		return dao.getBossFoodStoreList(boss_id);
 	}
+
+	@Override
+	public List<FoodStoreDto> getAddressFoodStoreList(String address, int serchpage, String category) {
+		return dao.getAddressFoodStoreList(address, serchpage, category);
+	}
+
+	@Override
+	public int getallcount(String category) {
+		return dao.getallcount(category);
+	}
 }

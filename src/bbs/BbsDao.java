@@ -186,6 +186,7 @@ public class BbsDao implements IBbsDao {
 				+ "store_rating";
 		String sql = " SELECT "+columnSql+" FROM JUGIYO_BBS "
 					+ "	WHERE seq_store = ?"
+					+ "	AND status = 'published'"
 					+ " ORDER BY comments_group_no desc,comments_reply asc ";
 		
 		System.out.println(sql);
@@ -237,44 +238,22 @@ public class BbsDao implements IBbsDao {
 		}
 		
 		return list;
-	}
+	}	
 
 	@Override
-	public boolean modifyBbs(BbsDto dto) {
-		String columnSql = "SEQ_BBS, SEQ_STORE, COMMENT_ID, ID_CATEGORY, "
-				+ "COMMENTS, COMMENTS_GROUP_NO, COMMENTS_REPLY, IMG_URL, "
-				+ "CREATE_AT, UPDATE_AT, STATUS, STORE_RATING";
-		String sql = "UPDATE BBS SET "
-					+ " COMMENTS = ?, "
-					+ " IMG_URL = ?, "
-					+ " STORE_RATING = ?, "
-					+ " WHERE SEQ = ? ";
+	public boolean deleteReply(BbsDto dto) {
+		String sql = "UPDATE JUGIYO_BBS SET "
+				+ " STATUS = 'delete' "
+				+ " WHERE SEQ_BBS = ? ";
+		
+		System.out.println("deleteReply: " + sql);
 		
 		List<Object> queryList = new ArrayList<>();
 		
-		queryList.add(dto.getComments());
-		queryList.add(dto.getImg_url());
-		queryList.add(dto.getStore_rating());
 		queryList.add(dto.getSeq_bbs());
 		
 		return DBConnection.executeUpdates(sql, queryList);
 	}
-
-	@Override
-	public boolean deleteBbs(int seq_bbs) {
-		String columnSql = "SEQ_BBS, SEQ_STORE, COMMENT_ID, ID_CATEGORY, "
-				+ "COMMENTS, COMMENTS_GROUP_NO, COMMENTS_REPLY, IMG_URL, "
-				+ "CREATE_AT, UPDATE_AT, STATUS, STORE_RATING";
-		String sql = "UPDATE BBS SET "
-					+ " STATUS = 'delete', "
-					+ " WHERE SEQ = ? ";
-		
-		List<Object> queryList = new ArrayList<>();
-		
-		queryList.add(seq_bbs);
-		
-		return DBConnection.executeUpdates(sql, queryList);
-	}	
 	
 	//답글 순서 구하기용 Reply 함수
 	private List<String> countReply(BbsDto dto) {
@@ -311,6 +290,12 @@ public class BbsDao implements IBbsDao {
 		System.out.println(replylist.toString());
 		
 		return replylist;
-	} 
+	}
+
+	@Override
+	public boolean modifyBbs(BbsDto dto) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }

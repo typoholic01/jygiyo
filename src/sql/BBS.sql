@@ -38,3 +38,7 @@ WHERE comments_group_no = (
 	SELECT comments_group_no FROM JUGIYO_BBS WHERE seq_bbs = 30
 ) 
 ORDER BY comments_reply asc
+
+UPDATE JUGIYO_BBS SET
+ status = 'delete'
+ WHERE seq_bbs = 69

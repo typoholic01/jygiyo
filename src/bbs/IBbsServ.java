@@ -9,4 +9,6 @@ public interface IBbsServ {
 	public List<BbsDto> getBbsList(BbsDto dto, int cur_page);
 
 	public boolean insertReply(BbsDto bbs);
+
+	public boolean deleteReply(BbsDto bbs);
 }

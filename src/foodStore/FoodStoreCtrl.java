@@ -12,4 +12,14 @@ public class FoodStoreCtrl {
 	public List<FoodStoreDto> getBossFoodStoreList(String boss_id) {
 		return foodStoreServ.getBossFoodStoreList(boss_id);
 	}
+	
+
+	public List<FoodStoreDto> getAddressFoodStoreList(String address, int serchpage, String category) {
+		
+		return foodStoreServ.getAddressFoodStoreList(address,serchpage,category);
+	}
+	public int getallcount(String category) {
+		
+		return foodStoreServ.getallcount(category);
+	}
 }

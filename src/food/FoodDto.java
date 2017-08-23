@@ -10,9 +10,10 @@ public class FoodDto implements Serializable {
 	private int food_price;
 	private String food_size;
 	private String img_url;
+	private String status;
 	
 	public FoodDto(int seq_food, int seq_store, String food_category, String food_name, int food_price,
-			String food_size, String img_url) {
+			String food_size, String img_url, String status) {
 		super();
 		this.seq_food = seq_food;
 		this.seq_store = seq_store;
@@ -21,13 +22,41 @@ public class FoodDto implements Serializable {
 		this.food_price = food_price;
 		this.food_size = food_size;
 		this.img_url = img_url;
+		this.status = status;
 	}
 
-	@Override
-	public String toString() {
-		return "FoodDto [seq_food=" + seq_food + ", seq_store=" + seq_store + ", food_category=" + food_category
-				+ ", food_name=" + food_name + ", food_price=" + food_price + ", food_size=" + food_size + ", img_url="
-				+ img_url + "]";
+	public FoodDto(int seq_food, int seq_store, String food_name, int food_price, String food_size, String status) {
+		super();
+		this.seq_food = seq_food;
+		this.seq_store = seq_store;
+		this.food_name = food_name;
+		this.food_price = food_price;
+		this.food_size = food_size;
+		this.status = status;
+	}
+
+	public FoodDto(int seq_food, int seq_store, String food_name, int food_price, String food_size, String img_url,
+			String status) {
+		super();
+		this.seq_food = seq_food;
+		this.seq_store = seq_store;
+		this.food_name = food_name;
+		this.food_price = food_price;
+		this.food_size = food_size;
+		this.img_url = img_url;
+		this.status = status;
+	}
+
+	public FoodDto(int seq_food, int seq_store, String food_category, String food_name, int food_price,
+			String food_size, String status) {
+		super();
+		this.seq_food = seq_food;
+		this.seq_store = seq_store;
+		this.food_category = food_category;
+		this.food_name = food_name;
+		this.food_price = food_price;
+		this.food_size = food_size;
+		this.status = status;
 	}
 
 	public int getSeq_food() {
@@ -85,6 +114,23 @@ public class FoodDto implements Serializable {
 	public void setImg_url(String img_url) {
 		this.img_url = img_url;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "FoodDto [seq_food=" + seq_food + ", seq_store=" + seq_store + ", food_category=" + food_category
+				+ ", food_name=" + food_name + ", food_price=" + food_price + ", food_size=" + food_size + ", img_url="
+				+ img_url + ", status=" + status + "]";
+	}
+	
+	
 	
 	
 

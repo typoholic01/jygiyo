@@ -10,9 +10,10 @@ public interface IBbsDao {
 	public List<BbsDto> getBbsList(BbsDto dto, int cur_page);
 
 	public boolean modifyBbs(BbsDto dto);
-	public boolean deleteBbs(int seq_bbs);
+	public boolean deleteReply(BbsDto bbs);
 
 	public boolean insertReply(BbsDto bbs);
+
 	
 	
 

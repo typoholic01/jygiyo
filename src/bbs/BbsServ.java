@@ -17,6 +17,11 @@ public class BbsServ implements IBbsServ {
 	
 	public boolean insertReply(BbsDto bbs) {
 		return dao.insertReply(bbs);
+	}
+
+	@Override
+	public boolean deleteReply(BbsDto bbs) {
+		return dao.deleteReply(bbs);
 	};
 
 }

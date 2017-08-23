@@ -21,6 +21,11 @@ public class BbsCtrl {
 		return bbsServ.insertReply(bbs);
 		
 	}
+
+	public boolean deleteReply(BbsDto bbs) {
+		return bbsServ.deleteReply(bbs);
+		
+	}
 		
 
 }

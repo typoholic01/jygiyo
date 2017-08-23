@@ -9,6 +9,7 @@ import java.util.List;
 
 import bbs.PaginationBeans;
 import db.DBConnection;
+import jdbc.DBConn;
 
 public class FoodStoreDao implements IFoodStoreDao {
 
@@ -41,6 +42,131 @@ public class FoodStoreDao implements IFoodStoreDao {
 	public FoodStoreDto getFoodStore(int seq_store) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public List<FoodStoreDto> getAddressFoodStoreList(String address, int serchpage, String category) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		// SEQ_STORE, BOSS_ID, NAME, CATEGORY, TITLE, "
+		//+" CONTENT, IMG_URL, address
+		String sql = "";
+		System.out.println("DAO");
+		System.out.println("address: " + address);
+		System.out.println("serchpage: " + serchpage);
+		System.out.println("category: " + category);
+		
+		if(category.equals("전체매뉴")){
+			sql = " SELECT SEQ_STORE, BOSS_ID, CATEGORY, TITLE, CONTENT, "
+				+" address, IMG_URL "
+				+" from JUGIYO_FOOD_STORE "
+				//+" WHERE ADDRESS = '"+address+"' "
+				+" order by seq_store desc";
+		}else{
+			sql = " SELECT SEQ_STORE, BOSS_ID, CATEGORY, TITLE, CONTENT, "
+					+" address, IMG_URL "
+					+" from JUGIYO_FOOD_STORE "
+					+" WHERE category = '"+category+"' "
+					//+" WHERE ADDRESS = '"+address+"' "
+					//+" and category = '"+category+"' "
+					+" order by seq_store desc";
+		}
+		
+		System.out.println("sql" + sql);
+		List<FoodStoreDto> list = new ArrayList<>();
+		
+		try {
+			conn = DBConn.getConnection();
+			System.out.println("2/6 S getAddressFoodStoreList");
+			
+			psmt = conn.prepareStatement(sql);
+			System.out.println("3/6 S getAddressFoodStoreList");
+			rs = psmt.executeQuery();
+			int temp = (serchpage*12) -11;
+			int temp_last = temp +11;
+			int count = 1;
+			while(rs.next()){
+				if (count >= temp && count <= temp_last) {
+					int i = 1;
+										
+				FoodStoreDto dto = new FoodStoreDto();
+				
+				dto.setSeq_store(rs.getInt(i++));
+				dto.setBoss_id(rs.getString(i++));
+				dto.setCategory(rs.getString(i++));
+				dto.setTitle(rs.getString(i++));
+				dto.setContent(rs.getString(i++));
+				dto.setAddress(rs.getString(i++));
+				dto.setImg_url(rs.getString(i++));
+			
+				String addressNode[] = address.split(" ");
+				String addressNode2[] = dto.getAddress().split(" ");
+				int addresscount = 0;
+				for (int j = 0; j < addressNode.length; j++) {
+					for (int j2 = 0; j2 < addressNode2.length; j2++) {
+						if (addressNode[j].equals(addressNode2[j2])) {
+							addresscount++;
+						}
+					}
+				}
+				if (addresscount >= 3) {
+					list.add(dto);
+				}
+				}
+				count ++;
+			}
+			System.out.println("5/6 S getAddressFoodStoreList");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBConn.close(rs, psmt, conn);
+			System.out.println("6/6 S getAddressFoodStoreList");
+		}
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println("list = " + list.get(i).toString());
+		}
+		return list;
+	}
+	
+	@Override
+	public int getallcount(String category) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		// SEQ_STORE, BOSS_ID, NAME, CATEGORY, TITLE, "
+		//+" CONTENT, IMG_URL, address
+		String sql = "";
+		if (category.equals("전체매뉴")) {
+			sql = " SELECT count(*) "
+				+" from JUGIYO_FOOD_STORE ";
+		}else{
+			sql = " SELECT count(*) "
+					+" from JUGIYO_FOOD_STORE "
+					+" where category = '"+category+"' ";
+		}
+		
+		
+		int count = 0;
+		
+		try {
+			conn = DBConn.getConnection();
+			System.out.println("2/6 S getallcount");
+			
+			psmt = conn.prepareStatement(sql);
+			System.out.println("3/6 S getallcount");
+			rs = psmt.executeQuery();
+			while(rs.next()){
+				count = rs.getInt("count(*)");
+			}
+			System.out.println("5/6 S getallcount");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBConn.close(rs, psmt, conn);
+			System.out.println("6/6 S getallcount");
+		}
+		return count;
 	}
 
 	@Override

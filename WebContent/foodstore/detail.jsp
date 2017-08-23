@@ -60,7 +60,26 @@ function insertReply(target) {
 	
 	$.ajax({ 
 		type : "GET",
-		url:"../shop/bbs/reply",
+		url:"../shop/bbs/reply/insert",
+		data:params,
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+        dataType: 'html',
+        error : function() {
+          alert('통신실패!!'); 
+        },
+        success : function(data) {
+        }
+	});
+	var currentLocation = window.location;
+	$("#view").load(currentLocation + '#view');
+}
+function deleteReply(target) {
+	var params = $("#"+target).serialize();
+	console.log(params);
+	
+	$.ajax({ 
+		type : "GET",
+		url:"../shop/bbs/reply/delete",
 		data:params,
 		contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
         dataType: 'html',
