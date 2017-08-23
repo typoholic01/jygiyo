@@ -20,8 +20,13 @@ public class BbsServ implements IBbsServ {
 	}
 
 	@Override
-	public boolean deleteReply(BbsDto bbs) {
-		return dao.deleteReply(bbs);
+	public boolean deleteComment(BbsDto bbs) {
+		return dao.deleteComment(bbs);
+	}
+
+	@Override
+	public boolean modifyComment(BbsDto bbs) {
+		return dao.modifyComment(bbs);
 	};
 
 }

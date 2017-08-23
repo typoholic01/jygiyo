@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/comment.js"></script>
 <title>bbslist.jsp</title>
 <script type="text/javascript">
 /* 아작스를 이용해 코멘트를 뿌려준다 */
@@ -33,64 +34,6 @@ function getBbsList() {
           $('#view').html(data);
         }
 	});
-}
-function insertComment() {
-	var seq_store = $("#seq_store").val();
-	var comment_id = $("#comment_id").val();
-	var comments = $("#comments").val();
-	
-	$.ajax({ 
-		type : "GET",
-		url:"../comment/insert",
-		data:"seq_store="+seq_store
-		+"&comment_id="+comment_id
-		+"&comments="+comments,
-        error : function() {
-          alert('통신실패!!');
-        },
-        success : function(data) {
-        }
-	});
-	
-	getBbsList();
-}
-function insertReply(target) {
-	var params = $("#"+target).serialize();
-	console.log(params);
-	
-	$.ajax({ 
-		type : "GET",
-		url:"../shop/bbs/reply/insert",
-		data:params,
-		contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
-        dataType: 'html',
-        error : function() {
-          alert('통신실패!!'); 
-        },
-        success : function(data) {
-        }
-	});
-	var currentLocation = window.location;
-	$("#view").load(currentLocation + '#view');
-}
-function deleteReply(target) {
-	var params = $("#"+target).serialize();
-	console.log(params);
-	
-	$.ajax({ 
-		type : "GET",
-		url:"../shop/bbs/reply/delete",
-		data:params,
-		contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
-        dataType: 'html',
-        error : function() {
-          alert('통신실패!!');
-        },
-        success : function(data) {
-        }
-	});
-	var currentLocation = window.location;
-	$("#view").load(currentLocation + '#view');
 }
 </script>
 <style type="text/css">

@@ -48,7 +48,7 @@ public class FoodStoreFrontController extends HttpServlet {
 		
 		String boss_id,name,category,title,content,address,img_url;		//param
 		String comment_id,comments,comments_reply;
-		int seq_bbs,comments_group_no;
+		int seqBbs,comments_group_no;
 		List<BbsDto> bbsList;
 		FoodStoreDto shop;
 		BbsDto bbs;
@@ -100,7 +100,7 @@ public class FoodStoreFrontController extends HttpServlet {
 			
 		case "/shop/bbs/reply/insert":
 			//변수 받아오기
-			seq_bbs = Integer.parseInt(req.getParameter("seq_bbs"));
+			seqBbs = Integer.parseInt(req.getParameter("seq_bbs"));
 			seq_store = Integer.parseInt(req.getParameter("seq_store"));
 			comment_id = req.getParameter("comment_id");
 			comments = req.getParameter("comments");
@@ -110,7 +110,7 @@ public class FoodStoreFrontController extends HttpServlet {
 			//객체 준비
 			bbs = new BbsDto();
 			
-			bbs.setSeq_bbs(seq_bbs);
+			bbs.setSeq_bbs(seqBbs);
 			bbs.setSeq_store(seq_store);
 			bbs.setId_category("고객");
 			bbs.setComment_id(comment_id);
@@ -126,9 +126,9 @@ public class FoodStoreFrontController extends HttpServlet {
 			dispatch("/foodstore/bbs_view.jsp", req, resp);	
 			break;
 			
-		case "/shop/bbs/reply/delete":
+		case "/shop/bbs/comment/delete":
 			//변수 받아오기
-			seq_bbs = Integer.parseInt(req.getParameter("seq_bbs"));
+			seqBbs = Integer.parseInt(req.getParameter("seq_bbs"));
 			seq_store = Integer.parseInt(req.getParameter("seq_store"));
 			comment_id = req.getParameter("comment_id");
 			comments = req.getParameter("comments");
@@ -138,7 +138,7 @@ public class FoodStoreFrontController extends HttpServlet {
 			//객체 준비
 			bbs = new BbsDto();
 			
-			bbs.setSeq_bbs(seq_bbs);
+			bbs.setSeq_bbs(seqBbs);
 			bbs.setSeq_store(seq_store);
 			bbs.setId_category("고객");
 			bbs.setComment_id(comment_id);
@@ -148,7 +148,25 @@ public class FoodStoreFrontController extends HttpServlet {
 			bbs.setStatus("published");
 			
 			//삽입
-			d.bbsCtrl.deleteReply(bbs);
+			d.bbsCtrl.deleteComment(bbs);
+			
+			//보내기
+			dispatch("/foodstore/bbs_view.jsp", req, resp);	
+			break;
+			
+		case "/shop/bbs/comment/modify":
+			//변수 받아오기
+			seqBbs = Integer.parseInt(req.getParameter("seq_bbs"));
+			comments = req.getParameter("comments");
+			
+			//객체 준비
+			bbs = new BbsDto();
+			
+			bbs.setSeq_bbs(seqBbs);
+			bbs.setComments(comments);
+			
+			//삽입
+			d.bbsCtrl.modifyComment(bbs);
 			
 			//보내기
 			dispatch("/foodstore/bbs_view.jsp", req, resp);	

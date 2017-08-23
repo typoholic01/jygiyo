@@ -22,8 +22,13 @@ public class BbsCtrl {
 		
 	}
 
-	public boolean deleteReply(BbsDto bbs) {
-		return bbsServ.deleteReply(bbs);
+	public boolean deleteComment(BbsDto bbs) {
+		return bbsServ.deleteComment(bbs);
+		
+	}
+
+	public boolean modifyComment(BbsDto bbs) {
+		return bbsServ.modifyComment(bbs);
 		
 	}
 		

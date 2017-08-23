@@ -5,10 +5,10 @@ import java.util.List;
 public interface IBbsServ {
 
 	public boolean insertBbs(BbsDto dto);
+	public boolean insertReply(BbsDto bbs);
 	
 	public List<BbsDto> getBbsList(BbsDto dto, int cur_page);
 
-	public boolean insertReply(BbsDto bbs);
-
-	public boolean deleteReply(BbsDto bbs);
+	public boolean modifyComment(BbsDto bbs);
+	public boolean deleteComment(BbsDto bbs);
 }

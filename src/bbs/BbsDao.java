@@ -241,7 +241,7 @@ public class BbsDao implements IBbsDao {
 	}	
 
 	@Override
-	public boolean deleteReply(BbsDto dto) {
+	public boolean deleteComment(BbsDto dto) {
 		String sql = "UPDATE JUGIYO_BBS SET "
 				+ " STATUS = 'delete' "
 				+ " WHERE SEQ_BBS = ? ";
@@ -251,6 +251,22 @@ public class BbsDao implements IBbsDao {
 		List<Object> queryList = new ArrayList<>();
 		
 		queryList.add(dto.getSeq_bbs());
+		
+		return DBConnection.executeUpdates(sql, queryList);
+	}
+	
+	@Override
+	public boolean modifyComment(BbsDto bbs) {
+		String sql = "UPDATE JUGIYO_BBS SET "
+				+ " comments = ? "
+				+ " WHERE SEQ_BBS = ? ";
+		
+		System.out.println("deleteReply: " + sql);
+		
+		List<Object> queryList = new ArrayList<>();
+		
+		queryList.add(bbs.getComments());
+		queryList.add(bbs.getSeq_bbs());
 		
 		return DBConnection.executeUpdates(sql, queryList);
 	}
@@ -290,12 +306,6 @@ public class BbsDao implements IBbsDao {
 		System.out.println(replylist.toString());
 		
 		return replylist;
-	}
-
-	@Override
-	public boolean modifyBbs(BbsDto dto) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }
