@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="jygiyo">
+    <wb-module deploy-name="jugiyo">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="jygiyo"/>
-        <property name="java-output-path" value="/jygiyo/build/classes"/>
+        <property name="java-output-path" value="/jugiyo/build/classes"/>
+        <property name="context-root" value="jugiyo"/>
     </wb-module>
 </project-modules>
