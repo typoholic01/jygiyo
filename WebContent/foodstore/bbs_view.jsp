@@ -38,4 +38,27 @@
 			</td>
 		</tr>
 	</c:forEach>
+	<tr>
+		<td colspan="5">
+			<ul class="pagination">
+				<c:if test="${param.currPage != 1 }">
+					<li><a href="?seq=${param.seq }&p=${param.currPage-1 }${queryURL}">❮</a></li>
+				</c:if>
+				<c:forEach var="i" begin="${param.startPage }" end="${param.endPage }" step="1">				
+					<c:choose>
+						<c:when test="${i == param.currPage }">
+							<li class="active">
+						</c:when>
+						<c:when test="${i != param.currPage }">
+							<li>
+						</c:when>
+					</c:choose>
+					<a href="?seq=${param.seq }&p=${i }${queryURL}">${i }</a></li>
+				</c:forEach>
+				<c:if test="${param.currPage != param.endPage }">
+					<li><a href="?seq=${param.seq }&p=${param.currPage+1 }${queryURL}">❯</a></li>
+				</c:if>
+			</ul>
+		</td>
+	</tr>
 </table>

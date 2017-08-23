@@ -22,11 +22,20 @@ $(document).ready(function() {
 });		
 function getBbsList() {
 	var seq_store = $("#seq_store").val();
+	var currPage = ${param.p};
+	var startPage = 1;
+	var endPage = 2;
 	
 	$.ajax({ 
 		type : "GET",
-		url:"../comment/list",
-		data:"seq="+seq_store,
+		url:"../shop/bbs/list",
+		data:
+			{
+				"seq":seq_store,
+				"currPage":currPage,
+				"startPage":startPage,
+				"endPage":endPage
+			},
         error : function() {
           alert('통신실패!!');
         },

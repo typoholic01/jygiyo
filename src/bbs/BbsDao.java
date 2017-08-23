@@ -178,16 +178,16 @@ public class BbsDao implements IBbsDao {
 		int startNum = limit*(cur_page - 1);
 		int endNum = limit*cur_page;
 						
-		String columnSql = 
-				"seq_bbs,"
-				+ "seq_store,comment_id,id_category,"
-				+ "comments,comments_group_no,comments_reply,"
-				+ "img_url,create_at,update_at,status,"
-				+ "store_rating";
-		String sql = " SELECT "+columnSql+" FROM JUGIYO_BBS "
-					+ "	WHERE seq_store = ?"
-					+ "	AND status = 'published'"
-					+ " ORDER BY comments_group_no desc,comments_reply asc ";
+		String sql = " SELECT * FROM"
+				+ " ("
+				+ "		SELECT seq_bbs,seq_store,comment_id,id_category,comments,comments_group_no,"
+				+ "				comments_reply,img_url,create_at,update_at,status,store_rating,"
+				+ "				ROW_NUMBER() OVER (ORDER BY comments_group_no desc,comments_reply asc) R"
+				+ "		FROM JUGIYO_BBS "
+				+ " )	"
+				+ " WHERE seq_store = ?	"
+				+ " AND status = 'published' "
+				+ " AND R BETWEEN ? and ? ";
 		
 		System.out.println(sql);
 		
@@ -205,6 +205,8 @@ public class BbsDao implements IBbsDao {
 			System.out.println("3/6 getBbsList Success");
 			
 			psmt.setInt(1, dto.getSeq_store());
+			psmt.setInt(2, startNum);
+			psmt.setInt(3, endNum);
 			
 			rs = psmt.executeQuery();
 			System.out.println("4/6 getBbsList Success");

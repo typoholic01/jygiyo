@@ -68,21 +68,7 @@ public class CommentFrontController extends HttpServlet {
 			
 			//보내기
 			break;
-		case "/comment/list":
-			bbsList = new ArrayList<>();
-			
-			//임시로 집어넣을 데이터
-			int seq = Integer.parseInt(req.getParameter("seq"));
-			int cur_page = 1;
-			
-			//DB로부터 bbs데이터를 가져온다
-			bbsList = d.bbsCtrl.getBbsList(seq, cur_page);
-
-			//데이터를 집어넣는다
-			req.setAttribute("bbsList", bbsList);	
-						
-			dispatch("/foodstore/bbs_view.jsp", req, resp);				
-			break;
+		
 			
 		default:
 			break;
