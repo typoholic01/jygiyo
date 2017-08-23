@@ -104,6 +104,27 @@ public class ShopBbsFrontController extends HttpServlet {
 			dispatch("/foodstore/bbs_view.jsp", req, resp);	
 			break;
 			
+		case "/shop/bbs/comment/insert":
+			//변수 받아오기
+			seq_store = Integer.parseInt(req.getParameter("seq_store"));
+			comment_id = req.getParameter("comment_id");
+			comments = req.getParameter("comments");
+			
+			//객체 준비
+			bbs = new BbsDto();
+			bbs.setSeq_store(seq_store);
+			bbs.setComment_id(comment_id);
+			bbs.setId_category("customer");
+			bbs.setComments(comments);
+			bbs.setComments_reply("-1");
+			bbs.setStatus("published");			
+			
+			//삽입
+			d.bbsCtrl.insertBbs(bbs);
+			
+			//보내기
+			break;
+			
 		case "/shop/bbs/comment/delete":
 			//변수 받아오기
 			seqBbs = Integer.parseInt(req.getParameter("seq_bbs"));

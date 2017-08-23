@@ -2,9 +2,14 @@ function insertComment() {
 	var form = $("#insertComment");
 	var formData = new FormData(form);
 	
-	$.ajax({ 
+	//TODO 폼 데이터가 넘어오지 않고 있다
+	alert(formData.get('seq_store'));
+	
+	/*$.ajax({ 
 		type : "GET",
-		url:"../comment/insert",               
+		url:"../shop/bbs/comment/insert", 
+		processData: false,
+        contentType: false,
 		type: 'POST',
 		data:formData,
         error : function() {
@@ -14,7 +19,7 @@ function insertComment() {
         }
 	});
 	
-	getBbsList();
+	getBbsList();*/
 }
 function insertReply(target) {
 	var params = $("#"+target).serialize();
