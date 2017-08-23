@@ -27,6 +27,11 @@ public class BbsServ implements IBbsServ {
 	@Override
 	public boolean modifyComment(BbsDto bbs) {
 		return dao.modifyComment(bbs);
+	}
+
+	@Override
+	public int getTotalArticle(int seqBbs) {
+		return dao.getTotalArticle(seqBbs);
 	};
 
 }

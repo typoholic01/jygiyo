@@ -1,29 +1,12 @@
-function getBbsList() {
-	var seq_store = $("#seq_store").val();
-	
-	$.ajax({ 
-		type : "GET",
-		url:"../comment/list",
-		data:"seq="+seq_store,
-        error : function() {
-          alert('통신실패!!');
-        },
-        success : function(data) {
-          $('#view').html(data);
-        }
-	});
-}
 function insertComment() {
-	var seq_store = $("#seq_store").val();
-	var comment_id = $("#comment_id").val();
-	var comments = $("#comments").val();
+	var form = $("#insertComment");
+	var formData = new FormData(form);
 	
 	$.ajax({ 
 		type : "GET",
-		url:"../comment/insert",
-		data:"seq_store="+seq_store
-		+"&comment_id="+comment_id
-		+"&comments="+comments,
+		url:"../comment/insert",               
+		type: 'POST',
+		data:formData,
         error : function() {
           alert('통신실패!!');
         },

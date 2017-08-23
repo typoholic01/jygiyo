@@ -22,6 +22,39 @@ public class BbsDao implements IBbsDao {
 		}
 		return single;
 	}
+	
+	//게시물 갯수 가져오기
+		@Override
+		public int getTotalArticle(int seqBbs) {
+			String columnSql = "COUNT(SEQ)";
+			String sql = "SELECT "+columnSql+" FROM BBS"
+						+ " WHERE SEQ_BBS = ? ";
+			
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			ResultSet rs = null;
+			
+			int total_article = 0;
+					
+			try {
+				conn = DBConnection.getConnection();
+				psmt = conn.prepareStatement(sql);
+				psmt.setInt(1, seqBbs);
+				rs = psmt.executeQuery();
+				
+				while (rs.next()) {
+					int i = 1;
+					total_article = rs.getInt(i++);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				DBConnection.close(conn, psmt, rs);
+			}
+			
+			return total_article;
+		}
 
 	@Override
 	public boolean insertBbs(BbsDto dto) {
@@ -170,13 +203,30 @@ public class BbsDao implements IBbsDao {
 	}
 
 	@Override
-	public List<BbsDto> getBbsList(BbsDto dto, int cur_page) {
+	public List<BbsDto> getBbsList(BbsDto dto, int currPage) {
 		//페이징 계산
 		PaginationBeans paging = PaginationBeans.getInstance();
-		int limit = paging.article_limit;
+		int limit = paging.articleLimit;
 		
-		int startNum = limit*(cur_page - 1);
-		int endNum = limit*cur_page;
+		int startNum = limit*(currPage - 1);
+		int endNum = limit*currPage;
+		
+		int startPage = currPage-(currPage-1)%paging.pageLimit;		
+		int endPage = startPage+paging.pageLimit - 1;
+		
+		int endLimit = getTotalArticle(dto.getSeq_bbs());
+		
+		paging.setTotalArticle(endLimit);
+		
+		//end_page의 한계를 설정한다
+		if (endPage*paging.articleLimit > endLimit) {
+			// 1의 자리수를 빼고 더한다
+			endPage = paging.getTotalArticle()/paging.articleLimit;				
+			// 1의 자리수가 1이라도 있으면 페이지를 추가한다
+			endPage += (paging.getTotalArticle()%paging.articleLimit > 0)?1:0;	
+		}
+		paging.setStartPage(startPage);
+		paging.setEndPage(2);
 						
 		String sql = " SELECT * FROM"
 				+ " ("

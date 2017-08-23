@@ -12,6 +12,7 @@ public interface IBbsDao {
 
 	public boolean deleteComment(BbsDto bbs);
 	public boolean modifyComment(BbsDto bbs);
+	public int getTotalArticle(int seqBbs);
 
 	
 	

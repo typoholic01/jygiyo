@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bbs.BbsDto;
+import bbs.PaginationBeans;
 import boss.BossDto;
 import foodStore.FoodStoreDto;
 import singleton.Delegate;
@@ -66,9 +67,11 @@ public class ShopBbsFrontController extends HttpServlet {
 			
 			//DB로부터 bbs데이터를 가져온다
 			bbsList = d.bbsCtrl.getBbsList(seq, currPage);
+			PaginationBeans paging = PaginationBeans.getInstance();
 
 			//데이터를 집어넣는다
 			req.setAttribute("bbsList", bbsList);	
+			req.setAttribute("paging", paging);				
 						
 			dispatch("/foodstore/bbs_view.jsp", req, resp);				
 			break;

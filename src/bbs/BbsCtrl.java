@@ -31,6 +31,8 @@ public class BbsCtrl {
 		return bbsServ.modifyComment(bbs);
 		
 	}
-		
-
+	
+	public int getTotalArticle(int seqBbs) {
+		return bbsServ.getTotalArticle(seqBbs);
+	};
 }

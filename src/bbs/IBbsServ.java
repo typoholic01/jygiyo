@@ -11,4 +11,6 @@ public interface IBbsServ {
 
 	public boolean modifyComment(BbsDto bbs);
 	public boolean deleteComment(BbsDto bbs);
+	
+	public int getTotalArticle(int seqBbs);
 }

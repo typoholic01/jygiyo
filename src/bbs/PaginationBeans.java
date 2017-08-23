@@ -3,12 +3,12 @@ package bbs;
 public class PaginationBeans {	
 	private static PaginationBeans single = null;
 
-	private int total_article;				//총 게시물
-	private int cur_page;					//현재 페이지
-	private int start_page;					//리스트 시작 번호
-	private int end_page;					//리스트 종료 번호
-	public final int article_limit = 10;	//한 페이지 당 게시물 제한
-	public final int page_limit = 10;		//한 리스트 당 페이지 수 제한
+	private int totalArticle;				//총 게시물
+	private int currPage;					//현재 페이지
+	private int startPage;					//리스트 시작 번호
+	private int endPage;					//리스트 종료 번호
+	public final int articleLimit = 10;	//한 페이지 당 게시물 제한
+	public final int pageLimit = 10;		//한 리스트 당 페이지 수 제한
 
 	private PaginationBeans() {
 		
@@ -22,35 +22,35 @@ public class PaginationBeans {
 	}
 
 	public int getCur_page() {
-		return cur_page;
+		return currPage;
 	}
 
-	public void setCur_page(int cur_page) {
-		this.cur_page = cur_page;
+	public void setCur_page(int currPage) {
+		this.currPage = currPage;
 	}
 
-	public int getTotal_article() {
-		return total_article;
+	public int getTotalArticle() {
+		return totalArticle;
 	}
 
-	public void setTotal_article(int total_page) {
-		this.total_article = total_page;
+	public void setTotalArticle(int totalArticle) {
+		this.totalArticle = totalArticle;
 	}
 
-	public int getStart_page() {
-		return start_page;
+	public int getStartPage() {
+		return startPage;
 	}
 
-	public void setStart_page(int start_page) {
-		this.start_page = start_page;
+	public void setStartPage(int startPage) {
+		this.startPage = startPage;
 	}
 
-	public int getEnd_page() {
-		return end_page;
+	public int getEndPage() {
+		return endPage;
 	}
 
-	public void setEnd_page(int end_page) {
-		this.end_page = end_page;
+	public void setEndPage(int endPage) {
+		this.endPage = endPage;
 	}
 
 }

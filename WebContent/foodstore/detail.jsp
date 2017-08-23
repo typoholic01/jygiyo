@@ -1,3 +1,4 @@
+<%@page import="bbs.PaginationBeans"%>
 <%@page import="bbs.BbsDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -22,9 +23,14 @@ $(document).ready(function() {
 });		
 function getBbsList() {
 	var seq_store = $("#seq_store").val();
-	var currPage = ${param.p};
-	var startPage = 1;
-	var endPage = 2;
+	
+	var p = "${param.p}";
+	
+	if (p == "") {
+		p = 1;
+	}
+	
+	var currPage = p;	
 	
 	$.ajax({ 
 		type : "GET",
@@ -33,8 +39,6 @@ function getBbsList() {
 			{
 				"seq":seq_store,
 				"currPage":currPage,
-				"startPage":startPage,
-				"endPage":endPage
 			},
         error : function() {
           alert('통신실패!!');
@@ -88,10 +92,11 @@ function getBbsList() {
 <div id="view">
 
 </div>
-<form>
+<form id="insertComent" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="seq_store" name="seq_store" value="${param.seq }" />
 	<input type="text" id="comment_id" name="comment_id" value="${login.boss_id }" readonly="readonly" />
 	<input type="text" id="comments" name="comments" />
+	<input type="file" name="fileload" style="width: 400px">	
 </form>
 <button onclick="insertComment()">댓글</button>
 </div>

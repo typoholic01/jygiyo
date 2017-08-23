@@ -4,6 +4,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
     <% request.setCharacterEncoding("utf-8"); %>
 <h1>BBS_Viewer</h1>
+<h1>StartPaging = ${paging.startPage }</h1>
+<h1>endPage = ${paging.endPage }</h1>
 <table border="1">
 	<tr>
 		<th>SEQ_BBS</th>
@@ -24,7 +26,7 @@
 				<input type="text" class="comments" value="${bbs.comments }" readonly="readonly" />				
 			</td>
 			<td>
-				<form id="${bbs.seq_bbs }" onsubmit="return false;">
+				<form id="${bbs.seq_bbs }" onsubmit="return false;" >
 					<input type="button" value="수정" onclick="modifyComment(${bbs.seq_bbs })" />
 					<input type="button" value="삭제" onclick="deleteComment(${bbs.seq_bbs })" />
 					<input type="hidden" name="seq_bbs" value="${bbs.seq_bbs }"/>
@@ -34,7 +36,7 @@
 					<input type="text" name="comment_id" value="${login.boss_id }" readonly="readonly" />
 					<input type="text" name="comments" />
 					<input type="button" value="대댓글" onclick="insertReply(${bbs.seq_bbs })" />
-				</form>
+				</form>				
 			</td>
 		</tr>
 	</c:forEach>
@@ -44,7 +46,7 @@
 				<c:if test="${param.currPage != 1 }">
 					<li><a href="?seq=${param.seq }&p=${param.currPage-1 }${queryURL}">❮</a></li>
 				</c:if>
-				<c:forEach var="i" begin="${param.startPage }" end="${param.endPage }" step="1">				
+				<c:forEach var="i" begin="${paging.startPage }" end="${paging.endPage }" step="1">				
 					<c:choose>
 						<c:when test="${i == param.currPage }">
 							<li class="active">
@@ -55,7 +57,7 @@
 					</c:choose>
 					<a href="?seq=${param.seq }&p=${i }${queryURL}">${i }</a></li>
 				</c:forEach>
-				<c:if test="${param.currPage != param.endPage }">
+				<c:if test="${param.currPage != paging.endPage }">
 					<li><a href="?seq=${param.seq }&p=${param.currPage+1 }${queryURL}">❯</a></li>
 				</c:if>
 			</ul>
