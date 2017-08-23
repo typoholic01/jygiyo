@@ -24,37 +24,38 @@ public class BbsDao implements IBbsDao {
 	}
 	
 	//게시물 갯수 가져오기
-		@Override
-		public int getTotalArticle(int seqBbs) {
-			String columnSql = "COUNT(SEQ)";
-			String sql = "SELECT "+columnSql+" FROM BBS"
-						+ " WHERE SEQ_BBS = ? ";
-			
-			Connection conn = null;
-			PreparedStatement psmt = null;
-			ResultSet rs = null;
-			
-			int total_article = 0;
-					
-			try {
-				conn = DBConnection.getConnection();
-				psmt = conn.prepareStatement(sql);
-				psmt.setInt(1, seqBbs);
-				rs = psmt.executeQuery();
+	@Override
+	public int getTotalArticle(int seqStore) {
+		String columnSql = "COUNT(seq_bbs)";
+		String sql = "SELECT "+columnSql+" FROM JUGIYO_BBS"
+					+ " WHERE seq_store = ? "
+					+ "	AND status = 'published' ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		int total_article = 0;
 				
-				while (rs.next()) {
-					int i = 1;
-					total_article = rs.getInt(i++);
-				}
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				DBConnection.close(conn, psmt, rs);
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, seqStore);
+			rs = psmt.executeQuery();
+			
+			while (rs.next()) {
+				int i = 1;
+				total_article = rs.getInt(i++);
 			}
 			
-			return total_article;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(conn, psmt, rs);
 		}
+		
+		return total_article;
+	}
 
 	@Override
 	public boolean insertBbs(BbsDto dto) {
@@ -214,7 +215,7 @@ public class BbsDao implements IBbsDao {
 		int startPage = currPage-(currPage-1)%paging.pageLimit;		
 		int endPage = startPage+paging.pageLimit - 1;
 		
-		int endLimit = getTotalArticle(dto.getSeq_bbs());
+		int endLimit = getTotalArticle(dto.getSeq_store());
 		
 		paging.setTotalArticle(endLimit);
 		
@@ -226,7 +227,9 @@ public class BbsDao implements IBbsDao {
 			endPage += (paging.getTotalArticle()%paging.articleLimit > 0)?1:0;	
 		}
 		paging.setStartPage(startPage);
-		paging.setEndPage(2);
+		System.out.println("endLimit: " + endLimit);
+		System.out.println("EndPage: " + endPage);
+		paging.setEndPage(endPage);
 						
 		String sql = " SELECT * FROM"
 				+ " ("

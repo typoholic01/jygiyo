@@ -94,7 +94,7 @@ function getBbsList() {
 </div>
 <form id="insertComent" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="seq_store" name="seq_store" value="${param.seq }" />
-	<input type="text" id="comment_id" name="comment_id" value="${login.boss_id }" readonly="readonly" />
+	<input type="text" id="comment_id" name="comment_id" value="${blogin.boss_id }" readonly="readonly" />
 	<input type="text" id="comments" name="comments" />
 	<input type="file" name="fileload" style="width: 400px">	
 </form>

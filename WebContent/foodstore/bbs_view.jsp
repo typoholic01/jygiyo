@@ -4,8 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
     <% request.setCharacterEncoding("utf-8"); %>
 <h1>BBS_Viewer</h1>
-<h1>StartPaging = ${paging.startPage }</h1>
-<h1>endPage = ${paging.endPage }</h1>
 <table border="1">
 	<tr>
 		<th>SEQ_BBS</th>
@@ -33,7 +31,7 @@
 					<input type="hidden" name="seq_store" value="${bbs.seq_store }" />
 					<input type="hidden" name="comments_group_no" value="${bbs.comments_group_no }" />
 					<input type="hidden" name="comments_reply" value="${bbs.comments_reply }" />
-					<input type="text" name="comment_id" value="${login.boss_id }" readonly="readonly" />
+					<input type="text" name="comment_id" value="${blogin.boss_id }" readonly="readonly" />
 					<input type="text" name="comments" />
 					<input type="button" value="대댓글" onclick="insertReply(${bbs.seq_bbs })" />
 				</form>				

@@ -21,7 +21,7 @@
 		<th>가게이미지</th>
 	</tr>
 	<tr>
-		<td><input type="text" name="boss_id" value="${login.boss_id }" readonly="readonly" /></td>
+		<td><input type="text" name="boss_id" value="${blogin.boss_id }" readonly="readonly" /></td>
 		<td><input type="text" name="category" /></td>
 		<td><input type="text" name="title" /></td>
 		<td><input type="text" name="content" /></td>
