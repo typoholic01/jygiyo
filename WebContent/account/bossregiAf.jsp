@@ -8,34 +8,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>regiAf.jsp</title>
-</head>
+</head> 
 <body>
 <%
-String boss_id = request.getParameter("id");
+String boss_id = request.getParameter("regi_id");
 String user_name = request.getParameter("name");
 String password = request.getParameter("pwd");
 String phone_number = request.getParameter("phone");
-String status = request.getParameter("status");
-
 IBossDao dao = BossDao.getInstance();
 
-boolean isS = dao.sign(new BossDto(boss_id, user_name, password, phone_number, status));
+boolean isS = dao.sign(new BossDto(boss_id, user_name, password, phone_number));
 if(isS){
 	%>
 	<script type="text/javascript">
 	alert("성공적으로 가입하셨습니다");
 	location.href = '../main.jsp';
-	</script>	
+	</script>
 	<%
 }else{	
 	%>
 	<script type="text/javascript">
-	alert("다시 가입하십시오");
-	location.href = './bossregi.jsp';
+	alert("중복 된 ID거나 잘못 입력 하셨습니다.");
+	location.href = 'bossregi.jsp';
 	</script>
-	<%
-}	
-%>
+<%}%>
 
 
 </body>

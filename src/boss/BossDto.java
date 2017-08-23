@@ -8,17 +8,25 @@ public class BossDto implements Serializable {
 	private String password;
 	private String phone_number;
 	private String status;
-	
-	
 
+	public BossDto() {}
 
 	public BossDto(String boss_id, String user_name, String password, String phone_number, String status) {
-		super();
 		this.boss_id = boss_id;
 		this.user_name = user_name;
 		this.password = password;
 		this.phone_number = phone_number;
 		this.status = status;
+	}
+
+	
+	
+	public BossDto(String boss_id, String user_name, String password, String phone_number) {
+		super();
+		this.boss_id = boss_id;
+		this.user_name = user_name;
+		this.password = password;
+		this.phone_number = phone_number;
 	}
 
 	@Override

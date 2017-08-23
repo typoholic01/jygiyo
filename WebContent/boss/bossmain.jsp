@@ -4,11 +4,36 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>bossmain.jsp</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<title>main.jsp</title>
 </head>
 <body>
+<div align="center">
 
+<div align="right">
+<a href=""></a><a href="../main.jsp">홈</a>
+</div>
 
-<h3>여기는 bossmain.jsp 입니다</h3>
+<h1 align="center">저기요 사장님 사이트~</h1>
+
+<br><br><br><br>
+
+<table rules="none" align="center">
+	<tr>
+		<td>
+			<a href="sj.jsp">
+			<img src="../image/sj.jpg" width="200" height="150" id="chicken" name="chicken">
+			</a>
+		</td>
+		
+		<td>
+			<a href="fastfoodList.jsp">
+			<img src="../image/fastfood.png" width="200" height="150">
+			</a>
+		</td>
+
+</table>
+
 </body>
 </html>

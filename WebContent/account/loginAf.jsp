@@ -15,27 +15,27 @@
 String customer_id = request.getParameter("id");
 String password = request.getParameter("pwd");
 
-
 ICustomerDao dao = CustomerDao.getInstance();
 CustomerDto cus = dao.checkLogin(new CustomerDto(customer_id, null, password, null, null, null));
 
 System.out.println("customer_id = " + customer_id);
-System.out.println("password = " + password); 
-System.out.println(cus); 
+System.out.println("password = " + password);
+System.out.println(cus);
+
 if(cus != null && !cus.getCustomer_id().equals("")){
 	session.setAttribute("login", cus);
 	session.setMaxInactiveInterval(30 * 60);
 	%>
 	<script type="text/javascript">
 	alert("안녕하세요 <%= cus.getCustomer_id()%>님");
-	location.href = "../bbs/bbslist.jsp";
+	location.href = "../main.jsp";
 	</script>	
 	<%
 }else{
 	%>
 	<script type="text/javascript">
 	alert("아이디나 패스워드를 확인하세요");
-	location.href = "../index.jsp";
+	location.href = "login.jsp";
 	</script>
 	<%
 }	

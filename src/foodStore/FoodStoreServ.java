@@ -1,9 +1,46 @@
 package foodStore;
 
+import java.util.List;
+
 public class FoodStoreServ implements IFoodStoreServ {
 	IFoodStoreDao dao = new FoodStoreDao();
 
 	public boolean insertFoodStore(FoodStoreDto dto) {
 		return dao.insertFoodStore(dto);
+	}
+
+	@Override
+	public FoodStoreDto getFoodStore(int seq_store) {
+		return dao.getFoodStore(seq_store);
+	}
+
+	@Override
+	public List<FoodStoreDto> getBossFoodStoreList(String boss_id) {
+		return dao.getBossFoodStoreList(boss_id);
+	}
+
+	@Override
+	public List<FoodStoreDto> getAddressFoodStoreList(String address, int serchpage, String category) {
+		return dao.getAddressFoodStoreList(address, serchpage, category);
+	}
+
+	@Override
+	public List<FoodStoreDto> getCategoryFoodStoreList(String address, String category, int serchpage) {
+		return dao.getCategoryFoodStoreList(address, category, serchpage);
+	}
+
+	@Override
+	public int getallcount(String category) {
+		return dao.getallcount(category);
+	}
+
+	@Override
+	public boolean modifyFoodStore(int seq_store) {
+		return dao.modifyFoodStore(seq_store);
+	}
+
+	@Override
+	public boolean deleteFoodStore(int seq_store) {
+		return dao.deleteFoodStore(seq_store);
 	}
 }

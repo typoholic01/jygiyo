@@ -4,22 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>logout.jsp</title>
+<title>Insert title here</title>
 </head>
 <body>
-
+<h1>chickenList</h1>
 <%
-session.invalidate();
+String ch = request.getParameter("chicken");
+System.out.println(ch);
 %>
-
-<script type="text/javascript">
-alert("안녕히 가십시오");
-location.href = '../main.jsp';
-
-</script>
-
-
-
-
 </body>
 </html>

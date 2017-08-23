@@ -48,23 +48,7 @@ public class ShopFrontController extends HttpServlet {
 		List<BbsDto> bbsList;
 		int seq_store, cur_page;
 		
-		switch (command) {
-		case "/shop/bhc":
-			bbsList = new ArrayList<>();
-			
-			//임시로 집어넣을 데이터
-			seq_store = 2;
-			cur_page = 1;
-			
-			//DB로부터 bbs데이터를 가져온다
-			bbsList = d.bbsCtrl.getBbsList(seq_store, cur_page);
-
-			//데이터를 집어넣는다
-			req.setAttribute("bbsList", bbsList);			
-						
-			dispatch("/bbs/bbs_list.jsp", req, resp);				
-			break;
-			
+		switch (command) {			
 		case "/shop/insert":
 			//변수 받아오기
 			boss_id = req.getParameter("boss_id");

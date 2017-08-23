@@ -24,19 +24,19 @@ System.out.println("password = " + pwd);
 System.out.println(boss);
 
 if(boss != null && !boss.getBoss_id().equals("")){
-	session.setAttribute("login", boss);
+	session.setAttribute("blogin", boss);
 	session.setMaxInactiveInterval(30 * 60);
 	%>
 	<script type="text/javascript">
-	alert("안녕하세요 <%= boss.getBoss_id()%>사장님");
-	location.href = "../boss/bossmain.jsp";
+	alert("안녕하세요 <%= boss.getBoss_id()%>님");
+	location.href = "../main.jsp";
 	</script>	
 	<%
 }else{
 	%>
 	<script type="text/javascript">
 	alert("아이디나 패스워드를 확인하세요");
-	location.href = "./bosslogin.jsp";
+	location.href = "bosslogin.jsp";
 	</script>
 	<%
 }	

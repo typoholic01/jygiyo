@@ -27,7 +27,7 @@
 
 <div align="center">
 
-<form action="./bossloginAf.jsp" method="post">
+<form action="bossloginAf.jsp" method="post">
 
 <table border="1">
 
@@ -53,7 +53,7 @@
 </table>
 </form>
 
-<a href="./bossregi.jsp">가맹주  회원가입</a>
+<a href="bossregi.jsp">가맹주  회원가입</a>
 
 </div>
 
