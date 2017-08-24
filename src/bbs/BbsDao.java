@@ -79,7 +79,7 @@ public class BbsDao implements IBbsDao {
 		
 		queryList.add(dto.getComments());
 		queryList.add(dto.getComments_reply());
-		queryList.add("0");
+		queryList.add(dto.getImg_url());
 		
 		queryList.add(dto.getStatus());
 		queryList.add(dto.getStore_rating());

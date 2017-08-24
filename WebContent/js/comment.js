@@ -1,20 +1,27 @@
 function insertComment() {
-	var params = $("#insertComment").serialize();
+	var form = document.getElementById('insertComment');
+
+	var formData = new FormData(form);
 	
-	console.log(params);
+	// Display the key/value pairs
+	for(var pair of formData.entries()) {
+	   console.log(pair[0]+ ', '+ pair[1]); 
+	}
 	
 	$.ajax({ 
 		type: 'POST',
 		url:"../shop/bbs/comment/insert", 
-		data: params,
+		data: formData,                
+		processData: false,
+    	contentType: false,
         error : function() {
           alert('통신실패!!');
         },
         success : function(data) {
         }
 	});
-	
-	getBbsList();
+	var currentLocation = window.location;
+	$("#view").load(currentLocation + '#view');
 }
 function insertReply(target) {
 	var params = $("#"+target).serialize();

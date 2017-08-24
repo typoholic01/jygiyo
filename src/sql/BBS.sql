@@ -49,9 +49,7 @@ SELECT * FROM
 			ROW_NUMBER() OVER (ORDER BY comments_group_no desc,comments_reply asc) R
 	FROM JUGIYO_BBS 
 )	
-WHERE seq_store = 26	
-AND status = 'published' 
+WHERE status = 'published' 
 AND R BETWEEN 0 and 10 
-ORDER BY comments_group_no desc,comments_reply asc 
 
 SELECT COUNT(seq_bbs) FROM JUGIYO_BBS WHERE seq_store = 26

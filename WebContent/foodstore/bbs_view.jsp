@@ -9,6 +9,7 @@
 		<th>SEQ_BBS</th>
 		<th>seq_store</th>
 		<th>COMMENT_ID</th>
+		<th>imgURL</th>
 		<th>COMMENTS</th>
 		<th>COMMENTS Reply</th>
 	</tr>
@@ -17,6 +18,11 @@
 			<td>${bbs.seq_bbs }</td>
 			<td>${bbs.seq_store }</td>
 			<td>${bbs.comment_id }</td>			
+			<td>
+				<c:if test="${bbs.img_url != null}">				
+					<img src="${pageContext.request.contextPath}/upload/img/${bbs.img_url}" alt="" width="100px" />
+				</c:if>
+			</td>			
 			<td>
 				<c:if test="${bbs.comments_reply != null && bbs.comments_reply != '-1' }">
 					<c:forEach var="i" begin="0" end="${ fn:length(bbs.comments_reply)}" step="1" >&nbsp;&nbsp;</c:forEach><i class="fa fa fa-level-up fa-rotate-90"></i>
@@ -39,7 +45,7 @@
 		</tr>
 	</c:forEach>
 	<tr>
-		<td colspan="5">
+		<td colspan="6">
 			<ul class="pagination">
 				<c:if test="${param.currPage != 1 }">
 					<li><a href="?seq=${param.seq }&p=${param.currPage-1 }${queryURL}">❮</a></li>
