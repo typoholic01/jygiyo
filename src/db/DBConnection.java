@@ -9,8 +9,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bbs.BbsDto;
-
 public class DBConnection {
 	public static final String className = "oracle.jdbc.OracleDriver";
 	public static final String address = "jdbc:oracle:thin:@localhost:1521:xe";

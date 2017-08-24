@@ -55,14 +55,12 @@ public class ShopBbsFrontController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");						//utf-8 설정
 		resp.setContentType("text/html; charset=UTF-8");
 		
-		String boss_id,name,category,title,content,address,img_url;		//param
 		String comment_id = "";
 		String comments = "";
 		String comments_reply;
 		int seqBbs, seq_store = -1;
 		int comments_group_no;
 		List<BbsDto> bbsList;
-		FoodStoreDto shop;
 		BbsDto bbs;
 		
 		switch (command) {		
@@ -128,7 +126,6 @@ public class ShopBbsFrontController extends HttpServlet {
 				//////객체에 담을 변수 준비
 				String yourTempDirectory = fupload;
 	
-				int yourMaxRequestSize = 100*1024*1024;	// 1M
 				int yourMaxMemorySize = 100*1024;
 				
 				////파일을 받아올 객체 준비
@@ -142,8 +139,7 @@ public class ShopBbsFrontController extends HttpServlet {
 				ServletFileUpload upload = new ServletFileUpload(factory);
 				
 				//변수 받아오기
-				List<FileItem> items = upload.parseRequest(req);
-				
+				List<FileItem> items = upload.parseRequest(req);				
 
 				Iterator<FileItem> it = items.iterator(); 
 				

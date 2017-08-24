@@ -237,10 +237,10 @@ public class BbsDao {
 				+ "				comments_reply,img_url,create_at,update_at,status,store_rating,"
 				+ "				ROW_NUMBER() OVER (ORDER BY comments_group_no desc,comments_reply asc) R"
 				+ "		FROM JUGIYO_BBS "
+				+ "		WHERE status = 'published' "
+				+ "		AND seq_store = ? "
 				+ " )	"
-				+ " WHERE seq_store = ?	"
-				+ " AND status = 'published' "
-				+ " AND R BETWEEN ? and ? ";
+				+ " WHERE R BETWEEN ? and ? ";
 		
 		System.out.println(sql);
 		

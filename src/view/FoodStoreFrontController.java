@@ -47,11 +47,8 @@ public class FoodStoreFrontController extends HttpServlet {
 		resp.setContentType("text/html; charset=UTF-8");
 		
 		String boss_id,name,category,title,content,address,img_url;		//param
-		String comment_id,comments,comments_reply;
-		int seqBbs,comments_group_no;
 		List<BbsDto> bbsList;
 		FoodStoreDto shop;
-		BbsDto bbs;
 		int seq_store, cur_page;
 		
 		switch (command) {

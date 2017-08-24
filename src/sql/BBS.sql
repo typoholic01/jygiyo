@@ -53,3 +53,13 @@ WHERE status = 'published'
 AND R BETWEEN 0 and 10 
 
 SELECT COUNT(seq_bbs) FROM JUGIYO_BBS WHERE seq_store = 26
+
+SELECT * FROM (		
+ 	SELECT seq_bbs,seq_store,comment_id,id_category,comments,comments_group_no,				
+ 	comments_reply,img_url,create_at,update_at,status,store_rating,				
+ 	ROW_NUMBER() OVER (ORDER BY comments_group_no desc,comments_reply asc) R		
+ 	FROM JUGIYO_BBS  
+ 	WHERE status = 'published'
+ 	AND seq_store = 41
+)	 
+WHERE R BETWEEN 0 and 10 
