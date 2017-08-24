@@ -13,4 +13,6 @@ public interface IBbsServ {
 	public boolean deleteComment(BbsDto bbs);
 	
 	public int getTotalArticle(int seqBbs);
+	
+	public boolean checkSameImage(BbsDto bbs);
 }

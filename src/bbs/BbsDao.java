@@ -362,5 +362,45 @@ public class BbsDao implements IBbsDao {
 		
 		return replylist;
 	}
+	
+	@Override
+	public boolean checkValue(String key, Object val) {		
+		Object object = null;
+		
+		String sql = " SELECT " + key + " FROM JUGIYO_BBS "
+				+ " WHERE " + key + " = ?";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			
+			if (val instanceof String) {
+				psmt.setString(1, (String) val);
+			} else if (val instanceof Integer) {
+				psmt.setInt(1, (Integer) val);
+			}
+			
+			rs = psmt.executeQuery();			
+			
+			while (rs.next()) {
+				object = rs.getObject(1);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(conn, psmt, rs);
+		}
+		
+		if (object == null) {
+			return false;
+		}
+		
+		return true;
+	}
 
 }

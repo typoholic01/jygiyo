@@ -31,7 +31,6 @@ function insertReply(target) {
 		type : "GET",
 		url:"../shop/bbs/reply/insert",
 		data:params,
-		contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
         dataType: 'html',
         error : function() {
           alert('통신실패!!'); 

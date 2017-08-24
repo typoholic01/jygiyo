@@ -35,4 +35,11 @@ public class BbsCtrl {
 	public int getTotalArticle(int seqBbs) {
 		return bbsServ.getTotalArticle(seqBbs);
 	};
+	
+
+	public boolean checkSameImage(String fileName) {
+		BbsDto bbs = new BbsDto();
+		bbs.setImg_url(fileName);
+		return bbsServ.checkSameImage(bbs);
+	}
 }

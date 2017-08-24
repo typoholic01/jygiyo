@@ -114,10 +114,11 @@ public class ShopBbsFrontController extends HttpServlet {
 			dispatch("/foodstore/bbs_view.jsp", req, resp);	
 			break;
 			
-		case "/shop/bbs/comment/insert":
+		case "/shop/bbs/comment/insert":			
 			// file 데이터
 			String fupload = "F:/Dev/Programming/Semi3/jugiyo/WebContent/upload/img";
 			String filename = "";
+			
 			
 			//multipart 체크
 			boolean isMultipart = ServletFileUpload.isMultipartContent(req);
@@ -165,7 +166,7 @@ public class ShopBbsFrontController extends HttpServlet {
 				}					
 				} catch (FileUploadException e) {
 					e.printStackTrace();
-				} finally {					
+				} finally {
 					//Dto 준비
 					bbs = new BbsDto();
 					bbs.setSeq_store(seq_store);
@@ -174,10 +175,11 @@ public class ShopBbsFrontController extends HttpServlet {
 					bbs.setComments(comments);
 					bbs.setComments_reply("-1");
 					bbs.setImg_url(filename);
-					bbs.setStatus("published");		
-
+					bbs.setStatus("published");	
+					
 					//삽입
 					d.bbsCtrl.insertBbs(bbs);
+
 				}
 			}else{
 				System.out.println("Multipart가 아닙니다");
@@ -246,7 +248,7 @@ public class ShopBbsFrontController extends HttpServlet {
 		dispatch.forward(req, resp);
 	}
 	
-	public String processUploadedFile(FileItem fileItem, String dir)throws IOException{
+	private String processUploadedFile(FileItem fileItem, String dir)throws IOException{
 		
 		String fileName = fileItem.getName();
 		long sizeInBytes = fileItem.getSize();
@@ -258,6 +260,18 @@ public class ShopBbsFrontController extends HttpServlet {
 				idx = fileName.lastIndexOf("/");	// 못찾았으면 '/' 찾아!	
 			}
 			fileName = fileName.substring( idx+1 );	// abc.jpg
+			
+			//같은 이름 체크
+			boolean loop = true;
+			int i = 1;
+			while (loop) {
+				if (!d.bbsCtrl.checkSameImage(fileName)) {
+					loop = false;
+				} else {
+					fileName = "("+i+")"+fileName;
+					i++;
+				}
+			}
 			
 			try{
 				File uploadedFile = new File(dir, fileName);

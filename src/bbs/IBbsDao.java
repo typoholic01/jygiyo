@@ -14,7 +14,7 @@ public interface IBbsDao {
 	public boolean modifyComment(BbsDto bbs);
 	public int getTotalArticle(int seqBbs);
 
-	
+	public boolean checkValue(String key, Object val);
 	
 
 }

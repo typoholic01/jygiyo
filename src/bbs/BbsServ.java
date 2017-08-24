@@ -32,6 +32,13 @@ public class BbsServ implements IBbsServ {
 	@Override
 	public int getTotalArticle(int seqBbs) {
 		return dao.getTotalArticle(seqBbs);
+	}
+
+	@Override
+	public boolean checkSameImage(BbsDto bbs) {		
+		return dao.checkValue("img_url", bbs.getImg_url());		
 	};
+	
+	
 
 }
