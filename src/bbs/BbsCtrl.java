@@ -30,12 +30,7 @@ public class BbsCtrl {
 	public boolean modifyComment(BbsDto bbs) {
 		return bbsServ.modifyComment(bbs);
 		
-	}
-	
-	public int getTotalArticle(int seqBbs) {
-		return bbsServ.getTotalArticle(seqBbs);
-	};
-	
+	}	
 
 	public boolean checkSameImage(String fileName) {
 		BbsDto bbs = new BbsDto();

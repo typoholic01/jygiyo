@@ -179,9 +179,9 @@ public class DBConnection {
 			int i = 1;
 			for (Object query : queryList) {
 				if (query instanceof String) {
-					psmt.setString(i, (String) query);
+					psmt.setString(1, (String) query);
 				} else if (query instanceof Integer) {
-					psmt.setInt(i, (Integer) query);
+					psmt.setInt(1, (Integer) query);
 				}
 				i++;
 			}

@@ -24,8 +24,7 @@ public class BbsDao {
 	}
 	
 	//게시물 갯수 가져오기
-
-	public int getTotalArticle(int seqStore) {
+	private int getTotalArticle(int seqStore) {
 		String columnSql = "COUNT(seq_bbs)";
 		String sql = "SELECT "+columnSql+" FROM JUGIYO_BBS"
 					+ " WHERE seq_store = ? "
@@ -57,7 +56,6 @@ public class BbsDao {
 		return total_article;
 	}
 
-
 	public boolean insertBbs(BbsDto dto) {
 		String columnSql = "SEQ_BBS, SEQ_STORE, COMMENT_ID, ID_CATEGORY, "
 						+ "COMMENTS, COMMENTS_GROUP_NO, COMMENTS_REPLY, IMG_URL, "
@@ -87,50 +85,7 @@ public class BbsDao {
 		return DBConnection.executeUpdates(sql, queryList);
 	}
 
-
 	public boolean insertReply(BbsDto bbs) {
-		//답글 순서를 구한다
-		List<String> replyList = countReply(bbs);		
-		
-		/**
-		 * 1. 원글 reply를 받아온다
-		 * 2. 원글 ancestor replylist를 받아온다
-		 * 3. replylist 단계를 비교한다
-		 * 4. 단계를 추가한다
-		 * 5. return일 경우 : 단계를 변경한다(A->B->C->)
-		 * 
-		 * */
-		
-		String replyBase = bbs.getComments_reply();
-		System.out.println("replyBase : "+replyBase);
-		
-		if (replyBase == null || replyBase.equals("-1")) {
-			replyBase = "";
-		}
-		System.out.println("변경된 replyBase : "+replyBase);
-		System.out.println("replyBase 길이: "+replyBase.length());
-		char replyStep = 'A';
-		String reply = "";
-		
-		System.out.println(replyBase);
-		
-		//스위칭 불리언
-		boolean isDepthReply = false;
-		
-		for (String string : replyList) {
-			System.out.println("루프: "+string);
-			
-			if (string != null&&!string.equals("-1")&&(replyBase.length()+1)==string.length()) {
-				System.out.println("길이: "+string.length());
-				isDepthReply = true;
-				replyStep += 1;
-				System.out.println("변경된 step: "+replyStep);
-			}
-		}
-		reply = replyBase + replyStep;
-		
-		System.out.println(reply);
-		
 		String columnSql = "SEQ_BBS, SEQ_STORE, COMMENT_ID, ID_CATEGORY, "
 				+ "COMMENTS, COMMENTS_GROUP_NO, COMMENTS_REPLY, IMG_URL, "
 				+ "CREATE_AT, UPDATE_AT, STATUS, STORE_RATING";
@@ -151,7 +106,7 @@ public class BbsDao {
 		
 		queryList.add(bbs.getComments());
 		queryList.add(bbs.getComments_group_no());
-		queryList.add(reply);		
+		queryList.add(bbs.getComments_reply());		
 		queryList.add("0");
 		
 		queryList.add(bbs.getStatus());
@@ -160,49 +115,34 @@ public class BbsDao {
 		return DBConnection.executeUpdates(sql, queryList);
 	}	
 
-
-	public BbsDto getBbs(int seq_bbs) {
-		BbsDto bbs = null;
+	protected String calculateReply(BbsDto bbs, List<String> replyList) {
+		String replyBase = bbs.getComments_reply();
+		System.out.println("replyBase : "+replyBase);
 		
-		String sql = "SELECT * FROM BBS WHERE SEQ = ?";
+		if (replyBase == null || replyBase.equals("-1")) {
+			replyBase = "";
+		}
+		System.out.println("변경된 replyBase : "+replyBase);
+		System.out.println("replyBase 길이: "+replyBase.length());
+		char replyStep = 'A';
+		String reply = "";
 		
-		Connection conn = null;
-		PreparedStatement psmt = null;
-		ResultSet rs = null;
+		System.out.println(replyBase);
 		
-		try {
-			conn = DBConnection.getConnection();
-			psmt = conn.prepareStatement(sql);
+		for (String string : replyList) {
+			System.out.println("루프: "+string);
 			
-			psmt.setInt(1, seq_bbs);
-			
-			rs = psmt.executeQuery();
-			
-			rs.next();
-			int i = 1;
-			bbs = new BbsDto(
-					rs.getInt(i++),			//	seq_bbs, 
-					rs.getInt(i++),			//	seq_store, 
-					rs.getString(i++),		//	comment_id, 
-					rs.getString(i++),		//	id_category, 
-					rs.getString(i++),		//	comments, 
-					rs.getInt(i++),			//	comments_group_no, 
-					rs.getString(i++),		//	comments_reply, 
-					rs.getString(i++),		//	img_url, 
-					rs.getString(i++),		//	create_at, 
-					rs.getString(i++),		//	update_at, 
-					rs.getString(i++),		//	status, 
-					rs.getInt(i++)			//	store_rating
-			);
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConnection.close(conn, psmt, rs);
-		}		
-		return bbs;
+			if (string != null&&!string.equals("-1")&&(replyBase.length()+1)==string.length()) {
+				System.out.println("길이: "+string.length());
+				replyStep += 1;
+				System.out.println("변경된 step: "+replyStep);
+			}
+		}
+		reply = replyBase + replyStep;
+		
+		System.out.println(reply);
+		return reply;
 	}
-
 
 	public List<BbsDto> getBbsList(BbsDto dto, int currPage) {
 		//페이징 계산
@@ -295,7 +235,6 @@ public class BbsDao {
 		return list;
 	}	
 
-
 	public boolean deleteComment(BbsDto dto) {
 		String sql = "UPDATE JUGIYO_BBS SET "
 				+ " STATUS = 'delete' "
@@ -327,84 +266,46 @@ public class BbsDao {
 	}
 	
 	//답글 순서 구하기용 Reply 함수
-	private List<String> countReply(BbsDto dto) {
+	protected List<String> countReply(BbsDto dto) {
 		String sql = " SELECT comments_reply "
 				+ " FROM JUGIYO_BBS "
 				+ " WHERE comments_group_no = ("
 				+ "	SELECT comments_group_no FROM JUGIYO_BBS WHERE seq_bbs = ?"
 				+ " ) "
 				+ " ORDER BY comments_reply asc";
+		//객체 준비
+		List<Object> queryList = new ArrayList<>();		
+		List<Object> valueList = new ArrayList<>();
+		List<String> replyList = new ArrayList<>();
 		
-		Connection conn = null;
-		PreparedStatement psmt = null;
-		ResultSet rs = null;
+		//쿼리 작성
+		queryList.add(dto.getSeq_bbs());
 		
-		List<String> replylist = new ArrayList<>();
+		//결과값 리턴
+		valueList = DBConnection.executeQuerys(sql, queryList);
 		
-		try {
-			conn = DBConnection.getConnection();
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, dto.getSeq_bbs());
-			rs = psmt.executeQuery();			
-			
-			while (rs.next()) {
-				String reply = rs.getString(1);
-				replylist.add(reply);
+		for (Object rowList : valueList) {
+			List<Object> row = (List<Object>) rowList;
+			for (Object column : row) {
+				replyList.add((String) column);
 			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConnection.close(conn, psmt, rs);
 		}
 		
-		System.out.println(replylist.toString());
-		
-		return replylist;
+		return replyList;
 	}
 	
 
-	public boolean checkValue(String key, Object val) {		
-		/*Object object = null;
-		
-		String sql = " SELECT " + key + " FROM JUGIYO_BBS "
-				+ " WHERE " + key + " = ?";
-		
-		Connection conn = null;
-		PreparedStatement psmt = null;
-		ResultSet rs = null;
-		
-		try {
-			conn = DBConnection.getConnection();
-			psmt = conn.prepareStatement(sql);
-			
-			if (val instanceof String) {
-				psmt.setString(1, (String) val);
-			} else if (val instanceof Integer) {
-				psmt.setInt(1, (Integer) val);
-			}
-			
-			rs = psmt.executeQuery();			
-			
-			while (rs.next()) {
-				object = rs.getObject(1);
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBConnection.close(conn, psmt, rs);
-		}*/
-		List<Object> returnList = new ArrayList<>();
+	public boolean checkValue(String key, Object val) {	
+		List<Object> valueList = new ArrayList<>();
 		String sql = " SELECT " + key + " FROM JUGIYO_BBS "
 				+ " WHERE " + key + " = ?";
 		
 		List<Object> queryList = new ArrayList<>();
 		queryList.add(val);
 		
-		returnList = DBConnection.executeQuery(sql, queryList);
+		valueList = DBConnection.executeQuery(sql, queryList);
 				
-		if (returnList.isEmpty()) {
+		if (valueList.isEmpty()) {
 			return false;
 		}
 		
