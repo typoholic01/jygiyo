@@ -4,8 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
+import bbs.BbsDto;
 
 public class DBConnection {
 	public static final String className = "oracle.jdbc.OracleDriver";
@@ -119,6 +123,88 @@ public class DBConnection {
 		}
 				
 		return count>0?true:false;
+	}
+	
+	public static List<Object> executeQuerys(String sql, List<Object> queryList) {
+		List<Object> list = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			
+			int i = 1;
+			for (Object query : queryList) {
+				if (query instanceof String) {
+					psmt.setString(i, (String) query);
+				} else if (query instanceof Integer) {
+					psmt.setInt(i, (Integer) query);
+				}
+				i++;
+			}
+			
+			rs = psmt.executeQuery();
+			
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCount = rsmd.getColumnCount();			
+			
+			while(rs.next())
+			{
+				List<Object> innerList = new ArrayList<>();
+				for (int j = 1; j <= columnCount; j++) {
+					innerList.add(rs.getObject(j++));
+				}
+				list.add(innerList);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(conn, psmt, rs);
+		}		
+		return list;
+	}
+	
+	public static List<Object> executeQuery(String sql, List<Object> queryList) {
+		List<Object> list = new ArrayList<>();
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			
+			int i = 1;
+			for (Object query : queryList) {
+				if (query instanceof String) {
+					psmt.setString(i, (String) query);
+				} else if (query instanceof Integer) {
+					psmt.setInt(i, (Integer) query);
+				}
+				i++;
+			}
+			
+			rs = psmt.executeQuery();
+			
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int columnCount = rsmd.getColumnCount();			
+			
+			while (rs.next()) {
+				for (int j = 1; j <= columnCount; j++) {
+					list.add(rs.getObject(j++));
+				}
+			}			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnection.close(conn, psmt, rs);
+		}		
+		return list;
 	}
 
 }

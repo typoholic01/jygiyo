@@ -9,7 +9,7 @@ import java.util.List;
 
 import db.DBConnection;
 
-public class BbsDao implements IBbsDao {
+public class BbsDao {
 	private static BbsDao single = null;
 	
 	private BbsDao() {
@@ -24,7 +24,7 @@ public class BbsDao implements IBbsDao {
 	}
 	
 	//게시물 갯수 가져오기
-	@Override
+
 	public int getTotalArticle(int seqStore) {
 		String columnSql = "COUNT(seq_bbs)";
 		String sql = "SELECT "+columnSql+" FROM JUGIYO_BBS"
@@ -57,7 +57,7 @@ public class BbsDao implements IBbsDao {
 		return total_article;
 	}
 
-	@Override
+
 	public boolean insertBbs(BbsDto dto) {
 		String columnSql = "SEQ_BBS, SEQ_STORE, COMMENT_ID, ID_CATEGORY, "
 						+ "COMMENTS, COMMENTS_GROUP_NO, COMMENTS_REPLY, IMG_URL, "
@@ -87,7 +87,7 @@ public class BbsDao implements IBbsDao {
 		return DBConnection.executeUpdates(sql, queryList);
 	}
 
-	@Override
+
 	public boolean insertReply(BbsDto bbs) {
 		//답글 순서를 구한다
 		List<String> replyList = countReply(bbs);		
@@ -160,7 +160,7 @@ public class BbsDao implements IBbsDao {
 		return DBConnection.executeUpdates(sql, queryList);
 	}	
 
-	@Override
+
 	public BbsDto getBbs(int seq_bbs) {
 		BbsDto bbs = null;
 		
@@ -203,7 +203,7 @@ public class BbsDao implements IBbsDao {
 		return bbs;
 	}
 
-	@Override
+
 	public List<BbsDto> getBbsList(BbsDto dto, int currPage) {
 		//페이징 계산
 		PaginationBeans paging = PaginationBeans.getInstance();
@@ -295,7 +295,7 @@ public class BbsDao implements IBbsDao {
 		return list;
 	}	
 
-	@Override
+
 	public boolean deleteComment(BbsDto dto) {
 		String sql = "UPDATE JUGIYO_BBS SET "
 				+ " STATUS = 'delete' "
@@ -310,7 +310,7 @@ public class BbsDao implements IBbsDao {
 		return DBConnection.executeUpdates(sql, queryList);
 	}
 	
-	@Override
+
 	public boolean modifyComment(BbsDto bbs) {
 		String sql = "UPDATE JUGIYO_BBS SET "
 				+ " comments = ? "
@@ -363,9 +363,9 @@ public class BbsDao implements IBbsDao {
 		return replylist;
 	}
 	
-	@Override
+
 	public boolean checkValue(String key, Object val) {		
-		Object object = null;
+		/*Object object = null;
 		
 		String sql = " SELECT " + key + " FROM JUGIYO_BBS "
 				+ " WHERE " + key + " = ?";
@@ -394,13 +394,20 @@ public class BbsDao implements IBbsDao {
 			e.printStackTrace();
 		} finally {
 			DBConnection.close(conn, psmt, rs);
-		}
+		}*/
+		List<Object> returnList = new ArrayList<>();
+		String sql = " SELECT " + key + " FROM JUGIYO_BBS "
+				+ " WHERE " + key + " = ?";
 		
-		if (object == null) {
+		List<Object> queryList = new ArrayList<>();
+		queryList.add(val);
+		
+		returnList = DBConnection.executeQuery(sql, queryList);
+				
+		if (returnList.isEmpty()) {
 			return false;
 		}
 		
 		return true;
 	}
-
 }

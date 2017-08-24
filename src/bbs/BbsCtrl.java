@@ -3,7 +3,7 @@ package bbs;
 import java.util.List;
 
 public class BbsCtrl {
-	IBbsServ bbsServ = new BbsServ();
+	BbsServ bbsServ = new BbsServ();
 	
 	public List<BbsDto> getBbsList(int seq_store, int cur_page) {
 		//변수를 객체화한다

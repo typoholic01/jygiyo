@@ -2,15 +2,15 @@ package bbs;
 
 import java.util.List;
 
-public class BbsServ implements IBbsServ {
-	IBbsDao dao = BbsDao.getInstance();
+public class BbsServ  {
+	BbsDao dao = BbsDao.getInstance();
 
-	@Override
+
 	public List<BbsDto> getBbsList(BbsDto dto, int cur_page) {
 		return dao.getBbsList(dto, cur_page);
 	}
 
-	@Override
+
 	public boolean insertBbs(BbsDto dto) {
 		return dao.insertBbs(dto);
 	}
@@ -19,22 +19,22 @@ public class BbsServ implements IBbsServ {
 		return dao.insertReply(bbs);
 	}
 
-	@Override
+
 	public boolean deleteComment(BbsDto bbs) {
 		return dao.deleteComment(bbs);
 	}
 
-	@Override
+
 	public boolean modifyComment(BbsDto bbs) {
 		return dao.modifyComment(bbs);
 	}
 
-	@Override
+
 	public int getTotalArticle(int seqBbs) {
 		return dao.getTotalArticle(seqBbs);
 	}
 
-	@Override
+
 	public boolean checkSameImage(BbsDto bbs) {		
 		return dao.checkValue("img_url", bbs.getImg_url());		
 	};
