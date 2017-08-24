@@ -92,7 +92,7 @@ function getBbsList() {
 <div id="view">
 
 </div>
-<form id="insertComent" method="post" enctype="multipart/form-data">
+<form id="insertComment" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="seq_store" name="seq_store" value="${param.seq }" />
 	<input type="text" id="comment_id" name="comment_id" value="${blogin.boss_id }" readonly="readonly" />
 	<input type="text" id="comments" name="comments" />

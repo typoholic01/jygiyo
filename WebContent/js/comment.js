@@ -1,17 +1,12 @@
 function insertComment() {
-	var form = $("#insertComment");
-	var formData = new FormData(form);
+	var params = $("#insertComment").serialize();
 	
-	//TODO 폼 데이터가 넘어오지 않고 있다
-	alert(formData.get('seq_store'));
+	console.log(params);
 	
-	/*$.ajax({ 
-		type : "GET",
-		url:"../shop/bbs/comment/insert", 
-		processData: false,
-        contentType: false,
+	$.ajax({ 
 		type: 'POST',
-		data:formData,
+		url:"../shop/bbs/comment/insert", 
+		data: params,
         error : function() {
           alert('통신실패!!');
         },
@@ -19,7 +14,7 @@ function insertComment() {
         }
 	});
 	
-	getBbsList();*/
+	getBbsList();
 }
 function insertReply(target) {
 	var params = $("#"+target).serialize();
