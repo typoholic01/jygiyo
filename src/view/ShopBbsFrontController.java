@@ -161,33 +161,27 @@ public class ShopBbsFrontController extends HttpServlet {
 						if(item.getFieldName().equals("fileload")){
 							filename = processUploadedFile(item, fupload);
 						}		
-					}		
-				//Dto 준비
-				bbs = new BbsDto();
-				bbs.setSeq_store(seq_store);
-				bbs.setComment_id(comment_id);
-				bbs.setId_category("customer");
-				bbs.setComments(comments);
-				bbs.setComments_reply("-1");
-				bbs.setImg_url(filename);
-				bbs.setStatus("published");		
-
-				//삽입
-				d.bbsCtrl.insertBbs(bbs);
-				}	
-				
+					}
+				}					
 				} catch (FileUploadException e) {
 					e.printStackTrace();
+				} finally {					
+					//Dto 준비
+					bbs = new BbsDto();
+					bbs.setSeq_store(seq_store);
+					bbs.setComment_id(comment_id);
+					bbs.setId_category("customer");
+					bbs.setComments(comments);
+					bbs.setComments_reply("-1");
+					bbs.setImg_url(filename);
+					bbs.setStatus("published");		
+
+					//삽입
+					d.bbsCtrl.insertBbs(bbs);
 				}
 			}else{
 				System.out.println("Multipart가 아닙니다");
-			}
-			
-//			seq_store = Integer.parseInt(req.getParameter("seq_store"));
-//			comment_id = req.getParameter("comment_id");
-//			comments = req.getParameter("comments");
-			
-			
+			}			
 			
 			//보내기
 			break;
