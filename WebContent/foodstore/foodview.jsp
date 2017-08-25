@@ -4,10 +4,59 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
 <h1>FoodView</h1>
-
+<!-- 
+<div class="container">
+  <h2>미댓글 테이블</h2>
+  <p>The .table-responsive class creates a responsive table which will scroll horizontally on small devices (under 768px). When viewing on anything larger than 768px wide, there is no difference:</p>                                                                                      
+  <div class="table-responsive">          
+  <table class="table">
+	  <tr>
+	    <th class="tg-yw4l" rowspan="3">img<br></th>
+	    <th class="tg-yw4l">id</th>
+	    <th class="tg-yw4l">|date</th>
+	  </tr>
+	  <tr>
+	    <td class="tg-yw4l" colspan="2">rating</td>
+	  </tr>
+	  <tr>
+	    <td class="tg-yw4l" colspan="2">comment<br>br<br>img</td>
+	  </tr>
+	</table>
+  </div>
+</div>
+<div class="container">
+  <h2>댓글 테이블</h2>
+  <p>The .table-responsive class creates a responsive table which will scroll horizontally on small devices (under 768px). When viewing on anything larger than 768px wide, there is no difference:</p>                                                                                      
+  <div class="table-responsive">          
+  <table class="table">
+	  <tr>
+	    <th class="tg-yw4l" rowspan="3">img<br></th>
+	    <th class="tg-yw4l">id</th>
+	    <th class="tg-yw4l">|date</th>
+	  </tr>
+	  <tr>
+	    <td class="tg-yw4l" colspan="2">rating</td>
+	  </tr>
+	  <tr>
+	    <td class="tg-yw4l" colspan="2">comment<br>br<br>img</td>
+	  </tr>
+	  <tr>
+	    <td class="tg-yw4l" rowspan="2"></td>
+	    <td class="tg-yw4l">boss_id</td>
+	    <td class="tg-yw4l">date</td>
+	  </tr>
+	  <tr>
+	    <td class="tg-yw4l" colspan="2">comment</td>
+	  </tr>
+	</table>
+  </div>
+</div> -->
 </body>
 </html>

@@ -56,7 +56,7 @@ public class ShopBbsFrontController extends HttpServlet {
 		resp.setContentType("text/html; charset=UTF-8");
 		
 		String comment_id = "";
-		String comments = "";
+		String comments = "", store_rating = "";
 		String comments_reply;
 		int seqBbs, seq_store = -1;
 		int comments_group_no;
@@ -153,6 +153,8 @@ public class ShopBbsFrontController extends HttpServlet {
 							comment_id = item.getString("utf-8");
 						}else if(item.getFieldName().equals("comments")){
 							comments = item.getString("utf-8");
+						}else if(item.getFieldName().equals("store_rating")){
+							store_rating = item.getString("utf-8");
 						}		
 						
 					}else{	// file			
@@ -170,6 +172,7 @@ public class ShopBbsFrontController extends HttpServlet {
 					bbs.setComment_id(comment_id);
 					bbs.setId_category("customer");
 					bbs.setComments(comments);
+					bbs.setStore_rating(Integer.parseInt(store_rating));
 					bbs.setComments_reply("-1");
 					bbs.setImg_url(filename);
 					bbs.setStatus("published");	

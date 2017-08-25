@@ -10,11 +10,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/comment.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <title>bbslist.jsp</title>
 <script type="text/javascript">
 /* 아작스를 이용해 코멘트를 뿌려준다 */
@@ -107,6 +107,14 @@ function getFoodList() {
   display: table-cell; 
   vertical-align: middle;
 }
+/* nav tag */ 
+nav ul{padding-top:10px;} /* 상단 여백 10px */ 
+nav ul li { 
+display:inline; /* 세로나열을 가로나열로 변경 */ 
+border-left:1px solid #999; /* 각 메뉴의 왼쪽에 "|" 표시(분류 표시) */ 
+font:bold 12px Dotum; /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */ 
+padding:0 10px; /* 각 메뉴 간격 */ } 
+nav ul li:first-child{border-left:none;} /* 메뉴 분류중 제일 왼쪽의 "|"는 삭제 */
 </style>
 </head>
 <body>
@@ -127,6 +135,16 @@ function getFoodList() {
 	<input type="hidden" id="seq_store" name="seq_store" value="${param.seq }" />
 	<input type="text" id="comment_id" name="comment_id" value="${blogin.boss_id }" readonly="readonly" />
 	<input type="text" id="comments" name="comments" />
+	<input type="radio" />
+	<nav>
+	<ul>
+		<li><input type="radio" name="store_rating" value="5" checked>5</li>
+		<li><input type="radio" name="store_rating" value="4">4</li>
+		<li><input type="radio" name="store_rating" value="3">3</li>
+		<li><input type="radio" name="store_rating" value="2">2</li>
+		<li><input type="radio" name="store_rating" value="1">1</li>
+	</ul>
+	</nav>
 	<input type="file" name="fileload" style="width: 400px">	
 </form>
 <button onclick="insertComment()">댓글</button>

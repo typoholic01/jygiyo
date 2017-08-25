@@ -125,6 +125,33 @@ public class DBConnection {
 		return count>0?true:false;
 	}
 	
+	public static ResultSet executeQuery(String sql, Object query) {		
+		Connection conn = null;
+		PreparedStatement psmt = null;		
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			
+			psmt = conn.prepareStatement(sql);
+			
+			if (query instanceof String) {
+				psmt.setString(1, (String) query);
+			} else if (query instanceof Integer) {
+				psmt.setInt(1, (Integer) query);
+			}
+			
+			rs = psmt.executeQuery();
+			
+		} catch (SQLException e) {			
+			System.out.println(e.getMessage());
+		} finally{
+			close(conn, psmt);
+		}
+				
+		return rs;
+	}
+	
 	public static List<Object> executeQuerys(String sql, List<Object> queryList) {
 		List<Object> list = new ArrayList<>();
 		
