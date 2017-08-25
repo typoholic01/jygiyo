@@ -19,6 +19,7 @@
 <script type="text/javascript">
 /* 아작스를 이용해 코멘트를 뿌려준다 */
 $(document).ready(function() {	
+	getFoodList();
 	getBbsList();
 });		
 function getBbsList() {
@@ -44,7 +45,34 @@ function getBbsList() {
           alert('통신실패!!');
         },
         success : function(data) {
-          $('#view').html(data);
+          $('#commentView').html(data);
+        }
+	});
+}
+function getFoodList() {
+	var seq_store = $("#seq_store").val();
+	
+	var p = "${param.p}";
+	
+	if (p == "") {
+		p = 1;
+	}
+	
+	var currPage = p;	
+	
+	$.ajax({ 
+		type : "GET",
+		url:"../shop/food/list",
+		data:
+			{
+				"seq":seq_store
+			},
+        error : function() {
+          alert('통신실패!!');
+        },
+        success : function(data) {
+        	console.log('통신성공!');
+          $('#foodView').html(data);
         }
 	});
 }
@@ -89,7 +117,10 @@ function getBbsList() {
 
 <div align="center">
 <h1>게시판</h1>
-<div id="view">
+<div id="foodView">
+
+</div>
+<div id="commentView">
 
 </div>
 <form id="insertComment" method="post" enctype="multipart/form-data">

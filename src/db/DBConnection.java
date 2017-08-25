@@ -74,6 +74,8 @@ public class DBConnection {
 					psmt.setString(i, (String) query);
 				} else if (query instanceof Integer) {
 					psmt.setInt(i, (Integer) query);
+				} else if (query == null) {
+					psmt.setNull(i, java.sql.Types.NULL);
 				}
 				i++;
 			}

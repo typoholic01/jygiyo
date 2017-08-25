@@ -81,7 +81,7 @@ public class ShopBbsFrontController extends HttpServlet {
 			req.setAttribute("bbsList", bbsList);	
 			req.setAttribute("paging", paging);				
 						
-			dispatch("/foodstore/bbs_view.jsp", req, resp);				
+			dispatch("/foodstore/bbsview.jsp", req, resp);				
 			break;
 		
 		case "/shop/bbs/reply/insert":
@@ -101,6 +101,7 @@ public class ShopBbsFrontController extends HttpServlet {
 			bbs.setId_category("고객");
 			bbs.setComment_id(comment_id);
 			bbs.setComments(comments);
+			bbs.setImg_url(null);
 			bbs.setComments_reply(comments_reply);
 			bbs.setComments_group_no(comments_group_no);
 			bbs.setStatus("published");
@@ -109,7 +110,7 @@ public class ShopBbsFrontController extends HttpServlet {
 			d.bbsCtrl.insertReply(bbs);
 			
 			//보내기
-			dispatch("/foodstore/bbs_view.jsp", req, resp);	
+			dispatch("/foodstore/bbsview.jsp", req, resp);	
 			break;
 			
 		case "/shop/bbs/comment/insert":			
@@ -209,7 +210,7 @@ public class ShopBbsFrontController extends HttpServlet {
 			d.bbsCtrl.deleteComment(bbs);
 			
 			//보내기
-			dispatch("/foodstore/bbs_view.jsp", req, resp);	
+			dispatch("/foodstore/bbsview.jsp", req, resp);	
 			break;
 			
 		case "/shop/bbs/comment/modify":
@@ -227,7 +228,7 @@ public class ShopBbsFrontController extends HttpServlet {
 			d.bbsCtrl.modifyComment(bbs);
 			
 			//보내기
-			dispatch("/foodstore/bbs_view.jsp", req, resp);	
+			dispatch("/foodstore/bbsview.jsp", req, resp);	
 			break;		
 		
 			
@@ -257,6 +258,7 @@ public class ShopBbsFrontController extends HttpServlet {
 			}
 			fileName = fileName.substring( idx+1 );	// abc.jpg
 			
+			System.out.println("처음 fileName: " + fileName);
 			//같은 이름 체크
 			boolean loop = true;
 			int i = 1;

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
     <% request.setCharacterEncoding("utf-8"); %>
-<h1>BBS_Viewer</h1>
+<h1>BBSViewer</h1>
 <table border="1">
 	<tr>
 		<th>SEQ_BBS</th>

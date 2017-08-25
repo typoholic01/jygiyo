@@ -107,7 +107,7 @@ public class BbsDao {
 		queryList.add(bbs.getComments());
 		queryList.add(bbs.getComments_group_no());
 		queryList.add(bbs.getComments_reply());		
-		queryList.add("0");
+		queryList.add(bbs.getImg_url());
 		
 		queryList.add(bbs.getStatus());
 		queryList.add(bbs.getStore_rating());

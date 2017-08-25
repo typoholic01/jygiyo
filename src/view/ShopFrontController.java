@@ -24,7 +24,7 @@ import singleton.Delegate;
  * "*.do" : 확장자가 do인 요청
  * "/board/*" : /board/로 시작하는 요청
  */
-public class FoodStoreFrontController extends HttpServlet {
+public class ShopFrontController extends HttpServlet {
 	private static final long serialVersionUID = 3286113481968426199L;
 	private Delegate d = Delegate.getInstance();
 
@@ -81,7 +81,7 @@ public class FoodStoreFrontController extends HttpServlet {
 			//데이터를 집어넣는다
 			req.setAttribute("bbsList", bbsList);	
 						
-			dispatch("/bbs/bbs_view.jsp", req, resp);				
+			dispatch("/bbs/bbsview.jsp", req, resp);				
 			break;
 			
 		case "/shop/insert":
