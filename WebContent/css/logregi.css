@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+<style type="text/css">
+input[type=text] {
+ padding: 8px;
+ margin: 0px;
+}
+input[type=password] {
+ padding: 8px;
+ margin: 0px;
+}
+#lbtnout{
+	background-color: grey;
+	color: white;						
+	width: 450px; 
+	height: 50px;
+	border: 0;
+}
+#lbtnover{
+	background-color: black;
+	color: white;						
+	width: 450px;
+	height: 50px;
+	border: 0;
+}
+#loginunderbar{
+	text-align: right;
+	font-size: 12px;
+}
+button {
+	border: 0px;
+	background-color: white;
+}
+#regibtnout{
+	background-color: grey;
+	color: white;						
+	width: 83px; 
+	height: 20px;
+	border: 0;
+	
+}
+#regibtnover{
+	background-color: black;
+	color: white;						
+	width: 83px;
+	height: 20px;
+	border: 0;
+}
+
+</style>

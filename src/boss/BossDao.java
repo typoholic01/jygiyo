@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import bbs.BbsDto;
 import customer.CustomerDao;
 import customer.CustomerDto;
 import jdbc.DBConn;
@@ -126,16 +127,6 @@ public class BossDao implements IBossDao{
 		}
 
 	@Override
-	public boolean modifyInfomation(int boss_id) {
-		return false;
-	}
-
-	@Override
-	public boolean deleteInfomation(int boss_id) {
-		return false;
-	}
-
-	@Override
 	public boolean IdCheck(String id) {
 		boolean findId = false;
 
@@ -162,5 +153,144 @@ public class BossDao implements IBossDao{
 		}
 		return findId;
 	}
+
+	@Override
+	public boolean modifyInfomation(String boss_id, String password, String phone_number) {
+		String sql = " UPDATE JUGIYO_BOSS SET "
+				+ " PASSWORD=?, PHONE_NUMBER=? "
+				+ " WHERE BOSS_ID=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		int count = 0;
+		
+		try {
+			conn = DBConn.getConnection();
+			psmt = conn.prepareStatement(sql);
+			log("2/6 S modifyInfomation");
+			
+			psmt.setString(1, password.trim());
+			psmt.setString(2, phone_number.trim());
+			psmt.setString(3, boss_id.trim());
+			log("3/6 S modifyInfomation");
+			
+			count = psmt.executeUpdate();	
+			log("4/6 S modifyInfomation");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(psmt, conn);
+			log("5/6 S modifyInfomation");
+		}	
+		
+		return count>0?true:false;
+	}
+
+
+	@Override
+	public boolean deleteInfomation(String boss_id) {
+		String sql = " DELETE from JUGIYO_BOSS "
+				+ " WHERE BOSS_ID=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		int count = 0;
+		
+		try {
+			conn = DBConn.getConnection();
+			System.out.println("2/6 S delete user");
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, boss_id);
+			System.out.println("3/6 S delete user");
+			
+			count = psmt.executeUpdate();
+			System.out.println("4/6 S delete user");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(psmt, conn);
+			System.out.println("5/6 S delete user");
+		}
+		return count>0?true:false;
+	}
+	
+	public BossDto getDetail(String id) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		String sql = " SELECT BOSS_ID, USER_NAME,PHONE_NUMBER,PASSWORD,STATUS "
+				+ " FROM JUGIYO_BOSS"
+				+ " WHERE BOSS_ID=? ";
+		
+		BossDto dto = null;
+		
+		try {
+			conn = DBConn.getConnection();
+			System.out.println("2/6 S getDetail");
+
+			psmt = conn.prepareStatement(sql);
+			System.out.println("3/6 S getDetail");
+			
+			psmt.setString(1, id);
+			rs= psmt.executeQuery();
+			System.out.println("4/6 S getDetail");
+
+			while (rs.next()) {
+				int i = 1;
+				dto = new BossDto(
+						rs.getString(i++),
+						rs.getString(i++),
+						rs.getString(i++),
+						rs.getString(i++),
+						rs.getString(i++));
+			}
+			System.out.println("5/6 S getBbsList");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(rs, psmt, conn);
+		}
+		return dto;
+	}
+
+	@Override
+	public int userCheck(String boss_id, String password) throws Exception {
+		String sql = " SELECT PASSWORD FROM JUGIYO_BOSS "
+				+ " WHERE BOSS_ID=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		int x = -1;
+		String dbpasswd="";
+		try{
+		conn = DBConn.getConnection();
+		psmt = conn.prepareStatement(sql);
+		psmt.setString(1, boss_id);
+		rs = psmt.executeQuery();
+		
+		if(rs.next()){
+			dbpasswd = rs.getString("password");
+			if(dbpasswd.equals(password))
+				x=1;	// 인증성공
+			else
+				x=0;	// 비밀번호 틀림
+		} else
+			x=-1;		// 해당아이디없음
+		} catch(Exception e){
+			e.printStackTrace();
+		} finally {
+			DBConn.close(rs, psmt, conn);
+		}
+		return x;
+	}
+
 	
 }

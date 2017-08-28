@@ -6,6 +6,7 @@ public interface ICustomerDao {
 	
 	public CustomerDto getCustomer(String customer_id)throws Exception;
 
+	public CustomerDto getDetail(String id);
 	public boolean IdCheck(String id);
 	public CustomerDto checkLogin(CustomerDto dto);
 	public boolean modifyInfomation(String customer_id, String password, String phone_number, String address);

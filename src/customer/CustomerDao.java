@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import boss.BossDto;
 import jdbc.DBConn;
 
 public class CustomerDao implements ICustomerDao{
@@ -145,7 +146,7 @@ public class CustomerDao implements ICustomerDao{
 				String address	= rs.getString(5);
 				String status = rs.getString(6);
 				
-				cus = new CustomerDto(id,pass, name, phone, address, status);
+				cus = new CustomerDto(id, name,pass, phone, address, status);
 			}
 			log("5/6 S login");
 			
@@ -282,5 +283,46 @@ public class CustomerDao implements ICustomerDao{
 		}
 		return x;
 	}
+
+	@Override
+	public CustomerDto getDetail(String id) {
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			ResultSet rs = null;
+			
+			String sql = " SELECT CUSTOMER_ID, USER_NAME, PHONE_NUMBER,address,PASSWORD,STATUS "
+					+ " FROM JUGIYO_CUSTOMER"
+					+ " WHERE customer_id=? ";
+			
+			CustomerDto dto = null;
+			
+			try {
+				conn = DBConn.getConnection();
+				System.out.println("2/6 S getDetail");
+
+				psmt = conn.prepareStatement(sql);
+				System.out.println("3/6 S getDetail");
+				
+				psmt.setString(1, id);
+				rs= psmt.executeQuery();
+				System.out.println("4/6 S getDetail");
+
+				while (rs.next()) {
+					int i = 1;
+					dto = new CustomerDto(
+							rs.getString(i++),
+							rs.getString(i++),
+							rs.getString(i++),
+							rs.getString(i++),
+							rs.getString(i++));
+				}
+				System.out.println("5/6 S getBbsList");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				DBConn.close(rs, psmt, conn);
+			}
+			return dto;
+		}
 
 }
