@@ -9,12 +9,14 @@
 		<th>seq_store</th>
 		<th>title</th>
 		<th>content</th>
+		<th>menu</th>
 	</tr>
 	<c:forEach items="${shopList}" var="shop">
 		<tr>
 			<td>${shop.seq_store }</td>
 			<td><a href="${pageContext.request.contextPath}/foodstore/detail.jsp?seq=${shop.seq_store }">${shop.title }</a></td>
 			<td>${shop.content }</td>
+			<td><a href="./menu.jsp?seq=${shop.seq_store }&title=${shop.title }">매뉴보기</a></td>
 		</tr>
 	</c:forEach>
 </table>

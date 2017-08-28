@@ -22,4 +22,8 @@ public class FoodStoreCtrl {
 		
 		return foodStoreServ.getallcount(category);
 	}
+	public FoodStoreDto getFoodStore(int seq_store) {
+		FoodStoreDto dto = foodStoreServ.getFoodStore(seq_store);
+		return dto;
+	}
 }

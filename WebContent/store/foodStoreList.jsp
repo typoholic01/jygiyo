@@ -1,3 +1,4 @@
+<%@page import="singleton.Delegate"%>
 <%@page import="jdbc.DBConn"%>
 <%@page import="foodStore.FoodStoreDao"%>
 <%@page import="foodStore.IFoodStoreDao"%>
@@ -32,7 +33,7 @@
 
 <table align="center">
 <tr>
-	<td><a href="foodStoreList.jsp?name=0&address=<%=address %>">전체메뉴</a></td>
+	<td><a href="foodStoreList.jsp?name=0&address=<%=address %>">전체매뉴</a></td>
 	<td><a href="foodStoreList.jsp?name=1&address=<%=address %>">치킨</a></td>
 	<td><a href="foodStoreList.jsp?name=2&address=<%=address %>">중국집</a></td>
 	<td><a href="foodStoreList.jsp?name=3&address=<%=address %>">피자</a></td>
@@ -52,10 +53,10 @@
 </select></div><br>
 <%
 	String category = "";
-	IFoodStoreDao dao = FoodStoreDao.getInstance();
+	Delegate d = Delegate.getInstance();
 	List<FoodStoreDto> list = new ArrayList<>();
 	// List<FoodStoreDto> foodstorelist = new ArrayList<>();
-	if(name == null){ 
+	if(name == null){
 		category = "전체매뉴";
 		name = "0";
 	}
@@ -71,13 +72,14 @@
 	else if(name.equals("8")){category = "도시락";}
 	else if(name.equals("9")){category = "패스트푸드";}
 	}
-	
-	list = dao.getAddressFoodStoreList(address, serchpage, category);
+	System.out.println("category: "+ category);
+	list = d.foodStoreCtrl.getAddressFoodStoreList(address, serchpage, category);
 	int number = list.size() / 3;
 	int number2 = list.size() % 3;
+	System.out.println(list.toString());
 	
 	/////////////////////////////////
-	int paging_temp = dao.getallcount(category);
+	int paging_temp =  d.foodStoreCtrl.getallcount(category);
 	int paging = paging_temp / 12;
 	if(paging_temp % 12 != 0){
 		paging++;
@@ -95,10 +97,11 @@ for(int i=0; i<number; i++){
 for(int j=0; j<3; j++){
 %>
 	<td style="background-color: gray;">
-	<a href="foodStoreDetail.jsp?seq=<%=list.get(temp).getSeq_store() %>">
+	<a href="../foodstore/storemenu.jsp?seq=<%=list.get(temp).getSeq_store() %>">
 	<table>
 	<td>
-	<img src="<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
+	<%-- <img src="f:\\upload\\<%=list.get(temp).getImg_url() %>" width="150px" height="150px"> --%>
+	<img src="../uploadimg/<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
 	</td>
 	<td>
 	<%=list.get(temp).getTitle() %>
@@ -115,10 +118,10 @@ if(number2 !=0){
 	<%for(int i=0; i<number2; i++){ 
 	%>
 		<td style="background-color: gray;">
-	<a href="foodStoreDetail.jsp?seq=<%=list.get(temp).getSeq_store() %>">
+	<a href="../foodstore/storemenu.jsp?seq=<%=list.get(temp).getSeq_store() %>">
 	<table>
 	<td>
-	<img src="<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
+	<img src="../uploadimg/<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
 	</td>
 	<td>
 	<%=list.get(temp).getTitle() %>
@@ -140,7 +143,7 @@ if(number2 !=0){
 if(paging > 0){
 for(int i=0; i<paging; i++){
 %>
-<a href = "foodStoreList.jsp?serchpage=<%=i+1 %>&name=<%=name %>&address=<%=address %>"><%=i+1 %></a>
+<a href = "../foodStoreList.jsp?serchpage=<%=i+1 %>&name=<%=name %>&address=<%=address %>"><%=i+1 %></a>
 <%
 }
 }

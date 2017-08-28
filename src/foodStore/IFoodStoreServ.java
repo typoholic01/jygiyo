@@ -11,4 +11,5 @@ public interface IFoodStoreServ {
 	public List<FoodStoreDto> getAddressFoodStoreList(String address, int serchpage, String category);
 	
 	public int getallcount(String category);
+	public FoodStoreDto getFoodStore(int seq_store);
 }

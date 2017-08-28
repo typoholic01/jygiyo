@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class FoodDto implements Serializable {
 	private int seq_food;
 	private int seq_store;
-	private String food_category;
+	private String food_category;//null허용
 	private String food_name;
 	private int food_price;
-	private String food_size;
-	private String img_url;
-	private String status;
+	private String food_size;//null허용
+	private String img_url;//null허용
+	private String status;//null허용
 	
 	public FoodDto(int seq_food, int seq_store, String food_category, String food_name, int food_price,
 			String food_size, String img_url, String status) {
@@ -24,40 +24,31 @@ public class FoodDto implements Serializable {
 		this.img_url = img_url;
 		this.status = status;
 	}
+	
 
-	public FoodDto(int seq_food, int seq_store, String food_name, int food_price, String food_size, String status) {
+	public FoodDto(int seq_store, String food_category, String food_name, int food_price, String food_size,
+			String img_url, String status) {
 		super();
-		this.seq_food = seq_food;
 		this.seq_store = seq_store;
-		this.food_name = food_name;
-		this.food_price = food_price;
-		this.food_size = food_size;
-		this.status = status;
-	}
-
-	public FoodDto(int seq_food, int seq_store, String food_name, int food_price, String food_size, String img_url,
-			String status) {
-		super();
-		this.seq_food = seq_food;
-		this.seq_store = seq_store;
+		this.food_category = food_category;
 		this.food_name = food_name;
 		this.food_price = food_price;
 		this.food_size = food_size;
 		this.img_url = img_url;
 		this.status = status;
 	}
-
-	public FoodDto(int seq_food, int seq_store, String food_category, String food_name, int food_price,
-			String food_size, String status) {
+	
+	public FoodDto(int seq_food, String food_category, String food_name, int food_price, String food_size,
+			String img_url) {
 		super();
 		this.seq_food = seq_food;
-		this.seq_store = seq_store;
 		this.food_category = food_category;
 		this.food_name = food_name;
 		this.food_price = food_price;
 		this.food_size = food_size;
-		this.status = status;
+		this.img_url = img_url;
 	}
+
 
 	public int getSeq_food() {
 		return seq_food;

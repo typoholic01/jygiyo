@@ -234,8 +234,35 @@ private static FoodStoreDao foodStoreDao = null;
 
 	@Override
 	public FoodStoreDto getFoodStore(int seq_store) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		String sql = " SELECT SEQ_STORE, BOSS_ID, CATEGORY, TITLE, "
+				+" CONTENT, ADDRESS, IMG_URL"
+				+" from JUGIYO_FOOD_STORE "
+				+" where SEQ_STORE = '"+seq_store+"' ";
+		FoodStoreDto dto = null;
+		
+		try {
+			conn = DBConn.getConnection();
+			System.out.println("2/6 S getallcount");
+			
+			psmt = conn.prepareStatement(sql);
+			System.out.println("3/6 S getallcount");
+			rs = psmt.executeQuery();
+			while(rs.next()){
+				dto = new FoodStoreDto(rs.getString("BOSS_ID"), rs.getString("CATEGORY"), rs.getString("TITLE"),
+						rs.getString("CONTENT"), rs.getString("ADDRESS"), rs.getString("IMG_URL"));
+			}
+			System.out.println("5/6 S getallcount");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBConn.close(rs, psmt, conn);
+			System.out.println("6/6 S getallcount");
+		}
+		return dto;
 	}
 
 	public List<FoodStoreDto> getCategoryFoodStoreList(String address, String category, int serchpage) {

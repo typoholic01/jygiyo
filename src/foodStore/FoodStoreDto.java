@@ -15,6 +15,17 @@ public class FoodStoreDto implements Serializable {
 		
 	public FoodStoreDto() {
 	}
+	
+	public FoodStoreDto(String boss_id, String category, String title, String content, String address, String img_url) {
+		super();
+		this.boss_id = boss_id;
+		this.category = category;
+		this.title = title;
+		this.content = content;
+		this.address = address;
+		this.img_url = img_url;
+	}
+
 
 	public FoodStoreDto(int seq_store, String boss_id, String category, String title, String content, String address,
 			String img_url) {

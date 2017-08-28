@@ -31,7 +31,7 @@ public class FoodDao implements IFoodDao {
 		String sql = " INSERT INTO JUGIYO_FOOD "
 				+" (SEQ_FOOD, SEQ_STORE, FOOD_CATEGORY, FOOD_NAME, FOOD_PRICE, "
 				+" FOOD_SIZE, IMG_URL, STATUS) "
-				+" values(JUGIYO_FOOD_SEQ.nextval, ?, "
+				+" values(SEQ_JUGIYO_FOOD.nextval, ?, "
 				+" ?, ?, ?, ?, ?, ?) ";
 	Connection conn = null;
 	PreparedStatement psmt = null;
@@ -74,9 +74,10 @@ public class FoodDao implements IFoodDao {
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
-		String sql = " SELECT SEQ_FOOD, SEQ_STORE, FOOD_CATEGORY, FOOD_NAME, FOOD_PRICE, FOOD_SIZE, "
-				+" IMG_URL "
-				+" from JUGIYO_FOOD ";
+		String sql = " SELECT SEQ_FOOD, FOOD_CATEGORY, FOOD_NAME, FOOD_PRICE, FOOD_SIZE, "
+				+" IMG_URL, STATUS "
+				+" FROM JUGIYO_FOOD "
+				+" WHERE SEQ_STORE = '"+seq_store+"' ";
 		
 		List<FoodDto> list = new ArrayList<>();
 		
@@ -88,10 +89,9 @@ public class FoodDao implements IFoodDao {
 			System.out.println("3/6 S getFoodList");
 			rs = psmt.executeQuery();
 			while(rs.next()){
-				if(rs.getInt("del") != 1){
+				if(!rs.getString("STATUS").equals("1")){
 				int i = 1;
 				FoodDto dto = new FoodDto(
-						rs.getInt(i++), 
 						rs.getInt(i++), 
 						rs.getString(i++), 
 						rs.getString(i++), 
@@ -155,7 +155,7 @@ public class FoodDao implements IFoodDao {
 		//+" FOOD_SIZE, IMG_URL
 		
 		String sql = " UPDATE JUGIYO_FOOD "
-					+" SET STATUS = 'Á×À½' "
+					+" SET STATUS = 'ï¿½ï¿½ï¿½ï¿½' "
 					+" WHERE SEQ_FOOD = '"+seq_food+"' ";
 		int count = 0;
 		try {

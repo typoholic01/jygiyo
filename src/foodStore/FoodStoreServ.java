@@ -23,4 +23,11 @@ public class FoodStoreServ implements IFoodStoreServ {
 	public int getallcount(String category) {
 		return dao.getallcount(category);
 	}
+
+	@Override
+	public FoodStoreDto getFoodStore(int seq_store) {
+		FoodStoreDto dto = dao.getFoodStore(seq_store);
+		return dto;
+	}
+	
 }

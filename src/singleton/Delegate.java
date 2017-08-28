@@ -1,6 +1,7 @@
 package singleton;
 
 import bbs.BbsCtrl;
+import food.FoodCtrl;
 import foodStore.FoodStoreCtrl;
 import order.OrderCtrl;
 
@@ -11,11 +12,13 @@ public class Delegate {
 	public BbsCtrl bbsCtrl;
 	public OrderCtrl orderCtrl;
 	public FoodStoreCtrl foodStoreCtrl;
+	public FoodCtrl foodCtrl;
 	
 	private Delegate() {
 		bbsCtrl = new BbsCtrl();	
 		orderCtrl = new OrderCtrl();
 		foodStoreCtrl = new FoodStoreCtrl();
+		foodCtrl = new FoodCtrl();
 	}
 	
 	public static Delegate getInstance() {
