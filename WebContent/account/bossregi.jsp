@@ -2,76 +2,69 @@
 <%@page import="boss.IBossDao"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+<link rel="stylesheet" type="text/css" href="../css/logregi.css">
 <!DOCTYPE html>
 <html>
 <head>
-<title>bossregi.jsp</title>
-
 <style type="text/css">
-.center{
-	margin: auto;
-	width: 60%;
-	border: 3px solid #8AC007;
-	padding: 10px;
+input[type=text] {
+ padding: 5px;
+ margin: 0px;
 }
 </style>
-
+<title>bossregi.jsp</title>
 </head>
 <body>
 
-<h1>가맹점 등록</h1>
-<p>환영합니다 저기요</p>
-
-<div class="center">
+<div align="center">
 
 <form method="post" name="regForm" action="bossregiAf.jsp">
 
-<table border="1">
+<table>
 <tr>
-	<td>아이디</td>
 	<td>
-		<input type="text" name="regi_id" onchange="idchange(this.form.regi_id.value)" size="15">
-		<input type="hidden" name="idcks" value="0">
-		<input type="button" value="ID중복확인" id="btnId" onclick="idCheck(this.form.regi_id.value)">
+		<a href="../main.jsp"><img src="../image/bossregi.png" width="450"></a>
+	</td>
+</tr>
+<tr>
+	<td>
+		<input type="text" name="regi_id" onchange="idchange(this.form.regi_id.value)" size="45" placeholder="아이디 입력">
+		<input type="hidden" name="idcks" value="0">	
+		<input type="button" value="ID중복확인" onclick="idCheck(this.form.regi_id.value)"
+		id="regibtnout" onmouseover="this.id='regibtnover'" onmouseout="this.id='regibtnout'">
 </td>
 </tr>
 
 <tr>
-	<td>이름</td>
 	<td>
-		<input type="text" name="name" size="20">
+		<input type="text" name="name" size="58" placeholder="이름 입력">
 	</td>	
 </tr>
 
 
 <tr>
-	<td>패스워드</td>
 	<td>
-		<input type="text" name="pwd" size="20">
+		<input type="text" name="pwd" size="58" placeholder="비밀번호 입력">
 	</td>	
 </tr>
 
 
 <tr>
-	<td>연락처</td>
 	<td>
-		<input type="text" name="phone" size="20">
+		<input type="text" name="phone" size="58" placeholder="전화번호 입력">
 	</td>	
 </tr>
 
 <tr>
 	<td colspan="2">
-		<input type="button" value="회원가입" onclick="inPutCheck(this.form)"> 
-		<!-- <input type="submit" value="회원가입"> -->
+		<input type="button" value="회원가입" onclick="inPutCheck(this.form)"
+		id="lbtnout" onmouseover="this.id='lbtnover'" onmouseout="this.id='lbtnout'">
 	</td>
 </tr>
 </table>
 </form>
 
 </div>
-
-<a href="../main.jsp">Home</a>
 
 <script type="text/javascript">
 function idCheck(id) {

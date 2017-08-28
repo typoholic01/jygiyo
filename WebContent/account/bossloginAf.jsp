@@ -29,7 +29,7 @@ if(boss != null && !boss.getBoss_id().equals("")){
 	%>
 	<script type="text/javascript">
 	alert("안녕하세요 <%= boss.getBoss_id()%>님");
-	location.href = "../main.jsp";
+	location.href = "../bmain.jsp";
 	</script>	
 	<%
 }else{

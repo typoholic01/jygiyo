@@ -5,6 +5,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="css/a.css">
+<style type="text/css">
+#menubar{
+	text-align: right;
+	font-size: 12px;
+	margin-right: 180px;
+}
+#info {
+background-color: white;
+clear: both;
+width : 920px;
+height: 120px;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -21,9 +35,7 @@
 <div align="center">
 
 <form action="">
-
-
-<div align="right">
+<div align="right" id="menubar">
 <%
 Object ologin = session.getAttribute("login");
 Object bologin = session.getAttribute("blogin");
@@ -34,18 +46,17 @@ cus = (CustomerDto)ologin;
 boss = (BossDto)bologin;
 
 if(ologin == null && bologin == null){%>
-	<a href="./account/bosslogin.jsp">가맹점 로그인</a> | <a href="./account/login.jsp">로그인</a> | <a href="./account/regi.jsp">일반 회원가입</a> | <a href="./account/bossregi.jsp">가맹점 회원가입</a>
+	<a href="bmain.jsp">사장님 사이트</a> | <a href="./account/bosslogin.jsp">가맹점 로그인</a> | <a href="./account/login.jsp">로그인</a> | <a href="./account/regi.jsp">일반 회원가입</a> | <a href="./account/bossregi.jsp">가맹점 회원가입</a>
 <%}else if(bologin !=null){%>
 	<b><%=boss.getBoss_id() %> 사장님 반갑습니다.</b>
-	<a href="./account/logout.jsp">로그아웃</a> | <a href="./boss/bossmain.jsp">사장님 홈</a>
+	<a href="./account/logout.jsp">로그아웃</a> | <a href="bmain.jsp">사장님 홈</a>
 <%}else{%>
 	<b><%=cus.getCustomer_id()%> 님 반갑습니다.</b>
 	<a href="./account/logout.jsp">로그아웃</a> | <a href="mypage/mypage.jsp">마이페이지</a>
 <%} %>
-
 </div>
 
-<h3 align="center"><img src="./image/jugiyo.png" alt="저기요"></h3><br>
+<a href="main.jsp"><img src="./image/logo.png" alt="저기요"></a>
 <p>※주소검색 후 완료 버튼을 눌러주세요.(지번을 선택하면 더 정확합니다!)</p><br>
 <input type="button" onclick="sample4_execDaumPostcode()" value="주소검색">
 <input type="text" id="sample4_jibunAddress" placeholder="<%=address %>" name="value">
@@ -183,7 +194,8 @@ if(!address.equals("어느동네?")){
 		</td>
 	</tr>
 </table>
-
+<div id="info">
+</div>
 <script type="text/javascript">
 function mover() {
 	var m;

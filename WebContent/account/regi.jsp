@@ -2,72 +2,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>regi.jsp</title>
-
+<link rel="stylesheet" type="text/css" href="../css/logregi.css">
+<title>저기요 일반 회원가입</title>
 <style type="text/css">
-.center{
-	margin: auto;
-	width: 60%;
-	border: 3px solid #8AC007;
-	padding: 10px;
+input[type=text] {
+ padding: 5px;
+ margin: 0px;
 }
 </style>
-
 </head>
 <body>
 
-<h1>회원등록</h1>
-<p>환영합니다 저기요</p>
-
-<div class="center">
+<div align="center">
 
 <form action="regiAf.jsp" method="post" name="regiForm">
 
-<table border="1">
-
+<table>
 <tr>
-	<td>아이디</td>
 	<td>
-		<input type="text" name="id" onchange="idchange(this.form.id.value)" size="15">
+		<a href="../main.jsp"><img src="../image/regi.png" width="450"></a>
+	</td>
+</tr>
+	<td>
+		<input type="text" name="id" onchange="idchange(this.form.id.value)" size="45" placeholder="아이디 입력">
 		<input type="hidden" name="idcks" value="0">
-		<input type="button" value="ID중복확인" id="btnId" onclick="idCheck(this.form.id.value)">
+		<input type="button" value="ID중복확인" onclick="idCheck(this.form.id.value)"
+		id="regibtnout" onmouseover="this.id='regibtnover'" onmouseout="this.id='regibtnout'">
 	</td>	
 </tr>
 
 
 <tr>
-	<td>이름</td>
 	<td>
-		<input type="text" name="name" size="20">
+		<input type="text" name="name" size="58" placeholder="이름 입력">
 	</td>	
 </tr>
 
 
 <tr>
-	<td>패스워드</td>
 	<td>
-		<input type="text" name="pwd" size="20">
+		<input type="text" name="pwd" size="58" placeholder="패스워드 입력">
 	</td>	
 </tr>
 
 
 <tr>
-	<td>연락처</td>
 	<td>
-		<input type="text" name="phone" size="20">
+		<input type="text" name="phone" size="58" placeholder="연락처 입력">
 	</td>	
 </tr>
 
 <tr>
-	<td>주소</td>
 	<td>
-		<input type="text" name="address" size="20">
-	</td>	
+		<input type="text" name="address" size="58" placeholder="주소 입력">
+	</td>
 </tr>
 
 <tr>
 	<td colspan="2">
-		<input type="button" value="회원가입" onclick="inPutCheck(this.form)"> 
+		<input type="button" value="회원가입" onclick="inPutCheck(this.form)"
+		id="lbtnout" onmouseover="this.id='lbtnover'" onmouseout="this.id='lbtnout'">
 	</td>
 </tr>
 </table>
@@ -75,7 +69,6 @@
 
 </div>
 
-<a href="../main.jsp">Home</a>
 <script type="text/javascript">
 function idCheck(id) {
 wx = 300;
