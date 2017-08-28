@@ -1,3 +1,5 @@
+<%@page import="customer.CustomerDto"%>
+<%@page import="boss.BossDto"%>
 <%@page import="bbs.PaginationBeans"%>
 <%@page import="bbs.BbsDto"%>
 <%@page import="java.util.List"%>
@@ -15,6 +17,7 @@
 <script src="${pageContext.request.contextPath}/js/comment.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/foodview.css">
 <title>bbslist.jsp</title>
 <script type="text/javascript">
 /* 아작스를 이용해 코멘트를 뿌려준다 */
@@ -115,13 +118,18 @@ border-left:1px solid #999; /* 각 메뉴의 왼쪽에 "|" 표시(분류 표시)
 font:bold 12px Dotum; /* 폰트 설정 - 12px의 돋움체 굵은 글씨로 표시 */ 
 padding:0 10px; /* 각 메뉴 간격 */ } 
 nav ul li:first-child{border-left:none;} /* 메뉴 분류중 제일 왼쪽의 "|"는 삭제 */
+
+.reply {
+    background-color: aliceblue;
+
+}
+.reply th {
+	padding-right: 10px;
+}
 </style>
 </head>
 <body>
-<h1>bbs_notice_list.jsp</h1>
-<a href="./calendar.jsp">달력 보기</a>
-<a href="logout.jsp">로그아웃</a>
-<hr>
+<a href="../account/logout.jsp">로그아웃</a>
 
 <div align="center">
 <h1>게시판</h1>
@@ -131,9 +139,20 @@ nav ul li:first-child{border-left:none;} /* 메뉴 분류중 제일 왼쪽의 "|
 <div id="commentView">
 
 </div>
+<% 
+/* 아이디 값 찾아내는 코드 */
+String id = null;
+	if (session.getAttribute("blogin") != null) {
+		BossDto boss = (BossDto)session.getAttribute("blogin");
+		id = boss.getBoss_id();
+	} else if (session.getAttribute("login") != null) {
+		CustomerDto customer = (CustomerDto)session.getAttribute("login");
+		id = customer.getCustomer_id();
+	}
+%>
 <form id="insertComment" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="seq_store" name="seq_store" value="${param.seq }" />
-	<input type="text" id="comment_id" name="comment_id" value="${blogin.boss_id }" readonly="readonly" />
+	<input type="text" id="comment_id" name="comment_id" value="<%=id %>" readonly="readonly" />
 	<input type="text" id="comments" name="comments" />
 	<input type="radio" />
 	<nav>

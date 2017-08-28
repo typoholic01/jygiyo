@@ -20,7 +20,7 @@ String password = request.getParameter("password");
 
 System.out.println(phone_number);
 System.out.println(password);
-IBossDao dao = BossDao.getInstance();
+IBossDao dao = BossDao.getInstance(); 
 boolean isS = dao.modifyInfomation(boss_id, password, phone_number);
 if(isS == true){
 	%>

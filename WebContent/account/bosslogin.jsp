@@ -49,7 +49,7 @@ input[type=text] {
 	<td id="menubar">
 	<input type="checkbox" id="cb_saveId">아이디 저장
 		<span style="float : right;">
-			<a href="#">ID찾기</a>&nbsp; | <a href="regi.jsp">회원가입</a>
+			<a href="#">ID찾기</a>&nbsp; | <a href="bossregi.jsp">회원가입</a>
 		</span>
 	</td>
 </tr>

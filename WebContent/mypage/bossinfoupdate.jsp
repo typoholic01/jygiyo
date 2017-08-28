@@ -15,7 +15,7 @@ request.setCharacterEncoding("utf-8");
 <style type="text/css">
 input[type=text] {
  padding: 8px;
- margin: 0px;
+ margin: 0px; 
 }
 input[type=password] {
  padding: 8px;

@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>bossdeleteAf.jsp</title>
 </head>
-<body>
+<body> 
 
 <% 
 String boss_id = request.getParameter("id");

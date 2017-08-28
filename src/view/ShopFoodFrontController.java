@@ -23,6 +23,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import bbs.BbsDto;
 import bbs.PaginationBeans;
 import boss.BossDto;
+import food.FoodDto;
 import foodStore.FoodStoreDto;
 import singleton.Delegate;
 
@@ -55,16 +56,21 @@ public class ShopFoodFrontController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");						//utf-8 설정
 		resp.setContentType("text/html; charset=UTF-8");
 		
-		String comment_id = "";
-		String comments = "";
-		String comments_reply;
-		int seqBbs, seq_store = -1;
-		int comments_group_no;
-		List<BbsDto> bbsList;
-		BbsDto bbs;
+		List<FoodDto> foods = new ArrayList<>();
 		
 		switch (command) {		
 		case "/shop/food/list":
+			//파라미터를 받는다
+			int seq_store = Integer.parseInt(req.getParameter("seq"));
+			
+			//음식을 받는다
+			foods = d.foodCtrl.getFoodList(seq_store);
+			
+			for (FoodDto foodDto : foods) {
+				System.out.println(foodDto.toString());
+			}
+			
+			req.setAttribute("foods", foods);
 									
 			dispatch("/foodstore/foodview.jsp", req, resp);				
 			break;

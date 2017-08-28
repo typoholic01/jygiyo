@@ -77,7 +77,8 @@ public class FoodDao implements IFoodDao {
 		String sql = " SELECT SEQ_FOOD, FOOD_CATEGORY, FOOD_NAME, FOOD_PRICE, FOOD_SIZE, "
 				+" IMG_URL, STATUS "
 				+" FROM JUGIYO_FOOD "
-				+" WHERE SEQ_STORE = '"+seq_store+"' ";
+				+" WHERE SEQ_STORE = '"+seq_store+"' "
+				+ " AND STATUS != '1'";
 		
 		List<FoodDto> list = new ArrayList<>();
 		
@@ -89,7 +90,6 @@ public class FoodDao implements IFoodDao {
 			System.out.println("3/6 S getFoodList");
 			rs = psmt.executeQuery();
 			while(rs.next()){
-				if(!rs.getString("STATUS").equals("1")){
 				int i = 1;
 				FoodDto dto = new FoodDto(
 						rs.getInt(i++), 
@@ -100,7 +100,6 @@ public class FoodDao implements IFoodDao {
 						rs.getString(i++)
 						);
 				list.add(dto);
-				}
 			}
 			System.out.println("5/6 S getFoodList");
 		} catch (SQLException e) {

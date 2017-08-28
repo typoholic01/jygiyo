@@ -191,23 +191,11 @@ public class ShopBbsFrontController extends HttpServlet {
 		case "/shop/bbs/comment/delete":
 			//변수 받아오기
 			seqBbs = Integer.parseInt(req.getParameter("seq_bbs"));
-			seq_store = Integer.parseInt(req.getParameter("seq_store"));
-			comment_id = req.getParameter("comment_id");
-			comments = req.getParameter("comments");
-			comments_reply = req.getParameter("comments_reply");
-			comments_group_no = Integer.parseInt(req.getParameter("comments_group_no"));
 			
 			//객체 준비
 			bbs = new BbsDto();
 			
 			bbs.setSeq_bbs(seqBbs);
-			bbs.setSeq_store(seq_store);
-			bbs.setId_category("고객");
-			bbs.setComment_id(comment_id);
-			bbs.setComments(comments);
-			bbs.setComments_reply(comments_reply);
-			bbs.setComments_group_no(comments_group_no);
-			bbs.setStatus("published");
 			
 			//삽입
 			d.bbsCtrl.deleteComment(bbs);
