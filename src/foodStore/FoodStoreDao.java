@@ -27,10 +27,10 @@ private static FoodStoreDao foodStoreDao = null;
 	public boolean insertFoodStore(FoodStoreDto dto) {
 		//쿼리문 준비
 		String columnSql = "SEQ_STORE, BOSS_ID, CATEGORY, "
-				+ "TITLE, CONTENT, address, IMG_URL";
+				+ "TITLE, CONTENT, address, IMG_URL, status";
 		String sql = "INSERT INTO JUGIYO_FOOD_STORE("+columnSql+") "
 			+ " VALUES(SEQ_JUGIYO_FOOD_STORE.NEXTVAL, ?, ?, "
-			+ " ?, ?, ?, ?) ";
+			+ " ?, ?, ?, ?, ?) ";
 		
 		System.out.println(sql);
 		
@@ -42,7 +42,8 @@ private static FoodStoreDao foodStoreDao = null;
 		queryList.add(dto.getTitle());
 		queryList.add(dto.getContent());
 		queryList.add(dto.getAddress());
-		queryList.add(dto.getImg_url());		
+		queryList.add(dto.getImg_url());
+		queryList.add("open");
 		
 		//쿼리 실행&리턴
 		return DBConnection.executeUpdates(sql, queryList);		
@@ -148,8 +149,7 @@ private static FoodStoreDao foodStoreDao = null;
 			sql = " SELECT count(*) "
 					+" from JUGIYO_FOOD_STORE "
 					+" where category = '"+category+"' ";
-		}
-		
+		}		
 		
 		int count = 0;
 		
@@ -179,7 +179,10 @@ private static FoodStoreDao foodStoreDao = null;
 		String columnSql = "SEQ_STORE, BOSS_ID, CATEGORY, "
 				+ "TITLE, CONTENT, address, IMG_URL";
 		String sql = " SELECT "+columnSql+" FROM JUGIYO_FOOD_STORE "
-					+ "	WHERE BOSS_ID = ? ";
+					+ "	WHERE BOSS_ID = ? "
+					+ "	AND status != 'delete'";
+		
+		System.out.println(sql);
 		
 		List<FoodStoreDto> list = new ArrayList<>();
 		
@@ -292,9 +295,14 @@ private static FoodStoreDao foodStoreDao = null;
 	}
 
 	@Override
-	public boolean deleteFoodStore(int seq_store) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteFoodStore(FoodStoreDto shop) {
+		String sql = "UPDATE JUGIYO_FOOD_STORE "
+				+ " SET STATUS = 'delete'"
+				+ "	WHERE SEQ_STORE = ?";
+		
+		Object query = shop.getSeq_store();
+		
+		return DBConnection.executeUpdate(sql, query);
 	}
 
 }

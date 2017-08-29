@@ -5,6 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/bossmain.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bossmain.css">
 <script type="text/javascript">
 window.history.replaceState(null, '', "${pageContext.request.contextPath}/boss/bossmain.jsp");
 </script>
@@ -30,8 +35,9 @@ function getShopList() {
 </script>
 </head>
 <body>
-<h3>여기는 bossmain.jsp 입니다</h3>
+<div class="insertShop">
 <a href="./insertshop.jsp">가게 등록</a>
+</div>
 <h3>가게목록</h3>
 <div id="view">
 </div>

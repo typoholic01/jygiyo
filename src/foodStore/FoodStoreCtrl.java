@@ -26,4 +26,9 @@ public class FoodStoreCtrl {
 		FoodStoreDto dto = foodStoreServ.getFoodStore(seq_store);
 		return dto;
 	}
+
+	public boolean deleteFoodStore(FoodStoreDto shop) {
+		return foodStoreServ.deleteFoodStore(shop);
+		
+	}
 }

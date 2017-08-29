@@ -29,5 +29,10 @@ public class FoodStoreServ implements IFoodStoreServ {
 		FoodStoreDto dto = dao.getFoodStore(seq_store);
 		return dto;
 	}
+
+	@Override
+	public boolean deleteFoodStore(FoodStoreDto shop) {
+		return dao.deleteFoodStore(shop);
+	}
 	
 }

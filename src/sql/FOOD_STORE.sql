@@ -23,4 +23,18 @@ CREATE SEQUENCE SEQ_JUGIYO_FOOD_STORE START WITH 1 INCREMENT BY 1;
  FROM JUGIYO_FOOD_STORE 	
  WHERE BOSS_ID = '123'
 
+SELECT SEQ_STORE, BOSS_ID, CATEGORY, TITLE, CONTENT, address, IMG_URL, status 
+FROM JUGIYO_FOOD_STORE 	
+WHERE status!='delete'
+ 
 insert into JUGIYO_FOOD_STORE
+
+select * from EMPLOYEES where first_name != 'Steven'
+
+--칼럼 추가
+alter table JUGIYO_FOOD_STORE add(status VARCHAR2(100));
+
+-- 업데이트
+update JUGIYO_FOOD_STORE 
+set status = 'open'
+where SEQ_STORE = 50;

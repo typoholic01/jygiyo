@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="boss.BossDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,6 +15,14 @@
 <title>Insert title here</title>
 </head>
 <body><%--"../shop/insert" --%>
+<%
+Object boss_login = session.getAttribute("blogin");
+BossDto login = null;
+if(boss_login != null){
+	login = (BossDto)boss_login;
+}
+System.out.println("사장님 아이디는?? ==> " + login.getBoss_id());
+%>
 <form action="./storeupload.jsp" method="post" enctype="multipart/form-data">
 <table>
 	<tr>
@@ -23,7 +34,7 @@
 		<th>가게이미지</th>
 	</tr>
 	<tr>
-		<td><input type="text" name="boss_id" value="${login.boss_id }" readonly="readonly" /></td>
+		<td><input type="text" name="boss_id" value="<%=login.getBoss_id() %>" readonly="readonly" /></td>
 		<td>
 		<select style="width: 150px" name="category">
 			<option selected="selected">치킨</option>

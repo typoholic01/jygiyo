@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+div.insertShop {
+	margin: 20px;
+}
+div.insertShop a {
+    font-size: x-large;
+}
+#view {
+	margin: 50px;
+}

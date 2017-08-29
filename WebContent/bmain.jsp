@@ -1,3 +1,4 @@
+<%@page import="customer.CustomerDto"%>
 <%@page import="boss.BossDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -10,25 +11,6 @@
 <link rel="stylesheet" type="text/css" href="css/a.css">
 
 <style type="text/css">
-#container {
-background-color: white;
-width: 1800px;
-padding: 10px;
-}
-
-#header {
-background-color: white;
-width : 1400px;
-height: 300px;
-}
- 
-#content {
-background-color: #fff5ee;
-float: left;
-width: 1000px;
-height: 400px;
-padding-left: 60px;
-}
 
 #loginbar {
 background-color: #fff5ee;
@@ -40,7 +22,7 @@ height: 400px;
 #info {
 background-color: white;
 clear: both;
-width : 920px;
+width : 900px;
 height: 120px;
 padding-top: 20px;
 font-size : 12px;
@@ -48,24 +30,50 @@ padding-left: 165px;
 }
 
 input[type=text] {
- padding: 8px;
+ padding: 0px;
  margin: 0px;
+ height: 60px;
+ width: 250px;
+}
+input[type=password] {
+ padding: 0px;
+ margin: 0px;
+ height: 60px;
+ width: 250px;
 }
 
 #lbtnout{
 	background-color: grey;
 	color: white;						
-	width:280px; 
-	height: 50px;
+	width:250px; 
+	height: 60px;
 	border: 0;
 }
 #lbtnover{
 	background-color: black;
 	color: white;						
-	width:280px;
-	height: 50px;
+	width:250px;
+	height: 60px;
 	border: 0;
 }
+
+#lbtnout3{
+	background-color: #dc9146;
+	color: white;						
+	width:295px; 
+	height: 70px;
+	border: 0;
+}
+#lbtnover3{
+	background-color: #d2691e;
+	color: white;						
+	width:295px;
+	height: 70px;
+	border: 0;
+	font-size: 18;
+	
+}
+
 #loginunderbar{
 	text-align: right;
 	font-size: 12px;
@@ -76,14 +84,14 @@ input[type=text] {
 #pagebtnout{
 	background-color: grey;
 	color: white;						
-	width: 140px; 
+	width: 100px; 
 	height: 50px;
 	border: 0;
 }
 #pagebtnover{
 	background-color: black;
 	color: white;						
-	width: 140px;
+	width: 100px;
 	height: 50px;
 	border: 0;
 }
@@ -93,49 +101,67 @@ input[type=text] {
 <title>bossmain.jsp</title>
 </head>
 <body>
-<%
-Object bologin = session.getAttribute("blogin");
-BossDto boss = null;
-boss = (BossDto)bologin;
-%>
 
-<div style="margin-right: 180px; text-align: right;">
-<a href="main.jsp">홈</a>
-</div>
-<div id="container">
-	<div id="header" align="center">
-	<img src="image/bosslogo.png" width="600" height="300">
-	</div>
-    <div id="content" align="center">
-    	<table style="padding-top: 90px;">
-    		<tr>
-			    <td colspan="2">
-			   		<a href="./boss/bossmain.jsp"><img src="image/bosslist.png" width="350" height="200"></a>
-			    </td>
-			    <td>
-			    	<img src="image/bosscalculate.png" width="350" height="200">
-			    </td>
-		    </tr>
-    	</table>
-    </div>
-    
-    	 <form action="account/bossloginAf.jsp" method="post">
-    	 <div id="loginbar">
-    	 <table align="center" style="padding-top: 75px; padding-right: 20px">
-    	 <%if(bologin == null){ %>
-    	 	<br> 
-   			<tr>
-				<td>
+
+<div align="center" >
+
+<table border="0">
+<col width="90" ><col width="90"><col width="90"><col width="90"><col width="90">
+<col width="90"><col width="90"><col width="90"><col width="90"><col width="90">
+<tr>
+	<td align="left" colspan="3">
+		<img src="./image/logo4.png">
+	</td>
+	<td valign="bottom" colspan="4">
+		<div align="right" id="menubar" >
+		<%
+		
+		Object bologin = session.getAttribute("blogin");
+		BossDto boss = null;
+		boss = (BossDto)bologin;
+		
+		if(bologin == null && bologin == null){%>
+			<a href="bmain.jsp">사장님 사이트</a> | <a href="./account/bosslogin.jsp">가맹점 로그인</a> | <a href="./account/login.jsp">로그인</a> | <a href="./account/regi.jsp">일반 회원가입</a> | <a href="./account/bossregi.jsp">가맹점 회원가입</a>
+		<%}else if(bologin !=null){%>
+			<b><%=boss.getBoss_id() %> 사장님 반갑습니다.</b>
+			<a href="./account/logout.jsp">로그아웃</a> | <a href="bmain.jsp">사장님 홈</a>
+		<%}%>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td colspan="10">
+		<hr width="900">
+	</td>
+</tr>
+</table>
+
+<form action="account/bossloginAf.jsp" method="post">
+<table border="0" >
+<col width="90"><col width="90"><col width="90"><col width="90"><col width="90">
+<col width="90"><col width="90"><col width="90"><col width="90"><col width="90">
+
+<tr height="20">
+</tr>
+<tr>
+	<td colspan="7" rowspan="10">여기엔 이미지<!-- <img src="./image/logo.png"> --> </td>
+	
+	<td colspan="3" rowspan="10">
+		<div align="center">
+			<table align="center">
+			<%if(bologin == null){ %>
+			<tr valign="top">
+				<td align="center">
 					<input type="text" id="boss_id" name="boss_id" size="33" placeholder="아이디 입력">
-				</td>	
+				</td>							
 			</tr>
-			
 			<tr>
-				<td>
+				<td align="center">
 					<input type="password" id="boss_pwd" name="boss_pwd" size="33" placeholder="비밀번호 입력">
 				</td>	
 			</tr>
-			
+			<tr height="10">			
+			</tr>
 			<div>
 			<tr>
 				<td id="menubar">
@@ -146,22 +172,23 @@ boss = (BossDto)bologin;
 				</td>
 			</tr>
 			</div>
-			
+			<tr height="10">			
+			</tr>
 			<tr>
-				<td colspan="2">
+				<td align="center">
 					<input type="submit" value="로그인" id="lbtnout" onclick="bossSubmit(this.form)"
 						onmouseover="this.id='lbtnover'" onmouseout="this.id='lbtnout'">
 				</td>
 			</tr>
 			<%}else{ %>
 			<tr align="center" style="border: 1px;">
-				<td align="center"><img src="image/bosscharater.jpg" width="220" height="150"></td>
+				<td align="center"><img src="image/chef1.png" width="220" height="150"></td>
 			<tr>
 				<td align="center"><b><%=boss.getBoss_id() %></b> 사장님 반갑습니다.</td>
 			</tr>
 			<tr>
 				<td>
-				<input type="button" value="내 정보 수정" id="pagebtnout" onclick="bossmypage()"
+				<input type="button" value="마이페이지" id="pagebtnout" onclick="bossmypage()"
 						onmouseover="this.id='pagebtnover'" onmouseout="this.id='pagebtnout'">
 
 				<input type="button" value="로그아웃" id="pagebtnout" onclick="logout()"
@@ -169,15 +196,44 @@ boss = (BossDto)bologin;
 				<!-- <a href="account/logout.jsp">로그아웃</a> -->
 				</td>
 			</tr>
-			<%} %>
-	    </table>
-		</div>
-		</form>
+			<%} %>			
+			</table>		
+		</div>	
+	</td>	
+</tr>
+</table>
+</form>
+</div>
+<table>
+<tr height="30">
+</tr>
+</table>
+<div align="center">
+<table border="0" width="900">
 
-    <div id="info">사업자등록번호 : 120-87-65763 <span class="bar">l</span> 통신판매업 신고번호 : 서울 송파 - 0515호 <span class="bar">I</span> 대표 : 김종희 김나연 최국호 문성환 
+<tr>
+	<td>
+		<a href="./boss/bossmain.jsp">
+			<input type="button" value="업체 정보수정" id="lbtnout3" onmouseover="this.id='lbtnover3'" onmouseout="this.id='lbtnout3'">
+		</a>
+	</td>
+	<td>
+		<input type="button" value="정산관리" id="lbtnout3" onmouseover="this.id='lbtnover3'" onmouseout="this.id='lbtnout3'">
+	</td>
+	<td>
+		<input type="button" value="주문내역확인" id="lbtnout3" onmouseover="this.id='lbtnover3'" onmouseout="this.id='lbtnout3'">
+	</td>
+</tr>
+</table>
+</div>
+<table>
+<tr height="20">
+</table>
+<div id="info" >사업자등록번호 : 120-87-65763 <span class="bar">l</span> 통신판매업 신고번호 : 서울 송파 - 0515호 <span class="bar">I</span> 대표 : 김종희 김나연 최국호 문성환 
       <br><span class="bar">l</span> 주소 : 서울특별시 강남구 강남구 테헤란로14길 6 남도빌딩 2층 A클래스 
     </div>
-</div>
+
+
 
 <script type="text/javascript">
 //TODO 체크

@@ -185,7 +185,7 @@ public class ShopBbsFrontController extends HttpServlet {
 				System.out.println("Multipart가 아닙니다");
 			}			
 			
-			//보내기
+			//보내기				
 			break;
 			
 		case "/shop/bbs/comment/delete":

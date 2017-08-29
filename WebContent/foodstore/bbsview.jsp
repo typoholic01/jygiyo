@@ -15,9 +15,13 @@
 				<td class="tg-yw4l">${bbs.create_at }</td>
 			</tr>
 			<tr>
+				<c:if test="${bbs.store_rating != null && bbs.store_rating != '' && bbs.store_rating != '0' }">
 				<td class="tg-yw4l" colspan="2">
-					${bbs.store_rating }
+				<c:forEach begin="1" end="${bbs.store_rating }" step="1">
+					<label for="" class="starView"></label>
+				</c:forEach>
 				</td>
+				</c:if>
 			</tr>
 			<tr>
 				<td class="tg-yw4l" colspan="2">

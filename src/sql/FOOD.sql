@@ -30,6 +30,7 @@ SEQ_FOOD, SEQ_STORE, FOOD_CATEGORY, FOOD_NAME, FOOD_PRICE, IMG_URL
 )
 VALUES(SEQ_JUGIYO_FOOD.NEXTVAL,28,'치킨','양념 치킨','17000', '/upload/img/sauceChicken.jpg')
 
+-- 업데이트
 update JUGIYO_FOOD 
 set IMG_URL = '/upload/img/sauceChicken.jpg'
 where SEQ_FOOD = 7;

@@ -46,7 +46,7 @@ public class ShopFrontController extends HttpServlet {
 		req.setCharacterEncoding("utf-8");						//utf-8 설정
 		resp.setContentType("text/html; charset=UTF-8");
 		
-		String boss_id,name,category,title,content,address,img_url;		//param
+		String boss_id,category,title,content,address,img_url;		//param
 		List<BbsDto> bbsList;
 		FoodStoreDto shop;
 		int seq_store, cur_page;
@@ -87,7 +87,6 @@ public class ShopFrontController extends HttpServlet {
 		case "/shop/insert":
 			//변수 받아오기
 			boss_id = req.getParameter("boss_id");
-			name = req.getParameter("name");
 			category = req.getParameter("category");
 			title = req.getParameter("title");
 			content = req.getParameter("content");
@@ -111,6 +110,21 @@ public class ShopFrontController extends HttpServlet {
 			dispatch("/boss/bossmain.jsp", req, resp);		
 			break;
 			
+		case "/shop/delete":
+			//변수 받아오기
+			seq_store = Integer.parseInt(req.getParameter("seq_store"));
+			
+			//객체 준비
+			shop = new FoodStoreDto();
+			
+			shop.setSeq_store(seq_store);
+			
+			//삽입
+			d.foodStoreCtrl.deleteFoodStore(shop);
+			
+			//보내기
+			dispatch("/boss/bossmain.jsp", req, resp);		
+			break;
 		default:
 			break;
 		}

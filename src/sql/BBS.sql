@@ -63,3 +63,5 @@ SELECT * FROM (
  	AND seq_store = 41
 )	 
 WHERE R BETWEEN 0 and 10 
+
+SELECT * FROM JUGIYO_BBS
