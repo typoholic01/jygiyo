@@ -7,27 +7,56 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <title>Insert title here</title>
 </head>
-<body> 
-<div class="foodView">
-	<div class="foodCategory">
-		<div class="foodCategoryTitle"><span>치킨</span></div>
-		<c:forEach items="${foods }" var="food">
-			<c:if test="${food.food_category == '치킨' }">
-				<div class="food">
-					<div class="foodImage">
-						<img src="${pageContext.request.contextPath}${food.img_url }" alt=""/>						
-					</div>
-					<div class="foodDesc">
-						<div class="foodName">${food.food_name }</div>
-						<div class="foodPrice">${food.food_price }</div>
-					</div>
-				</div>
-			</c:if>
-		</c:forEach>
-	</div>
+<body>
+<h1>FoodView</h1>
+<!-- 
+<div class="container">
+  <h2>미댓글 테이블</h2>
+  <p>The .table-responsive class creates a responsive table which will scroll horizontally on small devices (under 768px). When viewing on anything larger than 768px wide, there is no difference:</p>                                                                                      
+  <div class="table-responsive">          
+  <table class="table">
+	  <tr>
+	    <th class="tg-yw4l" rowspan="3">img<br></th>
+	    <th class="tg-yw4l">id</th>
+	    <th class="tg-yw4l">|date</th>
+	  </tr>
+	  <tr>
+	    <td class="tg-yw4l" colspan="2">rating</td>
+	  </tr>
+	  <tr>
+	    <td class="tg-yw4l" colspan="2">comment<br>br<br>img</td>
+	  </tr>
+	</table>
+  </div>
 </div>
+<div class="container">
+  <h2>댓글 테이블</h2>
+  <p>The .table-responsive class creates a responsive table which will scroll horizontally on small devices (under 768px). When viewing on anything larger than 768px wide, there is no difference:</p>                                                                                      
+  <div class="table-responsive">          
+  <table class="table">
+	  <tr>
+	    <th class="tg-yw4l" rowspan="3">img<br></th>
+	    <th class="tg-yw4l">id</th>
+	    <th class="tg-yw4l">|date</th>
+	  </tr>
+	  <tr>
+	    <td class="tg-yw4l" colspan="2">rating</td>
+	  </tr>
+	  <tr>
+	    <td class="tg-yw4l" colspan="2">comment<br>br<br>img</td>
+	  </tr>
+	  <tr>
+	    <td class="tg-yw4l" rowspan="2"></td>
+	    <td class="tg-yw4l">boss_id</td>
+	    <td class="tg-yw4l">date</td>
+	  </tr>
+	  <tr>
+	    <td class="tg-yw4l" colspan="2">comment</td>
+	  </tr>
+	</table>
+  </div>
+</div> -->
 </body>
 </html>

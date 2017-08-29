@@ -31,6 +31,10 @@ public class BbsServ  {
 
 	public boolean checkSameImage(BbsDto bbs) {		
 		return dao.checkValue("img_url", bbs.getImg_url());		
-	};	
+	};
+	public int getBbsCount(int seq_store){
+		
+		return dao.getBbsCount(seq_store);
+	}
 
 }

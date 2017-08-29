@@ -52,7 +52,8 @@ if(ologin == null && bologin == null){%>
 	<a href="./account/logout.jsp">로그아웃</a> | <a href="bmain.jsp">사장님 홈</a>
 <%}else{%>
 	<b><%=cus.getCustomer_id()%> 님 반갑습니다.</b>
-	<a href="./account/logout.jsp">로그아웃</a> | <a href="mypage/mypage.jsp">마이페이지</a>
+	<a href="./account/logout.jsp">로그아웃</a> | <a href="mypage/mypage.jsp">마이페이지</a><br>
+	<a href="javascript:popupOpen_1();">담은음식열기</a> | <a href="javascript:popupOpen_2();">주문완료열기</a>
 <%} %>
 </div>
 
@@ -202,8 +203,23 @@ function mover() {
 	m = document.getElemetById("ch")
 	
 }
-
 </script>
+<script type="text/javascript">
+function popupOpen_1(){
+	var popUrl = "shoping.jsp?pop=pop";	//팝업창에 출력될 페이지 URL
+	var popOption = "width=500, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+		window.open(popUrl,"",popOption);
+	}
+</script>
+<script type="text/javascript">
+function popupOpen_2(){
+	var popUrl = "shoping_final.jsp?pop=pop";	//팝업창에 출력될 페이지 URL
+	var popOption = "width=500, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+		window.open(popUrl,"",popOption);
+	}
+</script>
+
+
 
 
 

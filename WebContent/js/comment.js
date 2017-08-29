@@ -62,50 +62,30 @@ function deleteComment(target) {
 }
 function modifyComment(target) {
 	//타겟 정보를 가져온다
-	var inputDiv = $("div."+target);
+	var commentTr = $("tr."+target);	
+	var comment = commentTr.find("input.comments");
 	
-	var comment = inputDiv.find("#wr_content").val();
-		
-	$.ajax({ 
-		type : "GET",
-		url:"../shop/bbs/comment/modify",
-		data: 
-			{
-				"seq_bbs" : target,
-				"comments" : comment
-			},				
-        error : function() {
-          alert('통신실패!!');
-        },
-        success : function(data) {
-        }
-	});
-	
-//	화면 갱신
-	var currentLocation = window.location;
-	$("#view").load(currentLocation + '#view');
-}
-function showModifyView(target) {
-	//타겟 정보를 가져온다
-	var inputDiv = $("div."+target);
-	
-	if (inputDiv.css("display") == "none") {
-		inputDiv.css("display", "inline");
-		var text = $("div.comments"+target).text();
-		inputDiv.find("#wr_content").val(text);		
+	if (comment.attr("readonly") == "readonly") {
+		comment.removeAttr("readonly");			
 	} else {
-		inputDiv.css("display", "none");
-	}
-}
-
-function showReplyView(target) {
-	//타겟 정보를 가져온다
-	var inputDiv = $("div."+target);
-	
-	if (inputDiv.css("display") == "none") {
-		inputDiv.css("display", "inline");
+		comment.attr("readonly","readonly");
+		comment = commentTr.find("input.comments").val();
 		
-	} else {
-		inputDiv.css("display", "none");
+		$.ajax({ 
+			type : "GET",
+			url:"../shop/bbs/comment/modify",
+			data: 
+				{
+					"seq_bbs" : target,
+					"comments" : comment
+				},				
+	        error : function() {
+	          alert('통신실패!!');
+	        },
+	        success : function(data) {
+	        }
+		});
+		var currentLocation = window.location;
+		$("#view").load(currentLocation + '#view');
 	}
 }

@@ -311,4 +311,43 @@ public class BbsDao {
 		
 		return true;
 	}
+	
+	public int getBbsCount(int seq_store) {
+	
+						
+		String sql = " select count(seq_bbs) from JUGIYO_BBS "
+					+" where SEQ_STORE = '"+seq_store+"' ";
+		
+		int count = 0;
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+				
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("2/6 getBbsCount Success");
+			
+			psmt = conn.prepareStatement(sql);
+			System.out.println("3/6 getBbsCount Success");
+			rs = psmt.executeQuery();
+			System.out.println("4/6 getBbsCount Success");
+			
+
+			while(rs.next())
+			{
+				int i = 1;
+				count = rs.getInt(i++);
+			}		
+			System.out.println("5/6 getBbsCount Success");
+			
+		} catch (SQLException e) {
+			System.out.println("getBbsCount fail");
+		} finally{
+			DBConnection.close(conn, psmt, rs);
+			System.out.println("6/6 getBbsCount Success");
+		}
+		
+		return count;
+	}
 }

@@ -11,21 +11,66 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
-<style> 
+<style type="text/css"> 
     .menu a{cursor:pointer;}
     .menu .hide{display:none;}
-</style> 
-
-<style>
-ul{
+    ul,li {margin:0; padding:0;}
+    .menu_1 A:link {text-decoration:none; color:white;}
+	.menu_1 A:visited {text-decoration:none; color:white;}
+	.menu_1 A:active {text-decoration:none; color:orange;}
+	.menu_1 A:hover {text-decoration:none; color:orange;}
+	ul{
    list-style:none;
    }
-</style>
+	
+.order table {
+font-family: "Lato","sans-serif"; 
+}
+.order table.one {                                
+margin-bottom: 3em;
+border-collapse:collapse;   
+}  
+.order td { 
+text-align: center; 
+width: 10em;                   
+padding: 1em;
+}     
+
+.order th {
+text-align: center;                
+padding: 1em;
+background-color: #e8503a;
+color: white;       
+}
+.order tr {
+height: 1em;
+}
+
+.order table tr:nth-child(even) {
+    background-color: #eee;
+}
+.order table tr:nth-child(odd) {
+background-color:#fff;
+}
+#info {
+background-color: white;
+clear: both;
+width : 1500px;
+height: 120px;
+padding-top: 20px;
+font-size : 12px;
+padding-left: 165px;
+}
+</style> 
+
 </head>
-<body>
-<a href="../index.jsp">메인돌아가기</a><br>
+<body style="background-color: #FCEFDA;">
+<div style="background-color: white;" align="center">
+<a href="../main.jsp"><img src="../image/logo.png" alt="저기요" height="300px" width="350px"></a>
+</div>
 <%
 	String seq_temp = request.getParameter("seq");
+	String address = request.getParameter("address");
 	int seq = Integer.parseInt(seq_temp);
 	Delegate d = Delegate.getInstance();
 	List<FoodDto> list = d.foodCtrl.getFoodList(seq);
@@ -55,8 +100,129 @@ ul{
 	if(object_order != null){
 		orderlist = (List<OrderDto>)object_order;
 	}
+	System.out.println("주소는??? >> " + address);
 %>
-<div style="display: inline-block; position: absolute;">
+<div style="background-color: black;">
+<table align="center" class="menu_1">
+<tr>
+	<td><a href="../store/foodStoreList.jsp?name=0&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/all_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>전체매뉴</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="../store/foodStoreList.jsp?name=1&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/chicken_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>치킨</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td>
+	<a href="../store/foodStoreList.jsp?name=2&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/jjajang_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>중국집</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="../store/foodStoreList.jsp?name=3&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/pizza_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>피자</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="../store/foodStoreList.jsp?name=4&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/hansik_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>한식</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="../store/foodStoreList.jsp?name=5&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/bun_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>분식</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="../store/foodStoreList.jsp?name=6&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/pig_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>족발,보쌈</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="../store/foodStoreList.jsp?name=7&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/jj_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>일식</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="../store/foodStoreList.jsp?name=8&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/dosirak_mini.png" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>도시락</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="../store/foodStoreList.jsp?name=9&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/fastfood_mini.png" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>패스트푸드</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+</tr>
+</table>
+</div><br><br>
+<table align="center" cellspacing="30">
+<tr>
+<th>
+<div>
     <ul>
     	<%
     		for(int i=0; i<category.size(); i++){
@@ -77,7 +243,7 @@ ul{
                 <ul>
         			<li class="menu">
         			<a>
-          			 <table>
+          			 <table style="background-color: white; border-style: solid; width: 500px;">
                 		<td style="width: 230px; text-align: left;"><%=list.get(j).getFood_name() %>
                 			&nbsp;사이즈:(<%=list.get(j).getFood_size() %>)
                 		</td>
@@ -85,14 +251,17 @@ ul{
                		 </table>
                		 </a> 
            			<ul class="hide">
-               		 <table>
+               		 <table style="background-color: #F2F2F2; width: 500px;">
                		 <tr>
                		 	<td>
-               		 	<img src="../uploadimg/<%=list.get(j).getImg_url() %>" width="150px" height="150px">
+               		 		<img src="../uploadimg/<%=list.get(j).getImg_url() %>" width="150px" height="150px">
+               		 	</td>
+               		 	<td>
+               		 		<%=list.get(j).getFood_name() %>
                		 	</td>
                		 </tr>
                		 <tr>
-               		 	<td style="text-align: center;">
+               		 	<td style="text-align: center;" colspan="2">
                		 		<form action="orderAf.jsp">
                		 			<input type="hidden" name="store_seq" value="<%=seq %>">
                		 			<input type="hidden" name="food_name" value="<%=list.get(j).getFood_name() %>">
@@ -100,6 +269,7 @@ ul{
                		 			<input type="hidden" name="seq_food" value="<%=list.get(j).getSeq_food() %>">
                		 			<input type="hidden" name="food_size" value="<%=list.get(j).getFood_size() %>">
                		 			<input type="hidden" name="food_count" value="1">
+               		 			<input type="hidden" name="address" value="<%=address %>">
                		 			<input type="submit" value="주문표에 담기">
                		 		</form>
                		 	</td>
@@ -118,46 +288,46 @@ ul{
         <% } %>
     </ul>
 </div>
-<br><br>
-<div style="float: right; display: inline-block; margin-right: 200px;">
-<table>
+</th>
+<th>
+<div>
+<table class="order">
 <tr>
-	<td colspan="4" style="text-align: center;">주문표</td>
-</tr>
-<tr>
-	<th>가게이름</th>
-	<th>음식이름</th>
-	<th>가격</th>
-	<th>개수</th>
-	<th>합</th>
+	<th colspan="2" style="text-align: center;">주문표에담기</th>
 </tr>
 <%
 	int total = 0;
 	for(int i=0; i<orderlist.size(); i++){
+		if((i+1)%2 == 0){
 %>
-<tr style="text-align: center;">
-	<% int sum = orderlist.get(i).getFood_price() * orderlist.get(i).getFood_count();
-	   total += sum;
+<tr style="text-align: center; background-color: #EDE9E9;">
+<%
+}else{
+%>
+<tr style="text-align: center; background-color: white;">
+	<% }
+		int sum = orderlist.get(i).getFood_price() * orderlist.get(i).getFood_count();
+		total += sum;
 	%>
-	<td><%=orderlist.get(i).getStore_name() %></td>
 	<td><%=orderlist.get(i).getFood_name() %></td>
-	<td><%=orderlist.get(i).getFood_price() %></td>
-	<td><a href="orderAf.jsp?count=minus&store_seq=<%=seq %>&number=<%=i %>">-</a><%=orderlist.get(i).getFood_count() %><a href="orderAf.jsp?count=plus&store_seq=<%=seq %>&number=<%=i %>">+</a></td>
-	<td><%=sum %></td>
+	<td><a href="orderAf.jsp?count=minus&store_seq=<%=seq %>&number=<%=i %>&address=<%=address %>">-</a><%=orderlist.get(i).getFood_count() %><a href="orderAf.jsp?count=plus&store_seq=<%=seq %>&number=<%=i %>&address=<%=address %>">+</a></td>
 </tr>
 <% } %>
 <tr>
-	<td colspan="2">총가격</td>
-	<td colspan="2"><%=total %></td>
+	<td colspan="2" style="background-color: #E0FA5F;">총 가격 : <%=total %> 원</td>
 </tr>
 <form action="order_finalAf.jsp">
 <tr>
-	<td colspan="5" align="center">
-		<input type="submit" value="주문완료">
+	<td colspan="2" align="center">
+		<input type="submit" value="주문완료" style="width: 30em; height: 5em;">
+	</td>
 	</tr>
 </form>
 </table>
 </div>
+</th>
+</tr>
+</table>
 <script>
     // html dom 이 다 로딩된 후 실행된다.
     $(document).ready(function(){
@@ -174,5 +344,9 @@ ul{
         });
     });
 </script>
+<br><br><br>
+<div id="info">사업자등록번호 : 120-87-65763 <span class="bar">l</span> 통신판매업 신고번호 : 서울 송파 - 0515호 <span class="bar">I</span> 대표 : 김종희 김나연 최국호 문성환 
+      <br><span class="bar">l</span> 주소 : 서울특별시 강남구 강남구 테헤란로14길 6 남도빌딩 2층 A클래스 
+    </div>
 </body>
 </html>

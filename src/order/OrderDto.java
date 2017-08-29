@@ -27,6 +27,22 @@ public class OrderDto implements Serializable {
 	}
 
 	public OrderDto(String store_name, String food_name, int food_price, int food_count, int seq_food, int seq_store,
+			String customer_id, String create_at, String status, String food_size, int seq_order) {
+		super();
+		this.store_name = store_name;
+		this.food_name = food_name;
+		this.food_price = food_price;
+		this.food_count = food_count;
+		this.seq_food = seq_food;
+		this.seq_store = seq_store;
+		this.customer_id = customer_id;
+		this.create_at = create_at;
+		this.status = status;
+		this.food_size = food_size;
+		this.seq_order = seq_order;
+	}
+	
+	public OrderDto(String store_name, String food_name, int food_price, int food_count, int seq_food, int seq_store,
 			String customer_id, String create_at, String status, String food_size) {
 		super();
 		this.store_name = store_name;

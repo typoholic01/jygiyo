@@ -28,23 +28,195 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type"text/css">
+.menu A:link {text-decoration:none; color:white;}
+.menu A:visited {text-decoration:none; color:white;}
+.menu A:active {text-decoration:none; color:orange;}
+.menu A:hover {text-decoration:none; color:orange;}
+.list A:link {text-decoration:none; color:black;}
+.list A:visited {text-decoration:none; color:black;}
+.list A:active {text-decoration:none; color:black;}
+.list A:hover {text-decoration:none; color:black;}
+#info {
+background-color: white;
+clear: both;
+width : 1500px;
+height: 120px;
+padding-top: 20px;
+font-size : 12px;
+padding-left: 165px;
+}
+.task-list {
+  width: 250px;
+  float: left;
+  margin: 0 5px;
+  background-color: #e3e3e3;
+  min-height: 240px;
+  border-radius: 10px;
+  padding-bottom: 15px;
+}
+.task-list input, .task-list textarea {
+  width: 240px;
+  margin: 1px 5px;
+}
+.task-list input {
+  height: 30px;
+}
+.todo-task {
+  border-radius: 5px;
+  background-color: #fff;
+  width: 230px;
+  margin: 5px;
+  padding: 5px;
+}
+.task-list input[type="button"] {
+  width: 100px;
+  margin: 5px;
+}
+.todo-task > .task-header {
+  font-weight: bold;
+}
+.todo-task > .task-date {
+  font-size: small;
+  font-style: italic;
+}
+.todo-task > .task-description {
+  font-size: smaller;
+}
+h3 {
+  text-align: center;
+}
+#delete-div {
+  background-color: #fff;
+  border: 3px dotted #000;
+  margin: 10px;
+  height: 75px;
+  line-height: 75px;
+  text-align: center;
+}
+</style>
 </head>
-<body>
-
-<table align="center">
+<body style="background-color: #FCEFDA;">
+<div style="background-color: white;" align="center">
+<a href="../main.jsp"><img src="../image/logo.png" alt="저기요" height="300px" width="350px"></a>
+</div>
+<div style="background-color: black;">
+<table align="center" class="menu">
 <tr>
-	<td><a href="foodStoreList.jsp?name=0&address=<%=address %>">전체매뉴</a></td>
-	<td><a href="foodStoreList.jsp?name=1&address=<%=address %>">치킨</a></td>
-	<td><a href="foodStoreList.jsp?name=2&address=<%=address %>">중국집</a></td>
-	<td><a href="foodStoreList.jsp?name=3&address=<%=address %>">피자</a></td>
-	<td><a href="foodStoreList.jsp?name=4&address=<%=address %>">한식</a></td>
-	<td><a href="foodStoreList.jsp?name=5&address=<%=address %>">분식</a></td>
-	<td><a href="foodStoreList.jsp?name=6&address=<%=address %>">족발,보쌈</a></td>
-	<td><a href="foodStoreList.jsp?name=7&address=<%=address %>">일식</a></td>
-	<td><a href="foodStoreList.jsp?name=8&address=<%=address %>">도시락</a></td>
-	<td><a href="foodStoreList.jsp?name=9&address=<%=address %>">패스트푸드</a></td>
+	<td><a href="foodStoreList.jsp?name=0&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/all_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>전체매뉴</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="foodStoreList.jsp?name=1&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/chicken_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>치킨</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td>
+	<a href="foodStoreList.jsp?name=2&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/jjajang_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>중국집</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="foodStoreList.jsp?name=3&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/pizza_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>피자</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="foodStoreList.jsp?name=4&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/hansik_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>한식</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="foodStoreList.jsp?name=5&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/bun_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>분식</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="foodStoreList.jsp?name=6&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/pig_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>족발,보쌈</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="foodStoreList.jsp?name=7&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/jj_mini.jpg" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>일식</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="foodStoreList.jsp?name=8&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/dosirak_mini.png" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>도시락</th>
+	</tr>
+	</table>
+	</a>
+	</td>
+	<td><a href="foodStoreList.jsp?name=9&address=<%=address %>">
+	<table>
+	<tr>
+	<th><img src="../image/fastfood_mini.png" width="80px" height="80px"></th>
+	</tr>
+	<tr>
+	<th>패스트푸드</th>
+	</tr>
+	</table>
+	</a>
+	</td>
 </tr>
-</table><br>
+</table>
+</div><br>
 <div align="right">
 <select>
 	<option selected="selected">기본정렬</option>
@@ -87,7 +259,7 @@
 	
 
 %>
-<table align="center" cellspacing="20">
+<table align="center" cellspacing="30" class="list">
 <%
 int temp = 0;
 for(int i=0; i<number; i++){
@@ -96,17 +268,21 @@ for(int i=0; i<number; i++){
 <%
 for(int j=0; j<3; j++){
 %>
-	<td style="background-color: gray;">
-	<a href="../foodstore/storemenu.jsp?seq=<%=list.get(temp).getSeq_store() %>">
-	<table>
 	<td>
-	<%-- <img src="f:\\upload\\<%=list.get(temp).getImg_url() %>" width="150px" height="150px"> --%>
-	<img src="../uploadimg/<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
-	</td>
-	<td>
-	<%=list.get(temp).getTitle() %>
-	</td>
-	</table>
+	<a href="../foodstore/storemenu.jsp?seq=<%=list.get(temp).getSeq_store() %>&address=<%=address %>">
+	<div class="task-list" id="pending">
+	<div align="center"><br>
+  	<img src="../uploadimg/<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
+  	</div>
+ 	 <div class="todo-task">
+     <div class="task-header"><%=list.get(temp).getTitle() %></div>
+     <div class="task-date"><%=list.get(temp).getAddress() %></div>
+     <div class="task-description">
+     <% int count = d.bbsCtrl.getBbsCount(list.get(temp).getSeq_store()); %>
+	  리뷰갯수 : <%=count %> 개
+     </div>
+ 	</div>
+	</div>
 	</a>
 	</td><% temp++; }%>
 </tr>
@@ -117,22 +293,26 @@ if(number2 !=0){
 <tr>
 	<%for(int i=0; i<number2; i++){ 
 	%>
-		<td style="background-color: gray;">
-	<a href="../foodstore/storemenu.jsp?seq=<%=list.get(temp).getSeq_store() %>">
-	<table>
 	<td>
-	<img src="../uploadimg/<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
-	</td>
-	<td>
-	<%=list.get(temp).getTitle() %>
-	</td>
-	</table>
+	<a href="../foodstore/storemenu.jsp?seq=<%=list.get(temp).getSeq_store() %>&address=<%=address %>">
+	<div class="task-list" id="pending">
+	<div align="center"><br>
+  	<img src="../uploadimg/<%=list.get(temp).getImg_url() %>" width="230px" height="150px">
+  	</div>
+  	<div class="todo-task">
+   	 <div class="task-header"><%=list.get(temp).getTitle() %></div>
+  	  <div class="task-date"><%=list.get(temp).getAddress() %></div>
+  	  <div class="task-description">
+  	  <% int count = d.bbsCtrl.getBbsCount(list.get(temp).getSeq_store()); %>
+		리뷰갯수 : <%=count %> 개
+  	  </div>
+ 	 </div>
+	</div>
 	</a>
 	</td><% temp++; %>
 	<%
 	}
 	%>
-
 </tr>
 <%
 }
@@ -148,6 +328,11 @@ for(int i=0; i<paging; i++){
 }
 }
 %>
+</div>
+<br><br><br>
+<div id="info">사업자등록번호 : 120-87-65763 <span class="bar">l</span> 통신판매업 신고번호 : 서울 송파 - 0515호 <span class="bar">I</span> 대표 : 김종희 김나연 최국호 문성환 
+      <br><span class="bar">l</span> 주소 : 서울특별시 강남구 강남구 테헤란로14길 6 남도빌딩 2층 A클래스 
+    </div>
 </div>
 
 </body>

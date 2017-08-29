@@ -37,4 +37,8 @@ public class BbsCtrl {
 		bbs.setImg_url(fileName);
 		return bbsServ.checkSameImage(bbs);
 	}
+	public int getBbsCount(int seq_store){
+		
+		return bbsServ.getBbsCount(seq_store);
+	}
 }

@@ -23,5 +23,9 @@ public class OrderCtrl {
 		List<OrderDto> list = serv.getcustorderlist(customer_id);
 		return list;
 	}
+	public List<OrderDto> getOrderList_boss(int seq_store) {
+		List<OrderDto> list = serv.getOrderList_boss(seq_store);
+		return list;
+	}
 
 }

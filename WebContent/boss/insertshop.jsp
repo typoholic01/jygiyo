@@ -13,30 +13,63 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <title>Insert title here</title>
+<style type="text/css">
+
+table.basic{
+  margin: 0; padding: 0; line-height: 51px;
+  border-top: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
+  border-collapse: collapse;
+}
+table.basic th, table.basic td{
+  margin: 0; padding: 3px 0; width: 400px;
+  text-align: center;
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+}
+table.basic caption{ margin: 0; padding: 0; }
+table.basic th{ background-color: #e9e9e9; }
+table.basic td{ background-color: #e9e9e9; }
+#info {
+background-color: white;
+clear: both;
+height: 120px;
+padding-top: 20px;
+font-size : 12px;
+padding-left: 165px;
+}
+</style>
 </head>
-<body><%--"../shop/insert" --%>
+<body style="background-color: #FCEFDA;">
 <%
 Object boss_login = session.getAttribute("blogin");
 BossDto login = null;
 if(boss_login != null){
 	login = (BossDto)boss_login;
 }
-System.out.println("사장님 아이디는?? ==> " + login.getBoss_id());
 %>
+<div style="background-color: white;" align="center">
+<a href="../main.jsp"><img src="../image/logo.png" alt="저기요" height="300px" width="350px"></a>
+</div>
+<div style="background-color: "></div>
 <form action="./storeupload.jsp" method="post" enctype="multipart/form-data">
-<table>
-	<tr>
-		<th>사장아이디</th>
-		<th>가게분류</th>
-		<th>가게이름</th>
-		<th>가게설명</th>
-		<th><input type="button" onclick="sample4_execDaumPostcode()" value="주소검색"></th>
-		<th>가게이미지</th>
-	</tr>
-	<tr>
-		<td><input type="text" name="boss_id" value="<%=login.getBoss_id() %>" readonly="readonly" /></td>
-		<td>
-		<select style="width: 150px" name="category">
+<input type="hidden" name="boss_id" value="<%=login.getBoss_id() %>">
+<table align="center">
+<tr>
+<th>
+<table class="basic">
+  <caption><h3><%=login.getBoss_id() %> 님의 가게등록</h3></caption>
+  <thead>
+    <tr><th>항목</th> <th>작성</th></tr>
+  </thead>
+  <tfoot>
+    <tr><th>등록하기</th> <td><input type="submit" value="등록"></td></tr>
+  </tfoot>
+  <tbody>  
+    <tr><td>가게이름</td><td><input type="text" placeholder="Title" name="title" size="40"/></td></tr>
+    <tr><td>카테고리</td>
+    <td>
+    <select style="width: 150px" name="category" style="width: 300px;">
 			<option selected="selected">치킨</option>
 			<option>중국집</option>
 			<option>피자</option>
@@ -46,19 +79,28 @@ System.out.println("사장님 아이디는?? ==> " + login.getBoss_id());
 			<option>일식</option>
 			<option>도시락</option>
 			<option>패스트푸드</option>
-		</select>
-		</td>
-		<td><input type="text" name="title" /></td>
-		<td><input type="text" name="content" /></td>
-		<td><input type="text" id="sample4_jibunAddress" placeholder="가게주소(위의버튼으로 검색)" name="address"></td>
-		<td><input type="file" name="fileload" style="width: 400px"></td>
-	</tr>
-	<tr colspan="6">
-		<td><input type="submit" /></td>
-	</tr>
+	</select>
+    </td>
+    </tr>
+    <tr><td>가게설명</td><td><textarea placeholder="가게설명" name="content" style="width: 300px;"></textarea></td></tr>
+    <tr><td><input type="button" onclick="sample4_execDaumPostcode()" value="주소검색">
+    </td>
+    <td>
+    <input type="text" id="sample4_jibunAddress" placeholder="가게주소(옆버튼으로 검색)" name="address" size="40">
+    </td>
+    </tr>
+    <tr>
+    <td>이미지등록</td>
+    <td><input type="file" name="fileload" size="40"></td></tr>
+  </tbody>
+</table>
+</th>
+</tr>
 </table>
 <span id="guide" style="color:#999"></span>
 </form>
+
+
 
 <script>
 function sample4_execDaumPostcode() {
@@ -109,7 +151,11 @@ function sample4_execDaumPostcode() {
 }
 
 </script>
-
+<br><br><br>
+<div id="info">사업자등록번호 : 120-87-65763 <span class="bar">l</span> 통신판매업 신고번호 : 서울 송파 - 0515호 <span class="bar">I</span> 대표 : 김종희 김나연 최국호 문성환 
+      <br><span class="bar">l</span> 주소 : 서울특별시 강남구 강남구 테헤란로14길 6 남도빌딩 2층 A클래스 
+    </div>
+</body>
 
 </body>
 </html>
