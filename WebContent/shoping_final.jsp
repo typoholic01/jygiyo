@@ -10,6 +10,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.order table {
+font-family: "Lato","sans-serif";
+}
+.order table.one {                                
+margin-bottom: 3em;
+border-collapse:collapse;   
+}  
+.order td { 
+text-align: center; 
+width: 10em;                   
+padding: 1em;
+}     
+
+.order th {
+text-align: center;                
+padding: 1em;
+background-color: #e8503a;
+color: white;       
+}
+.order tr {
+height: 1em;
+}
+
+.order table tr:nth-child(even) {
+    background-color: #eee;
+}
+.order table tr:nth-child(odd) {
+background-color:#fff;
+}
+</style>
 </head> 
 <body>
 <%
@@ -22,7 +53,7 @@ Delegate d = Delegate.getInstance();
 List<OrderDto> orderlist = d.orderCtrl.getcustorderlist(cust.getCustomer_id());
 %>
 
-<table>
+<table class="order">
 <tr>
 	<th>음식이름</th>
 	<th>가격</th>

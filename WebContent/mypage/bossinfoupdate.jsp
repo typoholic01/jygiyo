@@ -85,11 +85,13 @@ a.no-uline { text-decoration:none }
 
 <%
 String boss_id = request.getParameter("id");
+IBossDao dao = BossDao.getInstance();
 
 Object bologin = session.getAttribute("blogin");
-BossDto boss = (BossDto)bologin;
+BossDto boss = null;
+boss = (BossDto)bologin;
 
-IBossDao dao = BossDao.getInstance();
+System.out.println(boss);
 
 BossDto bossRe = dao.getDetail(boss_id);
 
@@ -99,13 +101,13 @@ BossDto bossRe = dao.getDetail(boss_id);
 <%
 
 if(bologin != null){%>	
-	<b><%=boss.getBoss_id() %> 님</b>
-	<a href="../account/logout.jsp" >로그아웃</a> | <a href="./mypage.jsp" >마이페이지</a>
+	<b><%=boss.getBoss_id() %> 사장님</b>
+	<a href="../account/logout.jsp" >로그아웃</a> | <a href="./bosspage.jsp" >마이페이지</a>
 <%} %>
 </div>
 
 <div align="center">
-<form action="./bossmyinfoAf.jsp" method="post">
+<form action="./bossinfoAf.jsp" method="post">
 
 <table width="800">
 
@@ -148,7 +150,7 @@ if(bologin != null){%>
 </tr>
 
 <tr>
-	<td><b>저기요 ID</b></td>
+	<td><b>저기요 사장님ID</b></td>
 	<td colspan="2">
 		<input type="hidden" name="id" value="<%=boss.getBoss_id() %>">
 		<%=boss.getBoss_id() %></td>
@@ -164,7 +166,7 @@ if(bologin != null){%>
 <tr>
 	<td><b>연락처</b></td>
 	<td colspan="2">
-		<input type="text" size="50" name="address" value="<%=bossRe.getPhone_number() %>">
+		<input type="text" size="50" name="phone" value="<%=bossRe.getPhone_number() %>">
 	</td>	
 </tr>
 
@@ -179,12 +181,21 @@ if(bologin != null){%>
 <tr height="20">
 </tr>
 <tr>
-	<td colspan="3" align="center"> 		
-		<input type="button" size="600" value="변경하기" id="lbtnout1" onclick="updateinfo('<%=boss.getBoss_id() %>')"
+	<%-- <td colspan="3" align="center"> 			
+		<input type="submit" size="600" value="변경하기" id="lbtnout1" onclick="updateinfo('<%=boss.getBoss_id() %>')"
 		 onmouseover="this.id='lbtnover1'"  onmouseout="this.id='lbtnout1'">	
+	</td> --%>
+	<td colspan="3" align="center"> 		
+		<input type="submit" size="600" value="변경하기" 
+		id="lbtnout1" onmouseover="this.id='lbtnover1'"  onmouseout="this.id='lbtnout1'">	
 	</td>	
-	<td colspan="1" align="center">
+	<%-- <td colspan="1" align="center">
 		<a href="./bossinfodetail.jsp?id=<%=boss.getBoss_id()%>">
+			<input type="button" value="취소" id="lbtnout2" onmouseover="this.id='lbtnover2'" onmouseout="this.id='lbtnout2'">
+		</a>
+	</td> --%>
+	<td colspan="1" align="center">
+		<a href="./mydetail.jsp?id=<%=boss.getBoss_id()%>">
 			<input type="button" value="취소" id="lbtnout2" onmouseover="this.id='lbtnover2'" onmouseout="this.id='lbtnout2'">
 		</a>
 	</td>			
@@ -199,14 +210,14 @@ if(bologin != null){%>
 
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 function updateinfo(id) {
 	location.href = "bossinfoupdate.jsp?id=" + id;
 }
 function deleteinfo(id) {
-	location.href = "myinfoupdate.jsp?id=" + id;
+	location.href = "bossinfoupdate.jsp?id=" + id;
 }
-</script>
+</script> -->
 
 </body>
 

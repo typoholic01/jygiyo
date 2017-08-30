@@ -41,4 +41,15 @@ public class BbsCtrl {
 		
 		return bbsServ.getBbsCount(seq_store);
 	}
+	public int getBbsStarCount(int seq_store){
+		
+		return bbsServ.getBbsStarCount(seq_store);
+	}
+	
+	public List<BbsDto> getmyreview(String id){
+		BbsDto dto = new BbsDto();
+		dto.setComment_id(id);
+		return bbsServ.getmyreview(id);
+	}
+
 }

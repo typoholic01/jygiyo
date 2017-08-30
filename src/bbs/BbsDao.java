@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import db.DBConnection;
+import jdbc.DBConn;
 
 public class BbsDao {
 	private static BbsDao single = null;
@@ -350,4 +351,92 @@ public class BbsDao {
 		
 		return count;
 	}
+	public int getBbsStarCount(int seq_store) {
+		
+		
+		String sql = " select STORE_RATING from JUGIYO_BBS "
+					+" where SEQ_STORE = '"+seq_store+"' ";
+		
+		int count = 0;
+		int temp = 0;
+		int total = 0;
+		int result = 0;
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+				
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("2/6 getBbsStarCount Success");
+			
+			psmt = conn.prepareStatement(sql);
+			System.out.println("3/6 getBbsStarCount Success");
+			rs = psmt.executeQuery();
+			System.out.println("4/6 getBbsStarCount Success");
+			
+
+			while(rs.next())
+			{
+				temp = rs.getInt("STORE_RATING");
+				total += temp; 
+				count++;
+			}
+			System.out.println("5/6 getBbsStarCount Success");
+			
+		} catch (SQLException e) {
+			System.out.println("getBbsStarCount fail");
+		} finally{
+			DBConnection.close(conn, psmt, rs);
+			System.out.println("6/6 getBbsStarCount Success");
+		}
+		if(count != 0){
+		result = total/count;
+		}
+		
+		return result;
+	}
+	public List<BbsDto> getmyreview(String id) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		String sql = " SELECT * FROM "
+				+ " JUGIYO_BBS "
+				+ " WHERE comment_id=? ";
+		
+		List<BbsDto> list = new ArrayList<BbsDto>();
+		
+		try {
+			conn = DBConn.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			
+			rs = psmt.executeQuery();
+			
+			while (rs.next()){
+				int i = 1;
+				BbsDto dto = new BbsDto(
+						rs.getInt(i++),			//	seq_bbs, 
+						rs.getInt(i++),			//	seq_store, 
+						rs.getString(i++),		//	comment_id, 
+						rs.getString(i++),		//	id_category, 
+						rs.getString(i++),		//	comments, 
+						rs.getInt(i++),			//	comments_group_no, 
+						rs.getString(i++),		//	comments_reply, 
+						rs.getString(i++),		//	img_url, 
+						rs.getString(i++),		//	create_at, 
+						rs.getString(i++),		//	update_at, 
+						rs.getString(i++),		//	status, 
+						rs.getInt(i++)			//	store_rating
+				);
+			list.add(dto);
+		}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBConn.close(rs, psmt, conn);
+		}
+		return list;
+	}
+
 }

@@ -6,6 +6,9 @@
 <%@page import="customer.ICustomerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("utf-8");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -60,8 +63,8 @@ BossDto boss = (BossDto)bologin;
 <%
 
 if(bologin != null){%>	
-	<b><%=boss.getBoss_id()%> 님</b>
-	<a href="../account/logout.jsp">로그아웃</a> | <a href="./mypage.jsp">마이페이지</a>
+	<b><%=boss.getBoss_id()%> 사장님</b>
+	<a href="../account/logout.jsp">로그아웃</a> | <a href="./bosspage.jsp">마이페이지</a>
 <%} %>
 
 </div>
@@ -74,13 +77,13 @@ if(bologin != null){%>
 <col width="400"><col width="400">
 <tr>
 	<td colspan="2" align="center">
-		<a href="../main.jsp"><img src="../image/logo.png" width="450"></a>
+		<a href="../main.jsp"><img src="../image/logo3.png"></a>
 	</td>
 </tr>
 <tr id="menubar" align="left">
 	<td colspan="2" align="left">
 		<a href="../bmain.jsp">홈</a>
-		> <a href="./mypage.jsp"><b>마이페이지</b></a>	
+		> <a href="./bosspage.jsp"><b>마이페이지</b></a>	
 	</td>	
 	
 </tr>
@@ -92,12 +95,11 @@ if(bologin != null){%>
 </tr>
 <tr>
 	<td align="center">
-		<img src="../image/bossmypagecharacter.jpg" align="bottom">
+		<img src="../image/chef.png">
 	</td>
 	<td align="center">
-		<img src="../image/bossmypagecharacter.jpg" align="bottom" >
-	</td>
-	
+		<img src="../image/chef.png">
+	</td>	
 </tr>
 <tr>
 	<td>
@@ -107,8 +109,8 @@ if(bologin != null){%>
 		</a>
 	</td>
 	<td>
-		<a href="./bossmyreview.jsp">	
-			<input type="button" value="리뷰 관리" id="lbtnout"
+		<a href="../boss/bossmain.jsp">	
+			<input type="button" value="업체정보 수정" id="lbtnout"
 				onmouseover="this.id='lbtnover'" onmouseout="this.id='lbtnout'">	
 		</a>
 	</td>

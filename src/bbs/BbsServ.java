@@ -36,5 +36,13 @@ public class BbsServ  {
 		
 		return dao.getBbsCount(seq_store);
 	}
+	public int getBbsStarCount(int seq_store){
+		
+		return dao.getBbsStarCount(seq_store);
+	}
+
+	public List<BbsDto> getmyreview(String id){
+		return dao.getmyreview(id);
+	}
 
 }

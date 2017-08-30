@@ -100,20 +100,20 @@ BossDto bossRe = dao.getDetail(boss_id);
 <%
 
 if(bologin != null){%>	
-	<b><%=boss.getBoss_id() %> 님</b>
-	<a href="../account/logout.jsp" >로그아웃</a> | <a href="./mypage.jsp" >마이페이지</a>
+	<b><%=boss.getBoss_id() %> 사장님</b>
+	<a href="../account/logout.jsp" >로그아웃</a> | <a href="./bosspage.jsp" >마이페이지</a>
 <%} %>
 </div>
 
 <div align="center">
-<form action="./bossmyinfoAf.jsp" method="post">
+<form action="./bossinfoAf.jsp" method="post">
 
 <table width="800">
 
 <col width="200"><col width="200"><col width="200"><col width="200">
 <tr>
 	<td colspan="4" align="center">
-		<a href="../main.jsp" ><img src="../image/logo.png" width="450"></a>
+		<a href="../main.jsp" ><img src="../image/logo3.png"></a>
 	</td>
 </tr>
 <tr id="menubar" align="left">
@@ -149,7 +149,7 @@ if(bologin != null){%>
 </tr>
 
 <tr>
-	<td><b>저기요 ID</b></td>
+	<td><b>저기요 사장님ID</b></td>
 	<td colspan="2">
 		<input type="hidden" name="id" value="<%=boss.getBoss_id() %>">
 		<%=boss.getBoss_id() %></td>

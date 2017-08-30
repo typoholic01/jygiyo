@@ -221,11 +221,12 @@ h3 {
 </table>
 </div><br>
 <div align="right">
-<select>
+<select name="listselect">
 	<option selected="selected">기본정렬</option>
 	<option>리뷰많은순서</option>
 	<option>별점높은순서</option>
-</select></div><br>
+</select>
+</div><br>
 <%
 	String category = "";
 	Delegate d = Delegate.getInstance();
@@ -252,6 +253,7 @@ h3 {
 	int number = list.size() / 3;
 	int number2 = list.size() % 3;
 	System.out.println(list.toString());
+	//////////////////////
 	
 	/////////////////////////////////
 	int paging_temp =  d.foodStoreCtrl.getallcount(category);
@@ -266,7 +268,7 @@ h3 {
 <%
 int temp = 0;
 for(int i=0; i<number; i++){
-%>
+%> 
 <tr>
 <%
 for(int j=0; j<3; j++){
@@ -280,9 +282,15 @@ for(int j=0; j<3; j++){
  	 <div class="todo-task">
      <div class="task-header"><%=list.get(temp).getTitle() %></div>
      <div class="task-date"><%=list.get(temp).getAddress() %></div>
-     <div class="task-description">
-     <% int count = d.bbsCtrl.getBbsCount(list.get(temp).getSeq_store()); %>
-	  리뷰갯수 : <%=count %> 개
+     <div class="task-description"> 
+     <% int count = d.bbsCtrl.getBbsCount(list.get(temp).getSeq_store());
+     	int star_count = d.bbsCtrl.getBbsStarCount(list.get(temp).getSeq_store());%>
+	  리뷰갯수 : <%=count %> 개<br>
+	  <% if(star_count != 0){ %>
+		평균별점 : <img src="../image/star_<%=star_count %>.png">
+		<%}else{ %>
+		평균별점 : 없음
+		<% } %>
      </div>
  	</div>
 	</div>
@@ -306,8 +314,14 @@ if(number2 !=0){
    	 <div class="task-header"><%=list.get(temp).getTitle() %></div>
   	  <div class="task-date"><%=list.get(temp).getAddress() %></div>
   	  <div class="task-description">
-  	  <% int count = d.bbsCtrl.getBbsCount(list.get(temp).getSeq_store()); %>
+  	  <% int count = d.bbsCtrl.getBbsCount(list.get(temp).getSeq_store());
+  	  	 int star_count = d.bbsCtrl.getBbsStarCount(list.get(temp).getSeq_store());%>
 		리뷰갯수 : <%=count %> 개
+		<% if(star_count != 0){ %>
+		평균별점 : <img src="../image/star_<%=star_count %>.png">
+		<%}else{ %>
+		평균별점 : 없음
+		<% } %>
   	  </div>
  	 </div>
 	</div>

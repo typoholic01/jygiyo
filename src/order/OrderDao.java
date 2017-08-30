@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import db.DBConnection;
+import foodStore.FoodStoreDto;
 import jdbc.DBConn;
 
 public class OrderDao implements IOrderDao {
@@ -185,7 +186,7 @@ public class OrderDao implements IOrderDao {
 			System.out.println("3/6 S getcustorderlist");
 			rs = psmt.executeQuery();
 			while(rs.next()){
-				if (rs.getString("STATUS").equals("주문완료")) {
+				if (rs.getString("STATUS").equals("주문완료") || rs.getString("STATUS").equals("접수완료")) {
 				int i = 1;				
 				OrderDto dto = new OrderDto();
 				dto.setSeq_food(rs.getInt(i++));

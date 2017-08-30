@@ -10,6 +10,46 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.order table {
+font-family: "Lato","sans-serif";
+}
+.order table.one {                                
+margin-bottom: 3em;
+border-collapse:collapse;   
+}  
+.order td { 
+text-align: center; 
+width: 10em;                   
+padding: 1em;
+}     
+
+.order th {
+text-align: center;                
+padding: 1em;
+background-color: #e8503a;
+color: white;       
+}
+.order tr {
+height: 1em;
+}
+
+.order table tr:nth-child(even) {
+    background-color: #eee;
+}
+.order table tr:nth-child(odd) {
+background-color:#fff;
+}
+#info {
+background-color: white;
+clear: both;
+width : 1500px;
+height: 120px;
+padding-top: 20px;
+font-size : 12px;
+padding-left: 165px;
+}
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -20,18 +60,22 @@ function refresh() {
 }
 </script>
 </head>
-<body>
+<body style="background-color: #FCEFDA;">
 <%
 	String boss_id = request.getParameter("boss_id");
 	List<FoodStoreDto> storelist = new ArrayList<>();
 	Delegate d = Delegate.getInstance();
 	storelist = d.foodStoreCtrl.getBossFoodStoreList(boss_id);
 %>
-	<table>
+<div style="background-color: white;" align="center">
+<a href="./index.jsp"><img src="./image/logo.png" alt="저기요" height="300px" width="350px"></a>
+</div>
+	<div align="center">
+	<table class="order">
 <%
 	for(int i=0; i<storelist.size(); i++){
 %>
-	<tr><th colspan="5"><h3><%=storelist.get(i).getTitle() %> 가게</h3></th></tr>
+	<tr><th colspan="6"><h3><%=storelist.get(i).getTitle() %> 가게</h3></th></tr>
 	<tr>
 		<th>주문고객</th>
 		<th>주문매뉴</th>
@@ -55,5 +99,11 @@ function refresh() {
 <% }%>
 <% } %>
 </table>
+</div>
+<br><br><br>
+<div id="info">사업자등록번호 : 120-87-65763 <span class="bar">l</span> 통신판매업 신고번호 : 서울 송파 - 0515호 <span class="bar">I</span> 대표 : 김종희 김나연 최국호 문성환 
+      <br><span class="bar">l</span> 주소 : 서울특별시 강남구 강남구 테헤란로14길 6 남도빌딩 2층 A클래스 
+    </div>
+</div>
 </body>
 </html>

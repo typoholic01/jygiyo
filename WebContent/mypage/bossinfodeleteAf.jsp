@@ -3,6 +3,9 @@
 <%@page import="boss.BossDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("utf-8");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,11 +31,6 @@ if(check==1){
 
 탈퇴하였습니다
 <input type="button" value="확인" onclick="location.href='../bmain.jsp'">
-
-</div>
-
-</body>
-</html>
 <%}else{%>
     <!-- 무엇이 틀렸는지 안알려준다  보안! -->
     <script>
@@ -41,3 +39,8 @@ if(check==1){
         history.go(-1);
     </script>
 <%}%>
+</div>
+
+</body>
+</html>
+

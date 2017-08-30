@@ -114,7 +114,7 @@ if(ologin != null){%>
 <col width="200"><col width="200"><col width="200"><col width="200">
 <tr>
 	<td colspan="4" align="center">
-		<a href="../main.jsp" ><img src="../image/logo.png" width="450"></a>
+		<a href="../main.jsp" ><img src="../image/logo3.png"></a>
 	</td>
 </tr>
 <tr id="menubar" align="left">

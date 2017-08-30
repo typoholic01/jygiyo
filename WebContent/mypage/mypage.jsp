@@ -4,6 +4,9 @@
 <%@page import="customer.ICustomerDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+request.setCharacterEncoding("utf-8");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -74,7 +77,7 @@ if(ologin != null){%>
 <col width="400"><col width="400">
 <tr>
 	<td colspan="2" align="center">
-		<a href="../main.jsp"><img src="../image/logo.png" width="450"></a>
+		<a href="../main.jsp"><img src="../image/logo3.png"></a>
 	</td>
 </tr>
 <tr id="menubar" align="left">
@@ -95,7 +98,7 @@ if(ologin != null){%>
 		<img src="../image/myinfo1.png" align="bottom" >
 	</td>
 	<td align="center">
-		<img src="../image/myinfo1.png" align="bottom" >
+		<img src="../image/review2.png" align="bottom" >
 	</td>
 	
 </tr>

@@ -1,3 +1,4 @@
+<%@page import="boss.BossDto"%>
 <%@page import="boss.BossDao"%>
 <%@page import="boss.IBossDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -17,23 +18,27 @@ request.setCharacterEncoding("utf-8");
 String boss_id = request.getParameter("id");
 String phone_number = request.getParameter("phone");
 String password = request.getParameter("password");
+/* System.out.println(dto); */
 
+IBossDao dao = BossDao.getInstance(); 
+BossDto boss = dao.getDetail(boss_id);
+
+boolean isS = dao.modifyInfomation(boss_id, phone_number, password);
 System.out.println(phone_number);
 System.out.println(password);
-IBossDao dao = BossDao.getInstance(); 
-boolean isS = dao.modifyInfomation(boss_id, password, phone_number);
 if(isS == true){
 	%>
 	<script type="text/javascript">
 	alert("수정완료");
-	location.href="bossmypage.jsp";	
+	location.href="bosspage.jsp";	
 	</script>
 	<%
+	
 }else{
 	%>
 	<script type="text/javascript">
 	alert("수정실패");
-	location.href="bossmyinfo.jsp";
+	location.href="bosspage.jsp?id=<%=boss.getBoss_id() %>";
 	</script>
 	<%
 }

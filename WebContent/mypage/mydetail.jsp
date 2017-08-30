@@ -116,7 +116,7 @@ if(ologin != null){%>
 <col width="200"><col width="200"><col width="200"><col width="200">
 <tr>
 	<td colspan="4" align="center">
-		<a href="../main.jsp" ><img src="../image/logo.png" width="450"></a>
+		<a href="../main.jsp" ><img src="../image/logo3.png"></a>
 	</td>
 </tr>
 <tr id="menubar" align="left">
@@ -193,21 +193,21 @@ if(ologin != null){%>
 </tr>
 <tr>
 	<td colspan="3" align="center"> 		
-		<input type="button" size="600" value="변경하기" onclick="updateinfo('<%=cus.getCustomer_id() %>')"
+		<input type="button" size="600" value="내 정보 변경하러가기" onclick="updateinfo('<%=cus.getCustomer_id() %>')"
 		id="lbtnout1" onmouseover="this.id='lbtnover1'"  onmouseout="this.id='lbtnout1'">	
 	</td>	
 	<td colspan="1" align="center">
 		<a href="./myinfodelete.jsp">
-			<input type="button" value="탈퇴하기" id="lbtnout2" onmouseover="this.id='lbtnover2'" onmouseout="this.id='lbtnout2'">
+			<input type="button" value="회원탈퇴 하러가기" id="lbtnout2" onmouseover="this.id='lbtnover2'" onmouseout="this.id='lbtnout2'">
 		</a>
 	</td>			
 </tr>
 
-<tr height="30">	
+<!-- <tr height="30">	
 	<td align="right" colspan="4">
 		<a href="deleteform.jsp" >회원탈퇴 하러가기</a>	
 	</td>
-</tr>
+</tr> -->
 <tr height="40">
 </tr>
 </table>
