@@ -182,13 +182,13 @@ if(!address.equals("어느동네?")){
 	
 	<tr>
 		<td>
-			<a href="foodStoreList.jsp?name=5&address=<%=address %>">
+			<a href="./store/foodStoreList.jsp?name=5&address=<%=address %>">
 			<img src="image/bun.jpg" width="200" height="150"
 				onmouseover="this.src='image/bunsikover.png';" onmouseout="this.src='image/bun.jpg';">
 			</a>
 		</td>
 		<td>
-			<a href="foodStoreList.jsp?name=0&address=<%=address %>">
+			<a href="./store/foodStoreList.jsp?name=0&address=<%=address %>">
 			<img src="image/all.jpg" width="200" height="150"
 				onmouseover="this.src='image/Allover.png';" onmouseout="this.src='image/all.jpg';">
 			</a>

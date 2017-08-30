@@ -105,7 +105,7 @@ if(bologin != null){%>
 </div>
 
 <div align="center">
-<form action="./bossinfoAf.jsp" method="post">
+<form action="./bossmyinfoAf.jsp" method="post">
 
 <table width="800">
 
@@ -164,7 +164,7 @@ if(bologin != null){%>
 <tr>
 	<td><b>연락처</b></td>
 	<td colspan="2">
-		<input type="text" size="50" name="phone" value="<%=boss.getPhone_number() %>">
+		<input type="text" size="50" name="address" value="<%=bossRe.getPhone_number() %>">
 	</td>	
 </tr>
 

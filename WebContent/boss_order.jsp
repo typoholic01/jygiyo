@@ -13,7 +13,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	setInterval(refresh, 60000);
+	setInterval(refresh, 30000);
 })
 function refresh() {
 	location.reload();
@@ -38,6 +38,7 @@ function refresh() {
 		<th>가격</th>
 		<th>갯수</th>
 		<th>주문시각</th>
+		<th>확인하기</th>
 	</tr>
 <%
 		List<OrderDto> orderlist = d.orderCtrl.getOrderList_boss(storelist.get(i).getSeq_store());
@@ -49,6 +50,7 @@ function refresh() {
 	<td><%=orderlist.get(j).getFood_price() %></td>
 	<td><%=orderlist.get(j).getFood_count() %></td>
 	<td><%=orderlist.get(j).getCreate_at() %></td>
+	<td><a href="./boss_orderAf.jsp?seq_order=<%=orderlist.get(j).getSeq_order() %>">접수완료하기</a></td>
 	</tr>
 <% }%>
 <% } %>

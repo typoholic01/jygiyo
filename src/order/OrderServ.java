@@ -21,6 +21,12 @@ public class OrderServ implements IOrderServ {
 		List<OrderDto> list = dao.getOrderList_boss(seq_store);
 		return list;
 	}
+	@Override
+	public boolean deleteOrder(int seq_order) {
+		boolean b = dao.deleteOrder(seq_order);
+		return b;
+	}
+	
 	
 	
 	

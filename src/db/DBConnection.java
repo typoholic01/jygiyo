@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DBConnection {
 	public static final String className = "oracle.jdbc.OracleDriver";
-	public static final String address = "jdbc:oracle:thin:@localhost:1521:xe";
+	public static final String address = "jdbc:oracle:thin:@192.168.10.14:1521:xe";
 	public static final String user = "hr";
 	public static final String password = "hr";
 	

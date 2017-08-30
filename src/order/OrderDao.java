@@ -89,16 +89,32 @@ public class OrderDao implements IOrderDao {
 	}
 
 	@Override
-	public boolean deleteOrder(int seq_store) {
-		String sql = "UPDATE BBS SET "
-					+ " STATUS = 'delete', "
-					+ " WHERE SEQ = ? ";
+	public boolean deleteOrder(int seq_order) {
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
 		
-		List<Object> queryList = new ArrayList<>();
+		String sql = " UPDATE JUGIYO_ORDER "
+					+" SET STATUS = '접수완료' "
+					+" WHERE SEQ_ORDER = '"+seq_order+"' ";
 		
-		queryList.add(seq_store);
+		int count = 0;
 		
-		return DBConnection.executeUpdates(sql, queryList);
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("2/6 S writebbs");
+			psmt = conn.prepareStatement(sql);
+			System.out.println("3/6 S writebbs");
+			rs = psmt.executeQuery();
+			count = psmt.executeUpdate();
+			System.out.println("5/6 S writebbs");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBConnection.close(conn, psmt, rs);
+			System.out.println("6/6 S writebbs");
+		}
+		return count>0?true:false;
 	}
 
 	@Override
@@ -243,12 +259,6 @@ public class OrderDao implements IOrderDao {
 			System.out.println("6/6 S getcustorderlist");
 		}
 		return list;
-	}
-
-	@Override
-	public List<OrderDto> getOrderList(int seq_order) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 }

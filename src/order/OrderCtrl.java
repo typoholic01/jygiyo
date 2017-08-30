@@ -27,5 +27,9 @@ public class OrderCtrl {
 		List<OrderDto> list = serv.getOrderList_boss(seq_store);
 		return list;
 	}
+	public boolean deleteOrder(int seq_order) {
+		boolean b = serv.deleteOrder(seq_order);
+		return b;
+	}
 
 }

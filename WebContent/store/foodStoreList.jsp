@@ -14,6 +14,9 @@
     	String name = request.getParameter("name");
     	String serchpage_temp = request.getParameter("serchpage");
     	String address = request.getParameter("address");
+    	if(address.equals("어느동네?") || address.equals("")){
+    		address = "all";
+    	}
     	System.out.println("넘어온 주소는? = " + address);
     	int serchpage = 0;
     	if(serchpage_temp == null){
@@ -106,7 +109,7 @@ h3 {
 	<td><a href="foodStoreList.jsp?name=0&address=<%=address %>">
 	<table>
 	<tr>
-	<th><img src="../image/all_mini.jpg" width="80px" height="80px"></th>
+	<th><img src="../image/all_mini.png" width="80px" height="80px"></th>
 	</tr>
 	<tr>
 	<th>전체매뉴</th>
@@ -117,7 +120,7 @@ h3 {
 	<td><a href="foodStoreList.jsp?name=1&address=<%=address %>">
 	<table>
 	<tr>
-	<th><img src="../image/chicken_mini.jpg" width="80px" height="80px"></th>
+	<th><img src="../image/chicken_mini.png" width="80px" height="80px"></th>
 	</tr>
 	<tr>
 	<th>치킨</th>
@@ -129,7 +132,7 @@ h3 {
 	<a href="foodStoreList.jsp?name=2&address=<%=address %>">
 	<table>
 	<tr>
-	<th><img src="../image/jjajang_mini.jpg" width="80px" height="80px"></th>
+	<th><img src="../image/jjajang_mini.png" width="80px" height="80px"></th>
 	</tr>
 	<tr>
 	<th>중국집</th>
@@ -140,7 +143,7 @@ h3 {
 	<td><a href="foodStoreList.jsp?name=3&address=<%=address %>">
 	<table>
 	<tr>
-	<th><img src="../image/pizza_mini.jpg" width="80px" height="80px"></th>
+	<th><img src="../image/pizza_mini.png" width="80px" height="80px"></th>
 	</tr>
 	<tr>
 	<th>피자</th>
@@ -151,7 +154,7 @@ h3 {
 	<td><a href="foodStoreList.jsp?name=4&address=<%=address %>">
 	<table>
 	<tr>
-	<th><img src="../image/hansik_mini.jpg" width="80px" height="80px"></th>
+	<th><img src="../image/hansik_mini.png" width="80px" height="80px"></th>
 	</tr>
 	<tr>
 	<th>한식</th>
@@ -162,7 +165,7 @@ h3 {
 	<td><a href="foodStoreList.jsp?name=5&address=<%=address %>">
 	<table>
 	<tr>
-	<th><img src="../image/bun_mini.jpg" width="80px" height="80px"></th>
+	<th><img src="../image/bun_mini.png" width="80px" height="80px"></th>
 	</tr>
 	<tr>
 	<th>분식</th>
@@ -173,7 +176,7 @@ h3 {
 	<td><a href="foodStoreList.jsp?name=6&address=<%=address %>">
 	<table>
 	<tr>
-	<th><img src="../image/pig_mini.jpg" width="80px" height="80px"></th>
+	<th><img src="../image/pig_mini.png" width="80px" height="80px"></th>
 	</tr>
 	<tr>
 	<th>족발,보쌈</th>
@@ -184,7 +187,7 @@ h3 {
 	<td><a href="foodStoreList.jsp?name=7&address=<%=address %>">
 	<table>
 	<tr>
-	<th><img src="../image/jj_mini.jpg" width="80px" height="80px"></th>
+	<th><img src="../image/jj_mini.png" width="80px" height="80px"></th>
 	</tr>
 	<tr>
 	<th>일식</th>
@@ -195,7 +198,7 @@ h3 {
 	<td><a href="foodStoreList.jsp?name=8&address=<%=address %>">
 	<table>
 	<tr>
-	<th><img src="../image/dosirak_mini.png" width="80px" height="80px"></th>
+	<th><img src="../image/dosirak_mmini.png" width="80px" height="80px"></th>
 	</tr>
 	<tr>
 	<th>도시락</th>
@@ -206,7 +209,7 @@ h3 {
 	<td><a href="foodStoreList.jsp?name=9&address=<%=address %>">
 	<table>
 	<tr>
-	<th><img src="../image/fastfood_mini.png" width="80px" height="80px"></th>
+	<th><img src="../image/fastfood_mmini.png" width="80px" height="80px"></th>
 	</tr>
 	<tr>
 	<th>패스트푸드</th>
@@ -272,7 +275,7 @@ for(int j=0; j<3; j++){
 	<a href="../foodstore/storemenu.jsp?seq=<%=list.get(temp).getSeq_store() %>&address=<%=address %>">
 	<div class="task-list" id="pending">
 	<div align="center"><br>
-  	<img src="../upload/img/<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
+  	<img src="../uploadimg/<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
   	</div>
  	 <div class="todo-task">
      <div class="task-header"><%=list.get(temp).getTitle() %></div>
@@ -323,7 +326,7 @@ if(number2 !=0){
 if(paging > 0){
 for(int i=0; i<paging; i++){
 %>
-<a href = "../foodStoreList.jsp?serchpage=<%=i+1 %>&name=<%=name %>&address=<%=address %>"><%=i+1 %></a>
+<a href = "foodStoreList.jsp?serchpage=<%=i+1 %>&name=<%=name %>&address=<%=address %>"><%=i+1 %></a>
 <%
 }
 }
