@@ -186,7 +186,8 @@ private static FoodStoreDao foodStoreDao = null;
 		String columnSql = "SEQ_STORE, BOSS_ID, CATEGORY, "
 				+ "TITLE, CONTENT, address, IMG_URL";
 		String sql = " SELECT "+columnSql+" FROM JUGIYO_FOOD_STORE "
-					+ "	WHERE BOSS_ID = ? ";
+				+ "	WHERE BOSS_ID = ? "
+				+ "	AND status != 'delete'";
 		
 		List<FoodStoreDto> list = new ArrayList<>();
 		
@@ -299,9 +300,14 @@ private static FoodStoreDao foodStoreDao = null;
 	}
 
 	@Override
-	public boolean deleteFoodStore(int seq_store) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteFoodStore(FoodStoreDto shop) {
+		String sql = "UPDATE JUGIYO_FOOD_STORE "
+				+ " SET STATUS = 'delete'"
+				+ "	WHERE SEQ_STORE = ?";
+		
+		Object query = shop.getSeq_store();
+		
+		return DBConnection.executeUpdate(sql, query);
 	}
 
 }

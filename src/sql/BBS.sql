@@ -15,6 +15,9 @@ CREATE TABLE JUGIYO_BBS (
     REFERENCES JUGIYO_FOOD_STORE(SEQ_STORE)
 );
 
+보스오더
+푸드스토어리스트
+쇼핑 파이널
 drop table JUGIYO_BBS
 
 delete from JUGIYO_BBS

@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
+<% 
 Object bologin = session.getAttribute("blogin");
 BossDto boss = null;
 boss = (BossDto)bologin;

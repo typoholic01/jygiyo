@@ -4,9 +4,9 @@
 <%@page import="bbs.BbsDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-    <% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,7 +24,6 @@
 <script type="text/javascript">
 /* 아작스를 이용해 코멘트를 뿌려준다 */
 $(document).ready(function() {	
-	getFoodList();
 	getBbsList();
     $("[data-toggle=tooltip]").tooltip();
 });		
@@ -52,33 +51,6 @@ function getBbsList() {
         },
         success : function(data) {
           $('#commentView').html(data);
-        }
-	});
-}
-function getFoodList() {
-	var seq_store = $("#seq_store").val();
-	
-	var p = "${param.p}";
-	
-	if (p == "") {
-		p = 1;
-	}
-	
-	var currPage = p;	
-	
-	$.ajax({ 
-		type : "GET",
-		url:"../shop/food/list",
-		data:
-			{
-				"seq":seq_store
-			},
-        error : function() {
-          alert('통신실패!!');
-        },
-        success : function(data) {
-        	console.log('통신성공!');
-          $('#foodView').html(data);
         }
 	});
 }
@@ -123,19 +95,9 @@ function getFoodList() {
 </style>
 </head>
 <body>
-<!--------------------------------------  
-
-list로 접근시 사장 페이지와 고객 페이지를 아예 분할시켜서 출력을 다르게 줄 것!
-
---------------------------------------->
-
 <input type="hidden" id="seq_store" value="${param.seq }" />
-<a href="../account/logout.jsp">로그아웃</a>
 
 <div align="center">
-<div id="foodView">
-
-</div>
 <div id="commentView">
 
 </div>

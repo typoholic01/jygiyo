@@ -14,7 +14,7 @@
 	<c:forEach items="${shopList}" var="shop">
 		<tr>
 			<td>${shop.seq_store }</td>
-			<td><a href="${pageContext.request.contextPath}/foodstore/detail.jsp?seq=${shop.seq_store }">${shop.title }</a></td>
+			<td><a href="${pageContext.request.contextPath}/foodstore/shop.jsp?seq=${shop.seq_store }">${shop.title }</a></td>
 			<td>${shop.content }</td>
 			<td><a href="./menu.jsp?seq=${shop.seq_store }&title=${shop.title }">추가</a></td>
 			<td><input type="button" value="폐점" onclick="deleteShop(${shop.seq_store })" /></td>

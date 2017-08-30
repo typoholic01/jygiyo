@@ -14,10 +14,12 @@
 </head> 
 <body>
 <% 
+	String address = request.getParameter("address");
 	String pop = request.getParameter("pop");
 	String count = request.getParameter("count");
 	String ostore_seq = request.getParameter("store_seq");
 	int store_seq = Integer.parseInt(ostore_seq);
+	
 	if(count == null){
 	String food_name = request.getParameter("food_name");
 	String ofood_price = request.getParameter("food_price");
@@ -27,7 +29,7 @@
 	int seq_food = Integer.parseInt(ofood_seq);
 	int food_price = Integer.parseInt(ofood_price);
 	int food_count = Integer.parseInt(ofood_count);
-	//
+	
 	Object ologin = session.getAttribute("login");
 	CustomerDto cust = null;
 	if(ologin != null){
@@ -121,7 +123,7 @@
 	if(pop == null){
 %>
 <script type="text/javascript">
-	location.href = "./storemenu.jsp?seq=<%=store_seq %>";
+	location.href = "./menumain.jsp?seq=<%=store_seq %>&address=<%=address %>";
 </script>
 <%
 }else{

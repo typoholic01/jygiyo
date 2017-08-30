@@ -12,7 +12,8 @@ public interface IFoodStoreDao {
 	public int getallcount(String category);
 	public List<FoodStoreDto> getCategoryFoodStoreList(String category);
 	public boolean modifyFoodStore(int seq_store);
-	public boolean deleteFoodStore(int seq_store);
+
+	boolean deleteFoodStore(FoodStoreDto shop);
 	
 
 }

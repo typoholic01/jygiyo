@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import db.DBConnection;
-import foodStore.FoodStoreDto;
 import jdbc.DBConn;
 
 public class OrderDao implements IOrderDao {

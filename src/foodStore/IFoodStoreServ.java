@@ -12,4 +12,5 @@ public interface IFoodStoreServ {
 	
 	public int getallcount(String category);
 	public FoodStoreDto getFoodStore(int seq_store);
+	public boolean deleteFoodStore(FoodStoreDto shop);
 }
