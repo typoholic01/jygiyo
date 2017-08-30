@@ -272,7 +272,7 @@ for(int j=0; j<3; j++){
 	<a href="../foodstore/storemenu.jsp?seq=<%=list.get(temp).getSeq_store() %>&address=<%=address %>">
 	<div class="task-list" id="pending">
 	<div align="center"><br>
-  	<img src="../uploadimg/<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
+  	<img src="../upload/img/<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
   	</div>
  	 <div class="todo-task">
      <div class="task-header"><%=list.get(temp).getTitle() %></div>

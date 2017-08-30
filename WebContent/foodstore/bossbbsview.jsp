@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
     <% request.setCharacterEncoding("utf-8"); %>
+<!-- bossbbsview -->
 <div class="container">
 	<div class="table-responsive">          
 	<table id="view" class="table">
@@ -30,20 +31,18 @@
 					<c:if test="${bbs.img_url != null}">				
 						<img src="${pageContext.request.contextPath}/upload/img/${bbs.img_url}" alt="" width="300px" />
 					</c:if>
+					<!-- 수정, 삭제, 댓글 표시 -->
 					<form id="${bbs.seq_bbs }" onsubmit="return false;" >
 					<!-- 수정/댓글 페이지. 기본적으로 hidden -->
 					<div class="${bbs.seq_bbs }" style="display:none;">								
 						<div class="form-group">
-							<!-- <label class="wr_secret">수정</label> -->
 						</div>
 						<div class="form-group">
 							<textarea id="wr_content" name="comments" maxlength="10000" rows="5" required="" class="form-control" title="내용"></textarea>
 						</div>
 						<div class="form-group">
-							<c:if test="${login != null }">
 							<!-- 수정버튼 -->
-							<button type="submit" id="btn_submit" class="btn btn-primary comment-submit" onclick="modifyComment(${bbs.seq_bbs })" ><i class="fa fa-pencil-square-o"></i> 수정 하기</button>
-							</c:if>
+							<button type="submit" id="btn_modify" class="btn btn-info comment-submit" onclick="modifyComment(${bbs.seq_bbs })" ><i class="fa fa-pencil-square-o"></i> 수정</button>
 							<c:if test="${blogin != null }">
 							<!-- 대댓글버튼 -->
 							<input type="hidden" name="seq_bbs" value="${bbs.seq_bbs }"/>
@@ -51,22 +50,22 @@
 							<input type="hidden" name="comment_id" value="${bbs.comment_id }" />
 							<input type="hidden" name="comments_group_no" value="${bbs.comments_group_no }" />
 							<input type="hidden" name="comments_reply" value="${bbs.comments_reply }" />
-							<button type="submit" id="btn_submit" class="btn btn-primary comment-submit" onclick="insertReply(${bbs.seq_bbs })" ><i class="fa fa-pencil-square-o"></i> 댓글 달기</button>
+							<button type="submit" id="btn_reply" class="btn btn-primary comment-submit" onclick="insertReply(${bbs.seq_bbs })" ><i class="fa fa-pencil-square-o"></i> 답변</button>
 							</c:if>
 						</div>
 					</div>				
 					<div align="right">
-					<c:if test="${login != null }">
-						<c:if test="${login.customer_id == bbs.comment_id }">			
+					<div>
+						<c:if test="${blogin.boss_id == bbs.comment_id }">			
 							<!-- 수정, 삭제버튼 -->
 							<input type="hidden" name="seq_bbs" value="${bbs.seq_bbs }"/>
-							<input type="button" value="수정" onclick="showModifyView(${bbs.seq_bbs })" />
-							<input type="button" value="삭제" onclick="deleteComment(${bbs.seq_bbs })" />
+							<button class="btn btn-info" onclick="showModifyView(${bbs.seq_bbs })">수정</button>
+							<button class="btn btn-danger" onclick="deleteComment(${bbs.seq_bbs })">삭제</button>
 						</c:if>
-					</c:if>
+					</div>
 					<c:if test="${blogin != null}">
-						<br />			
-							<input type="button" value="대댓글" onclick="showReplyView(${bbs.seq_bbs })" />
+						<br />		
+							<button class="btn btn-primary" onclick="showReplyView(${bbs.seq_bbs })">답변 달기</button>
 					</c:if>
 					</div>
 					</form>
@@ -91,7 +90,7 @@
 									<form id="${bbs.seq_bbs }" onsubmit="return false;" >	
 									<div style="    display: inline-block;    float: right;">
 									<input type="hidden" name="seq_bbs" value="${bbs.seq_bbs }"/>
-									<input type="button" value="삭제" onclick="deleteComment(${bbs.seq_bbs })" />	
+									<button class="btn btn-danger" onclick="deleteComment(${bbs.seq_bbs })">삭제</button>
 									</div>	
 									</form>						
 								</c:if>

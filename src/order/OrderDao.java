@@ -244,5 +244,11 @@ public class OrderDao implements IOrderDao {
 		}
 		return list;
 	}
+
+	@Override
+	public List<OrderDto> getOrderList(int seq_order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

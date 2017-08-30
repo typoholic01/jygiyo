@@ -16,4 +16,6 @@ public interface IOrderDao {
 
 	List<OrderDto> getOrderList(OrderDto dto);
 
+	List<OrderDto> getOrderList_boss(int seq_store);
+
 }

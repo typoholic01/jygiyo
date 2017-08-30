@@ -23,6 +23,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import bbs.BbsDto;
 import bbs.PaginationBeans;
 import boss.BossDto;
+import customer.CustomerDto;
 import foodStore.FoodStoreDto;
 import singleton.Delegate;
 
@@ -65,13 +66,12 @@ public class ShopBbsFrontController extends HttpServlet {
 		
 		switch (command) {		
 		case "/shop/bbs/list":
+			//변수 준비
 			bbsList = new ArrayList<>();
+			HttpSession session = req.getSession();
 			
-			//임시로 집어넣을 데이터
 			int seq = Integer.parseInt(req.getParameter("seq"));
 			int currPage = Integer.parseInt(req.getParameter("currPage"));
-			
-			System.out.println(currPage);
 			
 			//DB로부터 bbs데이터를 가져온다
 			bbsList = d.bbsCtrl.getBbsList(seq, currPage);
@@ -79,15 +79,23 @@ public class ShopBbsFrontController extends HttpServlet {
 
 			//데이터를 집어넣는다
 			req.setAttribute("bbsList", bbsList);	
-			req.setAttribute("paging", paging);				
-						
-			dispatch("/foodstore/bbsview.jsp", req, resp);				
+			req.setAttribute("paging", paging);
+			
+			//보내기
+			if (session.getAttribute("login") != null) {
+				//고객일 경우 customerbbsview로 보낸다
+				dispatch("/foodstore/customerbbsview.jsp", req, resp);							
+			} else if (session.getAttribute("blogin") != null) {
+				//사장일 경우 bossbbsview로 보낸다
+				dispatch("/foodstore/bossbbsview.jsp", req, resp);						
+			}	
 			break;
 		
 		case "/shop/bbs/reply/insert":
 			//변수 받아오기
 			seqBbs = Integer.parseInt(req.getParameter("seq_bbs"));
 			seq_store = Integer.parseInt(req.getParameter("seq_store"));
+			currPage = setCurrPage(req);
 			comment_id = req.getParameter("comment_id");
 			comments = req.getParameter("comments");
 			comments_reply = req.getParameter("comments_reply");
@@ -110,7 +118,7 @@ public class ShopBbsFrontController extends HttpServlet {
 			d.bbsCtrl.insertReply(bbs);
 			
 			//보내기
-			dispatch("/foodstore/bbsview.jsp", req, resp);	
+			dispatch("/shop/bbs/list?seq="+seqBbs+"&currPage="+currPage, req, resp);	
 			break;
 			
 		case "/shop/bbs/comment/insert":			
@@ -191,6 +199,7 @@ public class ShopBbsFrontController extends HttpServlet {
 		case "/shop/bbs/comment/delete":
 			//변수 받아오기
 			seqBbs = Integer.parseInt(req.getParameter("seq_bbs"));
+			currPage = setCurrPage(req);
 			
 			//객체 준비
 			bbs = new BbsDto();
@@ -201,12 +210,13 @@ public class ShopBbsFrontController extends HttpServlet {
 			d.bbsCtrl.deleteComment(bbs);
 			
 			//보내기
-			dispatch("/foodstore/bbsview.jsp", req, resp);	
+			dispatch("/shop/bbs/list?seq="+seqBbs+"&currPage="+currPage, req, resp);	
 			break;
 			
 		case "/shop/bbs/comment/modify":
-			//변수 받아오기
+			//변수 받아오기			
 			seqBbs = Integer.parseInt(req.getParameter("seq_bbs"));
+			currPage = setCurrPage(req);
 			comments = req.getParameter("comments");
 			
 			//객체 준비
@@ -219,7 +229,7 @@ public class ShopBbsFrontController extends HttpServlet {
 			d.bbsCtrl.modifyComment(bbs);
 			
 			//보내기
-			dispatch("/foodstore/bbsview.jsp", req, resp);	
+			dispatch("/shop/bbs/list?seq="+seqBbs+"&currPage="+currPage, req, resp);	
 			break;		
 		
 			
@@ -269,5 +279,14 @@ public class ShopBbsFrontController extends HttpServlet {
 			}		
 		}
 		return fileName;
+	}
+	
+	private int setCurrPage(HttpServletRequest req) {
+		int currPage = 1;
+		if (req.getParameter("currPage") != null) {
+			currPage = Integer.parseInt(req.getParameter("currPage"));
+		}
+		
+		return currPage;
 	}
 }

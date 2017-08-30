@@ -51,7 +51,7 @@ public String processUploadedFile(FileItem fileItem, String dir, JspWriter out)t
 
 // 개인폴더에 배포
 // String fupload = "f:\\upload";
-String fupload = "./uploadimg";
+String fupload = "F:/Dev/Programming/Semi3/jugiyo/WebContent/upload/img";
 
 System.out.println("fupload:" + fupload);
 

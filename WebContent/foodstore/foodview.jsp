@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>FoodView</h1>
 <!-- 
 <div class="container">
   <h2>미댓글 테이블</h2>
