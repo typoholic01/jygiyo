@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,6 +11,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bossmain.css">
+<link rel="stylesheet" href="../css/a.css"> 
 <script type="text/javascript">
 window.history.replaceState(null, '', "${pageContext.request.contextPath}/boss/bossmain.jsp");
 </script>
@@ -35,11 +37,21 @@ function getShopList() {
 </script>
 </head>
 <body>
-<div class="insertShop">
-<a href="./insertshop.jsp">가게 등록</a>
+<table style="    float: right;">
+	<tr>
+		<td align="center"><b>${blogin.boss_id }</b> 사장님 반갑습니다.</td>
+	</tr>
+	<tr>
+		<td>
+		<a href="../main.jsp">뒤로가기</a>
+		</td>
+	</tr>
+</table>
+<div class="insertShop" align="right" style="margin-right: 200px;">
+<a href="./insertshop.jsp"><button>가게 등록</button></a>
 </div>
-<h3>가게목록</h3>
+<h3 align="center">가게목록</h3>
 <div id="view">
-</div>
+
 </body>
 </html>

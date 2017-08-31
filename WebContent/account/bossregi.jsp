@@ -1,15 +1,47 @@
 <%@page import="boss.BossDao"%>
 <%@page import="boss.IBossDao"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../css/logregi.css">
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <style type="text/css">
+
 input[type=text] {
  padding: 5px;
  margin: 0px;
+ height: 50px;
+}
+
+#blbtnout{
+	background-color: grey;
+	color: white;						
+	width: 450px; 
+	height: 70px;
+	border: 0;
+}
+#blbtnover{
+	background-color: black;
+	color: white;						
+	width: 450px;
+	height: 70px;
+	border: 0;
+}
+#bregibtnout{
+	background-color: grey;
+	color: white;						
+	width: 83px; 
+	height: 60px;
+	border: 0;
+	
+}
+#bregibtnover{
+	background-color: black;
+	color: white;						
+	width: 83px;
+	height: 60px;
+	border: 0;
 }
 </style>
 <title>bossregi.jsp</title>
@@ -22,16 +54,18 @@ input[type=text] {
 
 <table>
 <tr>
-	<td>
-		<a href="../main.jsp"><img src="../image/bossregi.png" width="450"></a>
+	<td align="center">
+		<a href="../bmain.jsp"><img src="../image/logo4.png"></a>
 	</td>
+</tr>
+<tr height="40">
 </tr>
 <tr>
 	<td>
 		<input type="text" name="regi_id" onchange="idchange(this.form.regi_id.value)" size="45" placeholder="아이디 입력">
 		<input type="hidden" name="idcks" value="0">	
 		<input type="button" value="ID중복확인" onclick="idCheck(this.form.regi_id.value)"
-		id="regibtnout" onmouseover="this.id='regibtnover'" onmouseout="this.id='regibtnout'">
+		id="bregibtnout" onmouseover="this.id='bregibtnover'" onmouseout="this.id='bregibtnout'">
 </td>
 </tr>
 
@@ -54,11 +88,12 @@ input[type=text] {
 		<input type="text" name="phone" size="58" placeholder="전화번호 입력">
 	</td>	
 </tr>
-
+<tr height="15">
+</tr>
 <tr>
 	<td colspan="2">
 		<input type="button" value="회원가입" onclick="inPutCheck(this.form)"
-		id="lbtnout" onmouseover="this.id='lbtnover'" onmouseout="this.id='lbtnout'">
+		id="blbtnout" onmouseover="this.id='blbtnover'" onmouseout="this.id='blbtnout'">
 	</td>
 </tr>
 </table>

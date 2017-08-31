@@ -10,6 +10,7 @@ request.setCharacterEncoding("utf-8");
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="../css/a.css">
 <title>탈퇴</title>
 
 <style type="text/css">
@@ -168,7 +169,7 @@ if(bologin != null){%>
 		<input type="submit" value="회원탈퇴" id="lbtnout1" onmouseover="this.id='lbtnover1'"  onmouseout="this.id='lbtnout1'">
 	</td>
 	<td colspan="1">
-		<a href="./mydetail.jsp?id=<%=dto.getBoss_id()%>">
+		<a href="./bossinfodetail.jsp?id=<%=dto.getBoss_id()%>">
 			<input type="button" value="취소" id="lbtnout2" onmouseover="this.id='lbtnover2'" onmouseout="this.id='lbtnout2'">
 		</a>
 	</td>	

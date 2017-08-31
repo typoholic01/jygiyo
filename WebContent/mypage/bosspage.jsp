@@ -98,7 +98,7 @@ if(bologin != null){%>
 		<img src="../image/chef.png">
 	</td>
 	<td align="center">
-		<img src="../image/chef.png">
+		<img src="../image/update.png">
 	</td>	
 </tr>
 <tr>

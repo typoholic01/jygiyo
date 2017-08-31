@@ -18,7 +18,6 @@
 <script src="${pageContext.request.contextPath}/js/detail.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/foodview.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/detail.css">
 <title>bbslist.jsp</title>
 <script type="text/javascript">

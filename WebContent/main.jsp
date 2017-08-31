@@ -12,6 +12,27 @@
 	font-size: 12px;
 	margin-right: 180px;
 }
+input[type=text] {
+ padding: 5px;
+ margin: 0px;
+ height: 25px;
+}
+#btnout{
+	background-color: grey;
+	color: white;						
+	width: 83px; 
+	height: 37.5px;
+	border: 0;
+	
+}
+#btnover{
+	background-color: black;
+	color: white;						
+	width: 83px;
+	height: 37.5px;
+	border: 0;
+}
+
 #info {
 background-color: white;
 clear: both;
@@ -32,7 +53,8 @@ height: 120px;
 %>
 </head>
 <body>
-<div align="center">
+
+<div align="center" style="background-color: white">
 
 <form action="">
 <div align="right" id="menubar">
@@ -57,12 +79,27 @@ if(ologin == null && bologin == null){%>
 <%} %>
 </div>
 
-<a href="main.jsp"><img src="./image/logo.png" alt="저기요"></a>
+<a href="main.jsp"><img src="./image/logo3.png" alt="저기요"></a>
 <p>※주소검색 후 완료 버튼을 눌러주세요.(지번을 선택하면 더 정확합니다!)</p><br>
-<input type="button" onclick="sample4_execDaumPostcode()" value="주소검색">
-<input type="text" id="sample4_jibunAddress" placeholder="<%=address %>" name="value">
-<input type="submit" value="완료">
-<span id="guide" style="color:#999"></span>
+<table>
+<tr>
+	<td>
+		<input type="button" onclick="sample4_execDaumPostcode()" value="주소검색" id="btnout"
+		onmouseover="this.id='btnover'" onmouseout="this.id='btnout'">
+	</td>
+	<td>
+		<input type="text" id="sample4_jibunAddress" placeholder="<%=address %>" name="value">
+	</td>
+	<td>
+		<input type="submit" value="완료" id="btnout"
+		onmouseover="this.id='btnover'" onmouseout="this.id='btnout'">
+		<span id="guide" style="color:#999"></span>
+	</td>
+
+
+</tr>
+
+</table>
 <script>
 function sample4_execDaumPostcode() {
     new daum.Postcode({
@@ -118,7 +155,7 @@ function sample4_execDaumPostcode() {
 <%
 if(!address.equals("어느동네?")){
 %>
-<p><%=address %> 이(가) 선택되었습니다. 이제 매뉴를 선택해 주세요!</p>
+<p><%=address %> 이(가) 선택되었습니다. 이제 메뉴를 선택해 주세요!</p>
 <%
 }
 %>
@@ -197,6 +234,7 @@ if(!address.equals("어느동네?")){
 </table>
 <div id="info">
 </div>
+
 <script type="text/javascript">
 function mover() {
 	var m;

@@ -136,9 +136,9 @@ if(bologin != null){%>
 		</a>
 	</td>
 	<td colspan="2">
-		<a href="./bossmyreview.jsp">	
-			<input type="button" value="리뷰 관리" id="lbtnout"
-				onmouseover="this.id='lbtnover'" onmouseout="this.id='lbtnout'">	
+		<a href="../boss/bossmain.jsp">	
+			<input type="button" value="업체정보 수정" id="lbtnout"
+				onmouseover="this.id='lbtnover'" onmouseout="this.id='lbtnout'">
 		</a>
 	</td>
 </tr>
@@ -195,7 +195,7 @@ if(bologin != null){%>
 		</a>
 	</td> --%>
 	<td colspan="1" align="center">
-		<a href="./mydetail.jsp?id=<%=boss.getBoss_id()%>">
+		<a href="./bossinfodetail.jsp?id=<%=boss.getBoss_id()%>">
 			<input type="button" value="취소" id="lbtnout2" onmouseover="this.id='lbtnover2'" onmouseout="this.id='lbtnout2'">
 		</a>
 	</td>			

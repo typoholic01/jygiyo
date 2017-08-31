@@ -15,7 +15,11 @@
 <body>
 <% 
 String address = request.getParameter("address");
-int seq = Integer.parseInt(request.getParameter("seq"));
+String oseq = request.getParameter("seq");
+int seq = 0;
+if(oseq != null){
+seq = Integer.parseInt(oseq);
+}
 %>
 <% 
 	String pop = request.getParameter("pop");
@@ -42,7 +46,7 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 	%>
 		<script type="text/javascript">
 		alert("주문완료!!");
-		location.href = './menumain.jsp?seq=<%=seq %>&address=<%=address %>';
+		location.href = '../shoping.jsp?pop=pop';
 		</script>
 	<%
 	}else{
@@ -54,12 +58,19 @@ int seq = Integer.parseInt(request.getParameter("seq"));
 	<%
 	}
 	}else{
+		if(pop != null){
 	%>
+		<script type="text/javascript">
+		alert("주문실패 ㅠㅠ");
+		location.href = '../shoping.jsp?pop=pop';
+		</script>
+	<% }else{ %>
 		<script type="text/javascript">
 		alert("주문실패 ㅠㅠ");
 		location.href = './menumain.jsp?seq=<%=seq %>&address=<%=address %>';
 		</script>
 	<%
+	}
 	}
 	%>
 

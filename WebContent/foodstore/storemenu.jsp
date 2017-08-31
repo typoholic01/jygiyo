@@ -7,6 +7,73 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <title>Insert title here</title>
+<style type"text/css">
+.menu A:link {text-decoration:none; color:white;}
+.menu A:visited {text-decoration:none; color:white;}
+.menu A:active {text-decoration:none; color:orange;}
+.menu A:hover {text-decoration:none; color:orange;}
+.list A:link {text-decoration:none; color:black;}
+.list A:visited {text-decoration:none; color:black;}
+.list A:active {text-decoration:none; color:black;}
+.list A:hover {text-decoration:none; color:black;}
+#info {
+background-color: white;
+clear: both;
+width : 1500px;
+height: 120px;
+padding-top: 20px;
+font-size : 12px;
+padding-left: 165px;
+}
+.task-list {
+  width: 250px;
+  float: left;
+  margin: 0 5px;
+  background-color: #e3e3e3;
+  min-height: 240px;
+  border-radius: 10px;
+  padding-bottom: 15px;
+}
+.task-list input, .task-list textarea {
+  width: 240px;
+  margin: 1px 5px;
+}
+.task-list input {
+  height: 30px;
+}
+.todo-task {
+  border-radius: 5px;
+  background-color: #fff;
+  width: 230px;
+  margin: 5px;
+  padding: 5px;
+}
+.task-list input[type="button"] {
+  width: 100px;
+  margin: 5px;
+}
+.todo-task > .task-header {
+  font-weight: bold;
+}
+.todo-task > .task-date {
+  font-size: small;
+  font-style: italic;
+}
+.todo-task > .task-description {
+  font-size: smaller;
+}
+h3 {
+  text-align: center;
+}
+#delete-div {
+  background-color: #fff;
+  border: 3px dotted #000;
+  margin: 10px;
+  height: 75px;
+  line-height: 75px;
+  text-align: center;
+}
+</style>
 </head>
 <% 
 Object blogin = session.getAttribute("blogin");
@@ -42,10 +109,10 @@ function goMain() {
 <c:param name="address">${param.address }</c:param>
 </c:import>
 </div>
-	<div id="menumain.jsp">
-	<iframe src="./menumain.jsp?seq=${param.seq }&address=${param.address }" frameborder="0" width="100%" height="450px" scrolling="no">
-	</iframe>
-<%-- 		<c:import url="./menumain.jsp">
+	<div id="menumain.jsp" style="width:100%; height:600px;">
+ 	<iframe src="./menumain.jsp?seq=${param.seq }&address=${param.address }" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" style="height: 750px; width: 100%">
+	</iframe> 
+<%-- 	<c:import url="./menumain.jsp">
 		<c:param name="seq">${param.seq }</c:param>
 		<c:param name="address">${param.address }</c:param>
 	</c:import> --%>

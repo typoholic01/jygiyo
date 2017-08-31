@@ -2,12 +2,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../css/logregi.css">
+
 <title>저기요 일반 회원가입</title>
 <style type="text/css">
 input[type=text] {
  padding: 5px;
  margin: 0px;
+ height: 50px;
+}
+
+#lbtnout{
+	background-color: grey;
+	color: white;						
+	width: 450px; 
+	height: 70px;
+	border: 0;
+}
+#lbtnover{
+	background-color: black;
+	color: white;						
+	width: 450px;
+	height: 70px;
+	border: 0;
+}
+#regibtnout{
+	background-color: grey;
+	color: white;						
+	width: 83px; 
+	height: 60px;
+	border: 0;
+	
+}
+#regibtnover{
+	background-color: black;
+	color: white;						
+	width: 83px;
+	height: 60px;
+	border: 0;
 }
 </style>
 </head>
@@ -19,14 +50,17 @@ input[type=text] {
 
 <table>
 <tr>
-	<td>
-		<a href="../main.jsp"><img src="../image/regi.png" width="450"></a>
+	<td align="center">
+		<a href="../main.jsp"><img src="../image/logo3.png"></a>
 	</td>
 </tr>
+<tr height="40">
+</tr>
+<tr>
 	<td>
 		<input type="text" name="id" onchange="idchange(this.form.id.value)" size="45" placeholder="아이디 입력">
 		<input type="hidden" name="idcks" value="0">
-		<input type="button" value="ID중복확인" onclick="idCheck(this.form.id.value)"
+		<input type="button" value="ID중복확인" onclick="idCheck(this.form.id.value)" 
 		id="regibtnout" onmouseover="this.id='regibtnover'" onmouseout="this.id='regibtnout'">
 	</td>	
 </tr>
@@ -57,7 +91,8 @@ input[type=text] {
 		<input type="text" name="address" size="58" placeholder="주소 입력">
 	</td>
 </tr>
-
+<tr height="15">
+</tr>
 <tr>
 	<td colspan="2">
 		<input type="button" value="회원가입" onclick="inPutCheck(this.form)"

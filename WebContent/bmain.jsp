@@ -143,7 +143,9 @@ input[type=password] {
 <col width="90"><col width="90"><col width="90"><col width="90"><col width="90">
 <tr>
 	<td align="left" colspan="3">
-		<img src="./image/logo4.png">
+		<a href="./bmain.jsp">
+			<img src="./image/logo4.png">
+		</a>
 	</td>
 	<td valign="bottom" colspan="4">
 		<div align="right" id="menubar" >
@@ -154,10 +156,10 @@ input[type=password] {
 		boss = (BossDto)bologin;
 		
 		if(bologin == null && bologin == null){%>
-			<a href="bmain.jsp">사장님 사이트</a> | <a href="./account/bosslogin.jsp">가맹점 로그인</a> | <a href="./account/login.jsp">로그인</a> | <a href="./account/regi.jsp">일반 회원가입</a> | <a href="./account/bossregi.jsp">가맹점 회원가입</a>
+			<a href="./main.jsp">메인 홈</a> | <a href="./account/bosslogin.jsp">가맹점 로그인</a> | <a href="./account/login.jsp">로그인</a> | <a href="./account/regi.jsp">일반 회원가입</a> | <a href="./account/bossregi.jsp">가맹점 회원가입</a>
 		<%}else if(bologin !=null){%>
 			<b><%=boss.getBoss_id() %> 사장님 반갑습니다.</b>
-			<a href="./account/logout.jsp">로그아웃</a> | <a href="bmain.jsp">사장님 홈</a>
+			<a href="./account/logout.jsp">로그아웃</a> | <a href="./main.jsp">메인 홈</a>
 		<%}%>
 		</div>
 	</td>
@@ -180,9 +182,9 @@ input[type=password] {
 	<td colspan="7" rowspan="10">
 		<div id="s_banner_wrap">
 			<ul class="bxslider">
-		      <li class="banner_01"><img src="image/logo.png"/></li>
-		      <li class="banner_02"><img src="image/Allover.png" /></li>
-		      <li class="banner_03"><img src="image/logo4.png"/></li>
+		      <li class="banner_01"><img src="image/madein.png"/></li>
+		      <li class="banner_02"><img src="image/pig.png" /></li>
+		      <li class="banner_03"><img src="image/there.png"/></li>
 		    </ul>
 		</div>
 	</td>
@@ -208,7 +210,7 @@ input[type=password] {
 				<td id="menubar">
 				<input type="checkbox" id="cb_saveId">아이디 저장
 					<span style="float : right;">
-						<a href="#" class="">ID찾기</a> | <a href="account/bossregi.jsp">회원가입</a>
+						<!-- <a href="#" class="">ID찾기</a> |  --><a href="account/bossregi.jsp">회원가입</a>
 				</span>
 				</td>
 			</tr>
@@ -259,14 +261,20 @@ input[type=password] {
 		</a>
 	</td>
 	<td>
-		<input type="button" value="정산관리" id="lbtnout3" onmouseover="this.id='lbtnover3'" onmouseout="this.id='lbtnout3'">
+		<a href="./foodstore/revenue.jsp"><input type="button" value="정산관리" id="lbtnout3" onmouseover="this.id='lbtnover3'" onmouseout="this.id='lbtnout3'"></a>
 	</td>
 	<td>
-		<a href="boss_order.jsp">
-			<input type="button" value="주문내역확인" id="lbtnout3" onmouseover="this.id='lbtnover3'" onmouseout="this.id='lbtnout3'">
-		</a>	
-	</td>
-</tr>
+		<%if(bologin == null){ %>
+			<a href="boss_order.jsp">
+				<input type="button" value="주문내역확인" id="lbtnout3" onmouseover="this.id='lbtnover3'" onmouseout="this.id='lbtnout3'">
+			</a>
+			<%}else{ %>
+			<a href="boss_order.jsp?boss_id=<%=boss.getBoss_id() %>">
+				<input type="button" value="주문내역확인" id="lbtnout3" onmouseover="this.id='lbtnover3'" onmouseout="this.id='lbtnout3'">
+			</a>
+			<%} %>
+		</td>
+	</tr>
 </table>
 </div>
 <table>

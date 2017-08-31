@@ -87,18 +87,19 @@ a.no-uline { text-decoration:none }
 <%
 String boss_id = request.getParameter("id");
 
-BossDto blogin = (BossDto)session.getAttribute("blogin");
+Object bologin = session.getAttribute("blogin");
+BossDto boss = (BossDto)bologin;
 
 IBossDao dao = BossDao.getInstance();
 
-BossDto boss = dao.getDetail(boss_id);
+BossDto bossRe = dao.getDetail(boss_id);
 
 
 %>
 <div align="right" id="menubar">
 <%
 
-if(blogin != null){%>	
+if(bologin != null){%>	
 	<b><%=boss.getBoss_id() %> 사장님</b>
 	<a href="../account/logout.jsp" >로그아웃</a> | <a href="./bosspage.jsp" >마이페이지</a>
 <%} %>
@@ -134,8 +135,8 @@ if(blogin != null){%>
 		</a>
 	</td>
 	<td colspan="2">
-		<a href="./bossmyreview.jsp">	
-			<input type="button" value="리뷰 관리" id="lbtnout"
+		<a href="../boss/bossmain.jsp">	
+			<input type="button" value="업체정보 수정" id="lbtnout"
 				onmouseover="this.id='lbtnover'" onmouseout="this.id='lbtnout'">	
 		</a>
 	</td>
@@ -164,7 +165,7 @@ if(blogin != null){%>
 <tr>
 	<td><b>연락처</b></td>
 	<td colspan="2">
-		<%=boss.getPhone_number() %>
+		<%=bossRe.getPhone_number() %>
 	</td>	
 </tr>
 <tr height="20">

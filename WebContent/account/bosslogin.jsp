@@ -12,6 +12,12 @@
 input[type=text] {
  padding: 8px;
  margin: 0px;
+ height: 40px;
+}
+input[type=password] {
+ padding: 8px;
+ margin: 0px;
+ height: 40px;
 }
 #menubar{
 	font-size: 12px;
@@ -28,11 +34,12 @@ input[type=text] {
 <table>
 
 <tr>
-	<td>
-		<a href="../main.jsp"><img src="../image/bosslogin.png" width="450"></a>
+	<td align="center">
+		<a href="../bmain.jsp"><img src="../image/logo4.png""></a>
 	</td>
 </tr>
-
+<tr height="40">
+</tr>
 <tr>
 	<td>
 		<input type="text" name="boss_id" size="57" id="boss_id" placeholder="아이디 입력">
@@ -49,7 +56,7 @@ input[type=text] {
 	<td id="menubar">
 	<input type="checkbox" id="cb_saveId">아이디 저장
 		<span style="float : right;">
-			<a href="#">ID찾기</a>&nbsp; | <a href="bossregi.jsp">회원가입</a>
+			<!-- <a href="#">ID찾기</a>&nbsp; |  --><a href="bossregi.jsp">회원가입</a>
 		</span>
 	</td>
 </tr>
