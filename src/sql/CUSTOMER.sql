@@ -8,5 +8,5 @@ CREATE TABLE JUGIYO_CUSTOMER (
 );
 
 select * from JUGIYO_CUSTOMER;
-
+delete from JUGIYO_CUSTOMER
 update JUGIYO_CUSTOMER set USER_NAME = '문성환' where CUSTOMER_ID = '123'

@@ -7,6 +7,7 @@
 <%@page import="foodStore.FoodStoreDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <% request.setCharacterEncoding("utf-8"); %>
     <%
     	DBConn.initConnect();
@@ -98,135 +99,15 @@ h3 {
   text-align: center;
 }
 </style>
+
 </head>
 <body style="background-color: #FCEFDA;">
-<div style="background-color: white;" align="center">
-<a href="../main.jsp"><img src="../image/logo.png" alt="저기요" height="300px" width="350px"></a>
+<div id="header">
+<c:import url="../foodstore/header.jsp">
+<c:param name="address">${param.address }</c:param>
+</c:import>
 </div>
-<div style="background-color: black;">
-<table align="center" class="menu">
-<tr>
-	<td><a href="foodStoreList.jsp?name=0&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/all_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>전체매뉴</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="foodStoreList.jsp?name=1&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/chicken_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>치킨</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td>
-	<a href="foodStoreList.jsp?name=2&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/jjajang_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>중국집</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="foodStoreList.jsp?name=3&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/pizza_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>피자</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="foodStoreList.jsp?name=4&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/hansik_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>한식</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="foodStoreList.jsp?name=5&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/bun_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>분식</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="foodStoreList.jsp?name=6&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/pig_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>족발,보쌈</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="foodStoreList.jsp?name=7&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/jj_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>일식</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="foodStoreList.jsp?name=8&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/dosirak_mmini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>도시락</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="foodStoreList.jsp?name=9&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/fastfood_mmini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>패스트푸드</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-</tr>
-</table>
-</div><br>
-<div align="right">
-<select name="listselect">
-	<option selected="selected">기본정렬</option>
-	<option>리뷰많은순서</option>
-	<option>별점높은순서</option>
-</select>
-</div><br>
+<br>
 <%
 	String category = "";
 	Delegate d = Delegate.getInstance();
@@ -268,7 +149,7 @@ h3 {
 <%
 int temp = 0;
 for(int i=0; i<number; i++){
-%> 
+%>
 <tr>
 <%
 for(int j=0; j<3; j++){
@@ -277,12 +158,16 @@ for(int j=0; j<3; j++){
 	<a href="../foodstore/storemenu.jsp?seq=<%=list.get(temp).getSeq_store() %>&address=<%=address %>">
 	<div class="task-list" id="pending">
 	<div align="center"><br>
-  	<img src="../uploadimg/<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
+	<%if(list.get(temp).getImg_url() != null){ %>
+  	<img src="${pageContext.request.contextPath}/upload/img/<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
+  	<% }else{ %>
+  	<img src="../image/noimage.png" width="150px" height="150px">
+  	<% } %>
   	</div>
  	 <div class="todo-task">
      <div class="task-header"><%=list.get(temp).getTitle() %></div>
      <div class="task-date"><%=list.get(temp).getAddress() %></div>
-     <div class="task-description"> 
+     <div class="task-description">
      <% int count = d.bbsCtrl.getBbsCount(list.get(temp).getSeq_store());
      	int star_count = d.bbsCtrl.getBbsStarCount(list.get(temp).getSeq_store());%>
 	  리뷰갯수 : <%=count %> 개<br>
@@ -308,7 +193,11 @@ if(number2 !=0){
 	<a href="../foodstore/storemenu.jsp?seq=<%=list.get(temp).getSeq_store() %>&address=<%=address %>">
 	<div class="task-list" id="pending">
 	<div align="center"><br>
-  	<img src="../uploadimg/<%=list.get(temp).getImg_url() %>" width="230px" height="150px">
+  	<%if(list.get(temp).getImg_url() != null){ %>
+  	<img src="${pageContext.request.contextPath}/upload/img/<%=list.get(temp).getImg_url() %>" width="150px" height="150px">
+  	<% }else{ %>
+  	<img src="../image/noimage.png" width="150px" height="150px">
+  	<% } %>
   	</div>
   	<div class="todo-task">
    	 <div class="task-header"><%=list.get(temp).getTitle() %></div>

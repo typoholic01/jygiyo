@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -63,12 +64,12 @@ public class ShopBbsFrontController extends HttpServlet {
 		int comments_group_no;
 		List<BbsDto> bbsList;
 		BbsDto bbs;
+		HttpSession session = req.getSession();
 		
 		switch (command) {		
 		case "/shop/bbs/list":
 			//변수 준비
 			bbsList = new ArrayList<>();
-			HttpSession session = req.getSession();
 			
 			int seq = Integer.parseInt(req.getParameter("seq"));
 			int currPage = Integer.parseInt(req.getParameter("currPage"));
@@ -106,7 +107,7 @@ public class ShopBbsFrontController extends HttpServlet {
 			
 			bbs.setSeq_bbs(seqBbs);
 			bbs.setSeq_store(seq_store);
-			bbs.setId_category("고객");
+			bbs.setId_category(setCustomerCategory(session));
 			bbs.setComment_id(comment_id);
 			bbs.setComments(comments);
 			bbs.setImg_url(null);
@@ -123,8 +124,14 @@ public class ShopBbsFrontController extends HttpServlet {
 			
 		case "/shop/bbs/comment/insert":			
 			// file 데이터
-			String fupload = "F:/Dev/Programming/Semi3/jugiyo/WebContent/upload/img";
+			//하드
+			/*String fupload = "F:/Dev/Programming/Semi3/jugiyo/WebContent/upload/img";*/
+			//톰캣
+			ServletContext application = req.getServletContext();
+			String fupload = application.getRealPath("/upload/img");
 			String filename = "";
+			
+			System.out.println("실제주소: " + fupload);
 			
 			
 			//multipart 체크
@@ -176,14 +183,16 @@ public class ShopBbsFrontController extends HttpServlet {
 				} finally {
 					//Dto 준비
 					bbs = new BbsDto();
+										
 					bbs.setSeq_store(seq_store);
 					bbs.setComment_id(comment_id);
-					bbs.setId_category("customer");
+					bbs.setId_category(setCustomerCategory(session));
 					bbs.setComments(comments);
 					bbs.setStore_rating(Integer.parseInt(store_rating));
 					bbs.setComments_reply("-1");
 					bbs.setImg_url(filename);
 					bbs.setStatus("published");	
+					
 					
 					//삽입
 					d.bbsCtrl.insertBbs(bbs);
@@ -288,5 +297,16 @@ public class ShopBbsFrontController extends HttpServlet {
 		}
 		
 		return currPage;
+	}
+	
+	private String setCustomerCategory(HttpSession session) {
+		String category = "";
+		
+		if (session.getAttribute("login")  != null) {
+			category = "customer";
+		} else if (session.getAttribute("blogin")  != null) {
+			category = "boss";
+		}
+		return category;
 	}
 }

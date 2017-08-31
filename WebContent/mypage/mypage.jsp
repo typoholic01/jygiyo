@@ -110,7 +110,7 @@ if(ologin != null){%>
 		</a>
 	</td>
 	<td>
-		<a href="./myreview.jsp">	
+		<a href="./myreview.jsp?id=<%=cus.getCustomer_id()%>">	
 			<input type="button" value="리뷰 관리" id="lbtnout"
 				onmouseover="this.id='lbtnover'" onmouseout="this.id='lbtnout'">	
 		</a>

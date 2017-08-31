@@ -8,16 +8,47 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <title>Insert title here</title>
 </head>
-<c:if test="${blogin != null }">
+<% 
+Object blogin = session.getAttribute("blogin");
+Object login = session.getAttribute("login");
+
+if (blogin != null) {
+	
+%>
+	<script type="text/javascript">
+	alert("사장으로는 주문할 수 없습니다 고객 아이디로 로그인해주세요");
+	location.replace("${pageContext.request.contextPath}/bmain.jsp");
+	</script>
+<% 
+} else if (login == null) {
+%>
+	<script type="text/javascript">
+	alert("고객으로 로그인을 해주세요");
+	location.replace("${pageContext.request.contextPath}/main.jsp");
+	</script>
+<% } %>
 <script type="text/javascript">
-alert("사장으로는 주문할 수 없습니다 고객 아이디로 로그인해주세요");
-location.replace("${pageContext.request.contextPath}/bmain.jsp");
+function goMain() {
+	location.replace("${pageContext.request.contextPath}/main.jsp");
+	
+}
 </script>
-</c:if>
 <body>
+<%
+	String address = request.getParameter("address"); 
+%>
+<div id="header">
+<c:import url="./header.jsp">
+<c:param name="address">${param.address }</c:param>
+</c:import>
+</div>
 	<div id="menumain.jsp">
-	<iframe src="./menumain.jsp?seq=${param.seq }&address=${param.address }" frameborder="0" width="100%" height="900px" scrolling="no">
+	<iframe src="./menumain.jsp?seq=${param.seq }&address=${param.address }" frameborder="0" width="100%" height="450px" scrolling="no">
 	</iframe>
+<%-- 		<c:import url="./menumain.jsp">
+		<c:param name="seq">${param.seq }</c:param>
+		<c:param name="address">${param.address }</c:param>
+	</c:import> --%>
 	</div>
 <div>
 	<c:import url="./detail.jsp">

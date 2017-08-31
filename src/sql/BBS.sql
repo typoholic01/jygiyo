@@ -1,3 +1,7 @@
+<!-- 
+댓글에 delete 빼고 셀것
+-->
+
 CREATE TABLE JUGIYO_BBS (
     seq_bbs NUMBER(11) PRIMARY KEY,
     seq_store NUMBER(11) NOT NULL,

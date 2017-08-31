@@ -16,6 +16,8 @@ SELECT * FROM JUGIYO_FOOD_STORE;
 DROP TABLE JUGIYO_FOOD_STORE
 CASCADE CONSTRAINTS;
 
+delete from JUGIYO_FOOD_STORE
+
 CREATE SEQUENCE SEQ_JUGIYO_FOOD_STORE START WITH 1 INCREMENT BY 1;
 
 --셀렉트 테스트
@@ -36,5 +38,5 @@ alter table JUGIYO_FOOD_STORE add(status VARCHAR2(100));
 
 -- 업데이트
 update JUGIYO_FOOD_STORE 
-set status = 'open'
-where SEQ_STORE = 50;
+set address = '광주 광산구 명도동 169'
+where SEQ_STORE = 65;

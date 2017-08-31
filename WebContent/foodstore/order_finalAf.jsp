@@ -14,6 +14,10 @@
 </head>
 <body>
 <% 
+String address = request.getParameter("address");
+int seq = Integer.parseInt(request.getParameter("seq"));
+%>
+<% 
 	String pop = request.getParameter("pop");
 	Object oorder = session.getAttribute("order");
 	List<OrderDto> orderlist = new ArrayList<>();
@@ -38,14 +42,14 @@
 	%>
 		<script type="text/javascript">
 		alert("주문완료!!");
-		location.href = '../index.jsp?close=close';
+		location.href = './menumain.jsp?seq=<%=seq %>&address=<%=address %>';
 		</script>
 	<%
 	}else{
 	%>
 	<script type="text/javascript">
 		alert("주문완료!!");
-		location.href = '../index.jsp';
+		location.href = './menumain.jsp?seq=<%=seq %>&address=<%=address %>';
 	</script>
 	<%
 	}
@@ -53,7 +57,7 @@
 	%>
 		<script type="text/javascript">
 		alert("주문실패 ㅠㅠ");
-		location.href = '../index.jsp';
+		location.href = './menumain.jsp?seq=<%=seq %>&address=<%=address %>';
 		</script>
 	<%
 	}

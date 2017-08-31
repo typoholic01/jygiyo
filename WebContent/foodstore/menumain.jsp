@@ -5,12 +5,19 @@
 <%@page import="singleton.Delegate"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+<script type="text/javascript">
+function goMain() {
+	parent.goMain();
+	parent.DoSend();
+}
+</script>
 <style type="text/css"> 
     .menu a{cursor:pointer;}
     .menu .hide{display:none;}
@@ -65,13 +72,9 @@ padding-left: 165px;
 
 </head>
 <body style="background-color: #FCEFDA;">
-<div style="background-color: white;" align="center">
-<a href="../main.jsp"><img src="../image/logo.png" alt="저기요" height="300px" width="350px"></a>
-</div>
 <%
-	String seq_temp = request.getParameter("seq");
 	String address = request.getParameter("address");
-	int seq = Integer.parseInt(seq_temp);
+	int seq = Integer.parseInt(request.getParameter("seq"));
 	Delegate d = Delegate.getInstance();
 	List<FoodDto> list = d.foodCtrl.getFoodList(seq);
 	List<String> category = new ArrayList<>();
@@ -102,123 +105,9 @@ padding-left: 165px;
 	}
 	System.out.println("주소는??? >> " + address);
 %>
-<div style="background-color: black;">
-<table align="center" class="menu_1">
-<tr>
-	<td><a href="../store/foodStoreList.jsp?name=0&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/all_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>전체매뉴</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="../store/foodStoreList.jsp?name=1&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/chicken_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>치킨</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td>
-	<a href="../store/foodStoreList.jsp?name=2&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/jjajang_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>중국집</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="../store/foodStoreList.jsp?name=3&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/pizza_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>피자</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="../store/foodStoreList.jsp?name=4&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/hansik_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>한식</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="../store/foodStoreList.jsp?name=5&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/bun_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>분식</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="../store/foodStoreList.jsp?name=6&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/pig_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>족발,보쌈</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="../store/foodStoreList.jsp?name=7&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/jj_mini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>일식</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="../store/foodStoreList.jsp?name=8&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/dosirak_mmini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>도시락</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-	<td><a href="../store/foodStoreList.jsp?name=9&address=<%=address %>">
-	<table>
-	<tr>
-	<th><img src="../image/fastfood_mmini.png" width="80px" height="80px"></th>
-	</tr>
-	<tr>
-	<th>패스트푸드</th>
-	</tr>
-	</table>
-	</a>
-	</td>
-</tr>
-</table>
-</div><br><br>
+<br><br>
+<% if (category.size() != 0) { %>
+<% System.out.println("사이즈? "+category.size()); %>
 <table align="center" cellspacing="30">
 <tr>
 <th>
@@ -317,6 +206,8 @@ padding-left: 165px;
 	<td colspan="2" style="background-color: #E0FA5F;">총 가격 : <%=total %> 원</td>
 </tr>
 <form action="order_finalAf.jsp">
+<input type="hidden" name="seq" value="<%=seq %>">
+<input type="hidden" name="address" value="<%=address %>">
 <tr>
 	<td colspan="2" align="center">
 		<input type="submit" value="주문완료" style="width: 30em; height: 5em;">
@@ -328,6 +219,12 @@ padding-left: 165px;
 </th>
 </tr>
 </table>
+<% } %>
+<% if (category.size() == 0) { %>
+<div style="text-align: center;">
+<img src="${pageContext.request.contextPath}/image/open_soon.png" alt="" style="width: 25%;" />
+</div>
+<% } %>
 <script>
     // html dom 이 다 로딩된 후 실행된다.
     $(document).ready(function(){

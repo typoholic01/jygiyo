@@ -97,8 +97,8 @@
 						orderlist.get(number).getFood_size());
 			}else{
 				int temp_number = 0;
-				if(orderlist.get(number).getFood_count() == 0){
-					temp_number = 0;
+				if(orderlist.get(number).getFood_count() == 1){
+					temp_number = 1;
 				}else{
 					temp_number = orderlist.get(number).getFood_count() -1;
 				}

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,7 +18,24 @@
 %>
 </head>
 <body>
-<h3><%=title_store %></h3>
+<div class="container">
+<div class="row">
+<div class="col-sm-3">
+<h1><%=title_store %></h1>
+</div>
+<div class="col-sm-4 col-sm-offset-8">
+<span><a href="./bossmain.jsp">돌아가기</a></span>
+</div>
+</div>
+<div id="food" class="row">
+	<c:import url="../foodstore/foodview.jsp">
+	<c:param name="seq">${param.seq }</c:param>
+	</c:import>
+</div>
+<br />
+<br />
+<div class="row">
+<div class="col-sm-10">
 <form action="./menuupload.jsp" method="post" enctype="multipart/form-data">
 <input type="hidden" name="seq_store" value="<%=seq_store %>">
 <table class="table table-hover">
@@ -66,5 +85,8 @@
 </tr>
 </table>
 </form>
+</div>
+</div>
+</div>
 </body>
 </html>

@@ -83,9 +83,9 @@ public class BossDao implements IBossDao{
 
 	public BossDto checkLogin(BossDto dto) {
 			
-			String sql = " SELECT BOSS_ID, USER_NAME,PASSWORD, PHONE_NUMBER, STATUS "
+			String sql = " SELECT BOSS_ID, USER_NAME, PASSWORD, PHONE_NUMBER, STATUS "
 					+ " FROM JUGIYO_BOSS "
-					+ " WHERE BOSS_ID=? AND PASSWORD=? ";
+					+ " WHERE BOSS_ID=? AND PASSWORD=? AND STATUS=0 ";
 			
 			Connection conn = null;
 			PreparedStatement psmt = null;
@@ -107,8 +107,9 @@ public class BossDao implements IBossDao{
 				
 				while(rs.next()){
 					String id = rs.getString(1);
-					String pwd = rs.getString(2);
-					String name = rs.getString(3);
+					String name = rs.getString(2);
+					String pwd = rs.getString(3);
+					
 					String phone = rs.getString(4);
 					String status = rs.getString(5);
 					
@@ -155,7 +156,8 @@ public class BossDao implements IBossDao{
 	}
 
 	@Override
-	public boolean modifyInfomation(String boss_id, String password, String phone_number) {
+	public boolean modifyInfomation(String boss_id, String phone_number, String password) {
+		
 		String sql = " UPDATE JUGIYO_BOSS SET "
 				+ " PASSWORD=?, PHONE_NUMBER=? "
 				+ " WHERE BOSS_ID=? ";
@@ -173,6 +175,7 @@ public class BossDao implements IBossDao{
 			psmt.setString(1, password.trim());
 			psmt.setString(2, phone_number.trim());
 			psmt.setString(3, boss_id.trim());
+			
 			log("3/6 S modifyInfomation");
 			
 			count = psmt.executeUpdate();	
@@ -191,7 +194,8 @@ public class BossDao implements IBossDao{
 
 	@Override
 	public boolean deleteInfomation(String boss_id) {
-		String sql = " DELETE from JUGIYO_BOSS "
+		String sql = " UPDATE JUGIYO_BOSS SET "
+				+ " STATUS=1 "
 				+ " WHERE BOSS_ID=? ";
 		
 		Connection conn = null;
@@ -224,7 +228,7 @@ public class BossDao implements IBossDao{
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
-		String sql = " SELECT BOSS_ID, USER_NAME,PHONE_NUMBER,PASSWORD,STATUS "
+		String sql = " SELECT BOSS_ID, USER_NAME,PASSWORD,PHONE_NUMBER,STATUS "
 				+ " FROM JUGIYO_BOSS"
 				+ " WHERE BOSS_ID=? ";
 		
@@ -250,7 +254,7 @@ public class BossDao implements IBossDao{
 						rs.getString(i++),
 						rs.getString(i++));
 			}
-			System.out.println("5/6 S getBbsList");
+			System.out.println("5/6 S getDetail");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

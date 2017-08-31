@@ -46,11 +46,11 @@ public String processUploadedFile(FileItem fileItem, String dir, JspWriter out)t
 
 <%
 // tomcat에 배포
-//String fupload = application.getRealPath("/upload");
+String fupload = application.getRealPath("/upload/img");
 
 // 개인폴더에 배포
 // String fupload = "f:\\upload";
-String fupload = "F:/Dev/Programming/Semi3/jugiyo/WebContent/upload/img";
+//String fupload = "F:/Dev/Programming/Semi3/jugiyo/WebContent/upload/img";
 
 System.out.println("fupload:" + fupload);
 

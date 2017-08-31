@@ -118,7 +118,7 @@ public class CustomerDao implements ICustomerDao{
 		
 		String sql = " SELECT CUSTOMER_ID,PASSWORD, USER_NAME, PHONE_NUMBER, ADDRESS, STATUS "
 				+ " FROM JUGIYO_CUSTOMER "
-				+ " WHERE CUSTOMER_ID=? AND PASSWORD=? ";
+				+ " WHERE CUSTOMER_ID=? AND PASSWORD=? AND STATUS=0 ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -197,7 +197,8 @@ public class CustomerDao implements ICustomerDao{
 
 	public boolean deleteInfomation(String customer_id) {
 		
-		String sql = " DELETE from JUGIYO_CUSTOMER "
+		String sql = " UPDATE JUGIYO_CUSTOMER SET "
+				+ " STATUS=1 "
 				+ " WHERE CUSTOMER_ID=? ";
 		
 		Connection conn = null;
