@@ -252,6 +252,12 @@ input[type=password] {
 </tr>
 </table>
 <div align="center">
+<% 
+Object blogin = session.getAttribute("blogin");
+
+if (blogin != null) {
+	
+%>
 <table border="0" width="900">
 
 <tr>
@@ -276,6 +282,9 @@ input[type=password] {
 		</td>
 	</tr>
 </table>
+<% 
+}
+%>
 </div>
 <table>
 <tr height="20">

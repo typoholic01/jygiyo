@@ -86,7 +86,6 @@
 									<form id="${bbs.seq_bbs }" onsubmit="return false;" >	
 									<div style="    display: inline-block;    float: right;">
 									<input type="hidden" name="seq_bbs" value="${bbs.seq_bbs }"/>
-									<button class="btn btn-danger" onclick="deleteComment(${bbs.seq_bbs })">삭제</button>
 									</div>	
 									</form>						
 								</c:if>

@@ -47,7 +47,7 @@
 							<!-- 대댓글버튼 -->
 							<input type="hidden" name="seq_bbs" value="${bbs.seq_bbs }"/>
 							<input type="hidden" name="seq_store" value="${bbs.seq_store }" />
-							<input type="hidden" name="comment_id" value="${bbs.comment_id }" />
+							<input type="hidden" name="comment_id" value="${blogin.boss_id }" />
 							<input type="hidden" name="comments_group_no" value="${bbs.comments_group_no }" />
 							<input type="hidden" name="comments_reply" value="${bbs.comments_reply }" />
 							<button type="submit" id="btn_reply" class="btn btn-primary comment-submit" onclick="insertReply(${bbs.seq_bbs })" ><i class="fa fa-pencil-square-o"></i> 답변</button>

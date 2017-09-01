@@ -11,6 +11,30 @@
 <title>가게</title>
 </head>
 <body>
+<table align="center" border="0">
+<colgroup><col width="90"><col width="90"><col width="90"><col width="90"><col width="90">
+<col width="90"><col width="90"><col width="90"><col width="90"><col width="90">
+</colgroup><tbody><tr>
+	<td align="left" colspan="3">
+		<a href="./bmain.jsp">
+			<img src="../image/logo4.png">
+		</a>
+	</td>
+	<td valign="bottom" colspan="4">
+		<div align="right" id="menubar">
+		
+			<b>zxc 사장님 반갑습니다.</b>
+			<a href="./account/logout.jsp">로그아웃</a> | <a href="./main.jsp">메인 홈</a>
+		
+		</div>
+	</td>
+</tr>
+<tr>
+	<td colspan="10">
+		<hr width="900">
+	</td>
+</tr>
+</tbody></table>
 <div id="food">
 	<c:import url="./foodview.jsp">
 	<c:param name="seq">${param.seq }</c:param>

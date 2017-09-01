@@ -402,7 +402,8 @@ public class BbsDao {
 		
 		String sql = " SELECT * FROM "
 				+ " JUGIYO_BBS "
-				+ " WHERE comment_id=? "
+				+ " WHERE comment_id=?"
+				+ " AND id_category = 'customer' "
 				+ "	ORDER BY update_at DESC";
 		
 		List<BbsDto> list = new ArrayList<BbsDto>();
