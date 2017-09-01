@@ -261,4 +261,52 @@ public class OrderDao implements IOrderDao {
 		return list;
 	}
 	
+	@Override
+	public List<OrderDto> getOrderListRevenue(int seq_store) {
+		List<OrderDto> list = new ArrayList<>();
+		
+		String sql = "SELECT food_name, food_price, food_count, "
+				+" seq_food, seq_store, customer_id, create_at, "
+				+" status, seq_order, food_size "
+				+ " FROM JUGIYO_ORDER "
+				+ " WHERE SEQ_STORE = '"+seq_store+"' "
+				+ " AND status = '접수완료' ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConn.getConnection();
+			System.out.println("2/6 S getOrderList");
+			
+			psmt = conn.prepareStatement(sql);
+			System.out.println("3/6 S getOrderList");
+			rs = psmt.executeQuery();
+			while(rs.next()){
+				int i = 1;				
+				OrderDto dto = new OrderDto();
+				dto.setFood_name(rs.getString(i++));
+				dto.setFood_price(rs.getInt(i++));
+				dto.setFood_count(rs.getInt(i++));
+				dto.setSeq_food(rs.getInt(i++));
+				dto.setSeq_store(rs.getInt(i++));
+				dto.setCustomer_id(rs.getString(i++));
+				dto.setCreate_at(rs.getString(i++));
+				dto.setStatus(rs.getString(i++));
+				dto.setSeq_order(rs.getInt(i++));
+				dto.setFood_size(rs.getString(i++));
+				dto.setStore_name("님네가게");
+				list.add(dto);
+			}
+			System.out.println("5/6 S getcustorderlist");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			DBConn.close(rs, psmt, conn);
+			System.out.println("6/6 S getcustorderlist");
+		}
+		return list;
+	}
+	
 }

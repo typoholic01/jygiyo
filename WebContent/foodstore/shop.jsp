@@ -16,7 +16,7 @@
 <col width="90"><col width="90"><col width="90"><col width="90"><col width="90">
 </colgroup><tbody><tr>
 	<td align="left" colspan="3">
-		<a href="./bmain.jsp">
+		<a href="../bmain.jsp">
 			<img src="../image/logo4.png">
 		</a>
 	</td>
@@ -24,7 +24,7 @@
 		<div align="right" id="menubar">
 		
 			<b>zxc 사장님 반갑습니다.</b>
-			<a href="./account/logout.jsp">로그아웃</a> | <a href="./main.jsp">메인 홈</a>
+			<a href="../account/logout.jsp">로그아웃</a> | <a href="../main.jsp">메인 홈</a>
 		
 		</div>
 	</td>

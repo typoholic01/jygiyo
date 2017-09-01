@@ -16,4 +16,6 @@ public interface IOrderDao {
 
 	List<OrderDto> getOrderList(OrderDto dto);
 
+	List<OrderDto> getOrderListRevenue(int seq_store);
+
 }

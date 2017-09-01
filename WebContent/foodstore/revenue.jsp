@@ -1,3 +1,4 @@
+<%@page import="order.OrderDao"%>
 <%@page import="boss.BossDto"%>
 <%@page import="order.OrderDto"%>
 <%@page import="foodStore.FoodStoreDto"%>
@@ -28,7 +29,38 @@ long shopPrice = 0;
 long fullPrice = 0;
 
 %>
-<table class="table table-hover">
+<div class="container">
+	<div class="row">
+		<div>
+			<table align="center" border="0">
+	<colgroup><col width="90"><col width="90"><col width="90"><col width="90"><col width="90">
+	<col width="90"><col width="90"><col width="90"><col width="90"><col width="90">
+	</colgroup><tbody><tr>
+		<td align="left" colspan="3">
+			<a href="../bmain.jsp">
+				<img src="../image/logo4.png">
+			</a>
+		</td>
+		<td valign="bottom" colspan="4">
+			<div align="right" id="menubar">
+			
+				<b>zxc 사장님 반갑습니다.</b>
+				<a href="../account/logout.jsp">로그아웃</a> | <a href="../main.jsp">메인 홈</a>
+			
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="10">
+			<hr width="900">
+		</td>
+	</tr>
+	</tbody></table>
+		</div>
+	</div>
+	<div class="row">
+		<div>
+		<table class="table table-hover">
 	<tr class="info">
 		<td>주문고객</td>
 		<td>주문메뉴</td>
@@ -37,7 +69,9 @@ long fullPrice = 0;
 		<td>주문일자</td>
 	</tr>
 	<% for (FoodStoreDto dto : shopList) {
-		List<OrderDto> list = d.orderCtrl.getOrderList_boss(dto.getSeq_store());
+		OrderDao dao = OrderDao.getInstance();
+		
+		List<OrderDto> list = dao.getOrderListRevenue(dto.getSeq_store());
 
 		shopPrice = 0;
 	%>
@@ -73,6 +107,10 @@ long fullPrice = 0;
 		<th colspan="3"><%=fullPrice %></th>
 	</tr>
 </table>
+		</div>
+	</div>
+</div>
+
 
 
 </body>

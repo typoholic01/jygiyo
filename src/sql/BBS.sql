@@ -50,7 +50,7 @@ UPDATE JUGIYO_BBS SET
  status = 'delete'
  WHERE seq_bbs = 69
  
-SELECT * FROM
+SELECT * FROM JUGIYO_BBS
 (
 	SELECT seq_bbs,seq_store,comment_id,id_category,comments,comments_group_no,comments_reply,img_url,create_at,update_at,status,store_rating,
 			ROW_NUMBER() OVER (ORDER BY comments_group_no desc,comments_reply asc) R

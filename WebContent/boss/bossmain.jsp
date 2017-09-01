@@ -37,19 +37,39 @@ function getShopList() {
 </script>
 </head>
 <body>
-<table style="    float: right;">
+<table align="center" border="0">
+<colgroup><col width="90"><col width="90"><col width="90"><col width="90"><col width="90">
+<col width="90"><col width="90"><col width="90"><col width="90"><col width="90">
+</colgroup><tbody><tr>
+	<td align="left" colspan="3" rowspan="2">
+		<a href="../bmain.jsp">
+			<img src="../image/logo4.png">
+		</a>
+	</td>
+	<td colspan="4">
+		<div class="insertShop" align="right">
+			<a href="./insertshop.jsp"><button>가게 등록</button></a>
+		</div>
+	</td>
 	<tr>
-		<td align="center"><b>${blogin.boss_id }</b> 사장님 반갑습니다.</td>
+	<td valign="bottom" colspan="4">
+		<div align="right" id="menubar">
+		
+			<b>zxc 사장님 반갑습니다.</b>
+			<a href="../account/logout.jsp">로그아웃</a> | <a href="../main.jsp">메인 홈</a>
+		
+		</div>
+	</td>
 	</tr>
-	<tr>
-		<td>
-		<a href="../main.jsp">뒤로가기</a>
-		</td>
-	</tr>
+</tr>
+<tr>
+	<td colspan="10">
+		<hr width="900">
+	</td>
+</tr>
+</tbody>
 </table>
-<div class="insertShop" align="right" style="margin-right: 200px;">
-<a href="./insertshop.jsp"><button>가게 등록</button></a>
-</div>
+
 <h3 align="center">가게목록</h3>
 <div id="view">
 
