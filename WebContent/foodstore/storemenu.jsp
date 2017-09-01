@@ -109,8 +109,8 @@ function goMain() {
 <c:param name="address">${param.address }</c:param>
 </c:import>
 </div>
-	<div id="menumain.jsp" style="width:100%; height:600px;">
- 	<iframe src="./menumain.jsp?seq=${param.seq }&address=${param.address }" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" style="height: 750px; width: 100%">
+	<div id="menumain.jsp" style="width:100%; height:750px;">
+ 	<iframe seamless src="./menumain.jsp?seq=${param.seq }&address=${param.address }" scrolling="no" border="no" maginwidth="0" marginheight="0" frameborder="0" style="height: 750px; width: 100%">
 	</iframe> 
 <%-- 	<c:import url="./menumain.jsp">
 		<c:param name="seq">${param.seq }</c:param>
