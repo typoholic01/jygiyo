@@ -31,7 +31,11 @@ WHERE status!='delete'
  
 insert into JUGIYO_FOOD_STORE
 
-select * from EMPLOYEES where first_name != 'Steven'
+UPDATE JUGIYO_FOOD_STORE SET
+ address = ''
+ WHERE address IS NULL
+
+select * from JUGIYO_FOOD_STORE where first_name != 'Steven'
 
 --칼럼 추가
 alter table JUGIYO_FOOD_STORE add(status VARCHAR2(100));
