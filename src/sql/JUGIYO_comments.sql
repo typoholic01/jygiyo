@@ -1,23 +1,20 @@
-<!-- 
-댓글에 delete 빼고 셀것
--->
-
-CREATE TABLE JUGIYO_BBS (
-    seq_bbs NUMBER(11) PRIMARY KEY,
-    seq_store NUMBER(11) NOT NULL,
-    comment_id VARCHAR2(100) NOT NULL,
-    id_category VARCHAR2(100) NOT NULL,
-    comments VARCHAR2(1000) NOT NULL,
-    comments_group_no NUMBER(11) NOT NULL,
-    comments_reply VARCHAR2(10) NOT NULL,
-    img_url VARCHAR2(100),
-    create_at DATE NOT NULL,
-    update_at DATE NOT NULL,
-    status VARCHAR2(100) NOT NULL,
-    store_rating NUMBER(10),
-    CONSTRAINT FK_SEQ_STORE2 FOREIGN KEY(SEQ_STORE)
-    REFERENCES JUGIYO_FOOD_STORE(SEQ_STORE)
-);
+-- 테이블 생성
+CREATE TABLE JUGIYO_comments (
+    seqBbs INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    seqStore INT(11) UNSIGNED NOT NULL,
+    commentsId VARCHAR(100) NOT NULL,
+    idCategory VARCHAR(100) NOT NULL,
+    comments VARCHAR(1000) NOT NULL,
+    commentsGroupNo INT(11) NOT NULL,
+    commentsReply VARCHAR(10) NOT NULL,
+    imgURL VARCHAR(100),
+	createAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    status VARCHAR(100) NOT NULL,
+    storeRating INT(10),
+	PRIMARY KEY(seqBbs),
+	FOREIGN KEY(seqStore) REFERENCES JUGIYO_FOOD_STORES(seqStore) ON UPDATE CASCADE ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 보스오더
 푸드스토어리스트
