@@ -1,5 +1,5 @@
 -- 테이블 생성
-CREATE TABLE JUGIYO_comments (
+CREATE TABLE Comments (
     seqBbs INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     seqStore INT(11) UNSIGNED NOT NULL,
     commentsId VARCHAR(100) NOT NULL,
@@ -13,13 +13,11 @@ CREATE TABLE JUGIYO_comments (
     status VARCHAR(100) NOT NULL,
     storeRating INT(10),
 	PRIMARY KEY(seqBbs),
-	FOREIGN KEY(seqStore) REFERENCES JUGIYO_FOOD_STORES(seqStore) ON UPDATE CASCADE ON DELETE CASCADE
+	FOREIGN KEY(seqStore) REFERENCES Foodstores(seqStore) ON UPDATE CASCADE ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-보스오더
-푸드스토어리스트
-쇼핑 파이널
-drop table JUGIYO_BBS
+--테이블 삭제
+drop table JUGIYO_comments cascade
 
 delete from JUGIYO_BBS
 

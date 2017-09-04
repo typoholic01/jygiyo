@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -29,8 +31,8 @@ input[type=password] {
 
 <div align="center">
 
-<form action="loginAf.jsp" method="post">
-
+<form action="${pageContext.request.contextPath }/do/users/login" method="post">
+ 
 <table>
 <tr>
 	<td align="center">
@@ -41,13 +43,13 @@ input[type=password] {
 </tr>
 <tr>
 	<td>
-		<input type="text" id="user_id" name="id" size="57" placeholder="아이디 입력">
+		<input type="text" id="userId" name="userId" size="57" placeholder="아이디 입력">
 	</td>	
 </tr>
 
 <tr>
 	<td>
-		<input type="password" id="_pwd" name="pwd" size="57" placeholder="비밀번호 입력">
+		<input type="password" id="password" name="password" size="57" placeholder="비밀번호 입력">
 	</td>	
 </tr>
 <tr>
@@ -76,28 +78,28 @@ input[type=password] {
 //TODO 체크
 $(document).ready(function() {
 	// id 저장
-	var user_email = $.cookie("user_id");
+	var user_email = $.cookie("userId");
 	if (user_email != null) {
-		$("#user_id").val(user_email);
+		$("#userId").val(user_email);
 		$("#cb_saveId").attr("checked", "checked");
 	};
 	
 	$("#cb_saveId").click(function () {
 		//alert("현재 아이디를 저장합니다3");
 		if ($(this).is(':checked')) {
-			$.cookie("user_id",$("#user_id").val(), {path:"/", expires:365});
+			$.cookie("user_id",$("#userId").val(), {path:"/", expires:365});
 			alert("현재 아이디를 저장합니다");
 		} else {
-			$.cookie("user_id",$("#user_id").val(), {path:"/", expires:-1});
+			$.cookie("user_id",$("#userId").val(), {path:"/", expires:-1});
 		}
 		
 	});
 })
 // id에서 엔터키를 눌렀을때 password 입력으로 focus를 이동시켜주는 부분 
-$("#user_id").keypress(function(event) {
+$("#userId").keypress(function(event) {
     if(event.which == '13') { // 엔터키를 의미함
         event.preventDefault(); // 초기화 해주는 부분
-        $("#_pwd").focus();
+        $("#password").focus();
     }    
 });
 
